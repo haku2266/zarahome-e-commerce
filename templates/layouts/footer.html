@@ -1,3 +1,39 @@
-<footer class="mt-auto border-top bg-danger-subtle" style="height: 500px;">
-    ...
+{% load static %}
+<footer class="mt-auto border-top mx-5 mb-4 mb-sm-5">
+    <div class="row d-none d-md-flex py-5">
+        <div class="col-4 border-end px-5">
+            <h6>Магазин</h6>
+            <ul class="list-unstyled">
+                <li><a href="">Спальня</a></li>
+                <li><a href="">Одежда и обувь </a></li>
+                <li><a href="">Гостиная</a></li>
+                <li><a href="">Кухня</a></li>
+            </ul>
+        </div>
+        <div class="col-4 border-end px-5">
+            <h6>Помощь</h6>
+            <ul class="list-unstyled">
+                <li><a href="">Информация о сроках доставки</a></li>
+                <li><a href="">Пользовательское соглашение </a></li>
+            </ul>
+        </div>
+        <div class="col-4 px-5">
+            <h6>Контакты</h6>
+            <ul class="list-unstyled">
+                <li><a href="">info@зарахоум.рф</a></li>
+                <li><a href="">Одежда и обувь </a></li>
+                <li><a href="">Гостиная</a></li>
+                <li><a href="">Кухня</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row border-top pt-4 pt-sm-5 d-flex flex-column align-items-center">
+        <p class="text-center">Содержание этого сайта защищено авторским правом и является собственностью ZARAHOME. ZARAHOME стремится к
+            доступности.</p>
+        <div class="d-flex justify-content-center py-3 py-sm-4">
+            <a href=""><img src="{% static 'main/img/footer/site-logo.svg' %}" alt=""></a>
+        </div>
+        <span>© 2023 ZARAHOME. Все прова защищены.</span>
+    </div>
 </footer>
