@@ -1,0 +1,113 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block page_title %}
+    Все товары
+{% endblock %}
+
+{% block content %}
+    <div class="all-products-page">
+        <div class="row search-wrapper mx-5">
+            <div class="col-12">
+                <form action="" method="get">
+                    <div class="position-relative">
+                        <button type="submit" class="position-absolute z-1">
+                            <img src="{% static 'main/img/all-products/Search_light.svg' %}" alt="">
+                        </button>
+                        <input name="search" class="w-100 py-4 border-bottom h-100 bg-transparent"
+                               type="text"
+                               placeholder="Что хотите найти?">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="search-results row row-gap-4 my-5">
+            <a href="" class="col-12 col-md-6 col-lg-4">
+                <div class="row w-100">
+                    <div class="col-5 px-0"
+                         style="background-image: url('{% static 'main/img/all-products/search-result-1.png' %}');
+                                 background-repeat: no-repeat;
+                                 background-size: cover;
+                                 background-position: center;
+                                 aspect-ratio: 1 / 1">
+                    </div>
+
+                    <div class="col">
+                        <div class="content">
+                            <h3>LEATHER STOOL</h3>
+                            <p>Кожаный стул</p>
+                            <h4>3 120 ₽</h4>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+
+            <a href="" class="col-12 col-md-6 col-lg-4">
+                <div class="row w-100">
+                    <div class="col-5 px-0"
+                         style="background-image: url('{% static 'main/img/all-products/search-result-1.png' %}');
+                                 background-repeat: no-repeat;
+                                 background-size: cover;
+                                 background-position: center;
+                                 aspect-ratio: 1 / 1">
+                    </div>
+
+                    <div class="col">
+                        <div class="content">
+                            <h3>LEATHER STOOL</h3>
+                            <p>Кожаный стул</p>
+                            <h4>3 120 ₽</h4>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+
+            <a href="" class="col-12 col-md-6 col-lg-4">
+                <div class="row w-100">
+                    <div class="col-5 px-0"
+                         style="background-image: url('{% static 'main/img/all-products/search-result-1.png' %}');
+                                 background-repeat: no-repeat;
+                                 background-size: cover;
+                                 background-position: center;
+                                 aspect-ratio: 1 / 1">
+                    </div>
+
+                    <div class="col">
+                        <div class="content">
+                            <h3>LEATHER STOOL</h3>
+                            <p>Кожаный стул</p>
+                            <h4>3 120 ₽</h4>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+
+            <a href="" class="col-12 col-md-6 col-lg-4">
+                <div class="row w-100">
+                    <div class="col-5 px-0"
+                         style="background-image: url('{% static 'main/img/all-products/search-result-1.png' %}');
+                                 background-repeat: no-repeat;
+                                 background-size: cover;
+                                 background-position: center;
+                                 aspect-ratio: 1 / 1">
+                    </div>
+
+                    <div class="col">
+                        <div class="content">
+                            <h3>LEATHER STOOL</h3>
+                            <p>Кожаный стул</p>
+                            <h4>3 120 ₽</h4>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+
+
+        </div>
+    </div>
+{% endblock %}

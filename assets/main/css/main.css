@@ -431,9 +431,15 @@ nav ul > li:last-child > a > span:last-of-type {
     overflow-y: auto;
 }
 
+.home-page .accordion .content-box:hover {
+    cursor: pointer !important;
+
+}
+
 .home-page .accordion .content-box.active .content {
     height: 150px;
 }
+
 
 .home-page .add-links .row > a {
     transition: 250ms ease;
@@ -477,6 +483,132 @@ nav ul > li:last-child > a > span:last-of-type {
     font-weight: 400;
     line-height: normal;
 }
+
+
+/*END OF HOME PAGE*/
+
+
+/*FOOTER*/
+footer h6 {
+    color: var(--black);
+    font-family: var(--main-font);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 54px; /* 300% */
+}
+
+footer ul > li > a {
+    color: var(--mid-black) !important;
+    font-family: var(--main-font);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+}
+
+footer p {
+    color: var(--mid-black);
+    text-align: center;
+    font-family: var(--main-font);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+footer span {
+    color: var(--black);
+    text-align: center;
+    font-size: 12px;
+    font-family: var(--main-font);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.all-products-page .search-wrapper input {
+    color: #000;
+    font-family: var(--main-font);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    outline: none;
+}
+
+.all-products-page .search-wrapper input:hover,
+.all-products-page .search-wrapper input:focus {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15) !important;
+    outline: none;
+}
+
+
+.all-products-page .search-wrapper input::placeholder {
+    color: rgba(0, 0, 0, 0.20);
+    font-family: var(--main-font);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.all-products-page .search-wrapper button{
+    background-color: transparent;
+    border: none;
+    top: 25px;
+}
+.all-products-page .search-results{
+    margin-inline: min(200px, 8vw);
+}
+
+.all-products-page .search-results h3{
+    color: var(--black);
+    font-family: var(--main-font);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px; /* 133.333% */
+}
+.all-products-page .search-results p{
+    color: rgba(0, 0, 0, 0.50);
+    font-family: var(--main-font);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+
+
+.all-products-page .search-results>a{
+    transition: 250ms ease;
+}
+
+.all-products-page .search-results>a:hover{
+    background: #FFF;
+    box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.07);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @media (max-width: 1400px) {
@@ -549,47 +681,6 @@ nav ul > li:last-child > a > span:last-of-type {
 
 }
 
-/*END OF HOME PAGE*/
-
-
-/*FOOTER*/
-footer h6 {
-    color: var(--black);
-    font-family: var(--main-font);
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 54px; /* 300% */
-}
-
-footer ul > li > a {
-    color: var(--mid-black) !important;
-    font-family: var(--main-font);
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px; /* 150% */
-}
-
-footer p {
-    color: var(--mid-black);
-    text-align: center;
-    font-family: var(--main-font);
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-footer span {
-    color: var(--black);
-    text-align: center;
-    font-size: 12px;
-    font-family: var(--main-font);
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
 
 @media (max-width: 576px) {
 

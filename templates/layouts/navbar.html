@@ -7,7 +7,7 @@
     <button class="d-flex align-items-center d-md-none">
         <img src="{% static 'main/img/navbar/menu-burger.svg' %}" class="pt-1" alt="">
     </button>
-    <a href="#" class="me-auto mx-md-auto d-flex align-items-center">
+    <a href="{% url 'shop:home' %}" class="me-auto mx-md-auto d-flex align-items-center">
         <img class="nav-site-logo" src="{% static 'main/img/navbar/site-logo.svg' %}" alt="">
     </a>
     <ul class="d-flex list-unstyled align-items-center mb-0">
@@ -25,7 +25,7 @@
 
 <section class="small-nav-bar bg-white d-none d-md-flex py-3">
     <ul class="mx-auto gap-3 d-flex mb-0 list-unstyled">
-        <li><a href="">Все товары</a></li>
+        <li><a href="{% url 'shop:all-products' %}">Все товары</a></li>
         <li><a href="">Скидки</a></li>
         <li><a href="">Новинки</a></li>
         <li><a href="">Информация</a></li>

@@ -1,5 +1,9 @@
 from django.shortcuts import render
 
 
-def main_view(request):
-    return render(request, 'main.html')
+def home_view(request):
+    return render(request, 'home.html')
+
+
+def all_products_view(request):
+    return render(request, 'all_products.html')
