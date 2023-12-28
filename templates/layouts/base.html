@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Zarahome Online Shop">
+    <meta name="keywords" content="zara, fashion, style, buy, modern">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        {% block page_title %}
+        {% endblock %} | ZARAHOME
+    </title>
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap-icons/font/bootstrap-icons.css' %}">
+    {% block extra_css %}
+    {% endblock %}
+
+</head>
+<body class="d-flex flex-column min-vh-100">
+{% include 'layouts/navbar.html' %}
+
+{% block content %}
+
+{% endblock %}
+
+{% include 'layouts/footer.html' %}
+
+<script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'main/js/main.js' %}"></script>
+{% block extra_js %}
+
+{% endblock %}
+</body>
+</html>

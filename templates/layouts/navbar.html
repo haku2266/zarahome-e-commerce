@@ -1,0 +1,33 @@
+{% load static %}
+<nav class="py-md-3 bg-white d-flex px-3 px-md-5">
+    <div class="nav-contacts d-none d-md-flex flex-column justify-content-center">
+        <span>8 (800) 000 80 00</span>
+        <span>Работаем сегодня с 9:00 до 20:00</span>
+    </div>
+    <button class="d-flex align-items-center d-md-none">
+        <img src="{% static 'main/img/navbar/menu-burger.svg' %}" class="pt-1" alt="">
+    </button>
+    <a href="" class="me-auto mx-md-auto d-flex align-items-center">
+        <img class="nav-site-logo" src="{% static 'main/img/navbar/site-logo.svg' %}" alt="">
+    </a>
+    <ul class="d-flex list-unstyled align-items-center mb-0">
+        <li class="px-4 d-none d-sm-block py-3"><a href="#"><img src="{% static 'main/img/navbar/profile-icon.svg' %}" alt=""></a></li>
+        <li class="px-4 d-none d-sm-block py-3"><a href="#"><img src="{% static 'main/img/navbar/like-icon.svg' %}" alt=""></a></li>
+        <li class="ps-4 pe-3 pe-md-0 py-3">
+            <a class="d-flex align-items-center">
+                <img src="{% static 'main/img/navbar/cart-icon.svg' %}" alt="">
+                <span class="ms-2 d-none d-sm-block text-nowrap">12 440</span>
+                <span class="ms-1 d-none d-sm-block">₽</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<section class="small-nav-bar bg-white d-none d-md-flex py-3">
+    <ul class="mx-auto gap-3 d-flex mb-0 list-unstyled">
+        <li><a href="">Все товары</a></li>
+        <li><a href="">Скидки</a></li>
+        <li><a href="">Новинки</a></li>
+        <li><a href="">Информация</a></li>
+    </ul>
+</section>
