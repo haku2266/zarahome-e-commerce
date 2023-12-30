@@ -10,24 +10,74 @@
     <a href="{% url 'shop:home' %}" class="me-auto mx-md-auto d-flex align-items-center">
         <img class="nav-site-logo" src="{% static 'main/img/navbar/site-logo.svg' %}" alt="">
     </a>
-    <ul class="d-flex list-unstyled align-items-center mb-0">
-        <li class="px-4 d-none d-sm-block py-3"><a href="#"><img src="{% static 'main/img/navbar/profile-icon.svg' %}" alt=""></a></li>
-        <li class="px-4 d-none d-sm-block py-3"><a href="#"><img src="{% static 'main/img/navbar/like-icon.svg' %}" alt=""></a></li>
+    <ul class="d-flex list-unstyled align-items-center position-relative mb-0">
+        <li class="px-4 d-none d-sm-block py-3"><a href="#"><img src="{% static 'main/img/navbar/profile-icon.svg' %}"
+                                                                 alt=""></a></li>
+        <li class="px-4 d-none d-sm-block py-3"><a href="#"><img src="{% static 'main/img/navbar/like-icon.svg' %}"
+                                                                 alt=""></a></li>
         <li id="navCart" class="ps-4 pe-3 pe-md-0 py-3">
-            <a class="d-flex align-items-center">
+            <a href="#" class="d-flex align-items-center">
                 <img src="{% static 'main/img/navbar/cart-icon.svg' %}" alt="">
+                <div class="cartItemCounter" style="width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #000">
+                    <span>19</span>
+                </div>
                 <span class="ms-2 d-none d-sm-block text-nowrap">12 440</span>
                 <span class="ms-1 d-none d-sm-block">₽</span>
             </a>
+            <ul id="cart-focus" class="position-absolute  overflow-y-scroll end-0 z-3"
+                style="width: 320px; top: 60px; height: 330px;">
+                <li class="list-unstyled position-relative"> </li>
+                <li class="w-100 cart-item">
+                    <div class="row py-3 border-bottom">
+                        <div class="col-4 border-0">
+                            <img class="border-0" width="100%" style="aspect-ratio: 1 / 1;"  src="{% static 'main/img/home-page/new-item-1.svg' %}" alt="">
+                        </div>
+                        <div class="col-7">
+                            <h4>LEATHER SANDALS</h4>
+                            <h6>Кожаные сандали</h6>
+                            <p>11 540 ₽</p>
+                        </div>
+                        <div class="col-1 px-0 d-flex align-items-center"><img src="{% static 'main/img/navbar/close_btn.svg' %}" alt=""></div>
+                    </div>
+                    <div class="row py-3 border-bottom">
+                        <div class="col-4 border-0">
+                            <img class="border-0" width="100%" style="aspect-ratio: 1 / 1;"  src="{% static 'main/img/home-page/new-item-1.svg' %}" alt="">
+                        </div>
+                        <div class="col-7">
+                            <h4>LEATHER SANDALS</h4>
+                            <h6>Кожаные сандали</h6>
+                            <p>11 540 ₽</p>
+                        </div>
+                        <div class="col-1 px-0 d-flex align-items-center"><img src="{% static 'main/img/navbar/close_btn.svg' %}" alt=""></div>
+                    </div>
+                    <div class="row py-3 border-bottom">
+                        <div class="col-4 border-0">
+                            <img class="border-0" width="100%" style="aspect-ratio: 1 / 1;"  src="{% static 'main/img/home-page/new-item-1.svg' %}" alt="">
+                        </div>
+                        <div class="col-7">
+                            <h4>LEATHER SANDALS</h4>
+                            <h6>Кожаные сандали</h6>
+                            <p>11 540 ₽</p>
+                        </div>
+                        <div class="col-1 px-0 d-flex align-items-center"><img src="{% static 'main/img/navbar/close_btn.svg' %}" alt=""></div>
+                    </div>
+                </li>
+                <li class="cart-button mt-4 w-100 text-uppercase">
+                    <a href="" class="w-100">перейти к оформлению</a>
+                </li>
+            </ul>
+
         </li>
+
     </ul>
+
 </nav>
 
 <section class="small-nav-bar bg-white d-none d-md-flex py-3">
     <ul class="mx-auto gap-3 d-flex mb-0 list-unstyled">
         <li><a href="{% url 'shop:all-products' %}">Все товары</a></li>
         <li><a href="">Скидки</a></li>
-        <li><a href="">Новинки</a></li>
+        <li><a href="{% url 'shop:catalogue-detail' %}">Новинки</a></li>
         <li><a href="">Информация</a></li>
     </ul>
 </section>
