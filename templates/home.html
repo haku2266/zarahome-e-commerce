@@ -20,594 +20,601 @@
     </style>
 {% endblock %}
 
+{% block page-wrapper %}
+    home-page
+{% endblock %}
+
 {% block content %}
-    <div class="home-page">
+    {#    <div class="home-page">#}
 
-        <main class="position-relative">
-            <div class="main-content d-flex py-4 align-items-center flex-column bg-white position-absolute">
-                <h1>
-                    Новое поступление
-                </h1>
-                <p>Коллекции этого сезона</p>
-                <button class="px-3">Смотреть все новинки</button>
+    <main class="position-relative">
+        <div class="main-content d-flex py-4 align-items-center flex-column bg-white position-absolute">
+            <h1>
+                Новое поступление
+            </h1>
+            <p>Коллекции этого сезона</p>
+            <button class="px-3">Смотреть все новинки</button>
+        </div>
+    </main>
+
+    <section class="new-items w-100 row mx-0 px-md-5">
+
+        <div class="col-6 col-sm-4 col-md-3 px-0 d-flex flex-column item">
+            <div class="item-img w-100">
             </div>
-        </main>
+            <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
+                    <label class="btn btn-info me-3" for="btnradio1"></label>
 
-        <section class="new-items w-100 row mx-0 px-md-5">
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
+                    <label class="btn btn-warning me-3" for="btnradio2"></label>
 
-            <div class="col-6 col-sm-4 col-md-3 px-0 d-flex flex-column item">
-                <div class="item-img w-100">
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
+                    <label class="btn btn-primary" for="btnradio3"></label>
                 </div>
-                <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
-                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
-                        <label class="btn btn-info me-3" for="btnradio1"></label>
-
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
-                        <label class="btn btn-warning me-3" for="btnradio2"></label>
-
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
-                        <label class="btn btn-primary" for="btnradio3"></label>
-                    </div>
-                </form>
-                <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
-                <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
-                <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
-                     style="height: 60px">
-                    <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-md-6 col-8">
-                        <span class="text-nowrap">2 840</span>
-                        <span class="text-nowrap">₽</span>
-                    </div>
-                    <button class="col py-2 px-3 d-flex align-items-center justify-content-center">
-                        <span class="d-none d-md-block text-nowrap">в корзину</span>
-                        <img class="pt-md-2 ms-md-2 text-nowrap"
-                             src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
-                    </button>
+            </form>
+            <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
+            <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
+            <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
+                 style="height: 60px">
+                <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-md-6 col-8">
+                    <span class="text-nowrap">2 840</span>
+                    <span class="text-nowrap">₽</span>
                 </div>
+                <button class="col py-2 px-3 d-flex align-items-center justify-content-center">
+                    <span class="d-none d-md-block text-nowrap">в корзину</span>
+                    <img class="pt-md-2 ms-md-2 text-nowrap"
+                         src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
+                </button>
             </div>
+        </div>
 
-            <div class="col-6 col-sm-4 col-md-3 px-0 d-flex flex-column item">
-                <div class="item-img w-100">
-                </div>
-                <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
-                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
-                        <label class="btn btn-info me-3" for="btnradio1"></label>
-
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
-                        <label class="btn btn-warning me-3" for="btnradio2"></label>
-
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
-                        <label class="btn btn-primary" for="btnradio3"></label>
-                    </div>
-                </form>
-                <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
-                <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
-                <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
-                     style="height: 60px">
-                    <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-md-6">
-                        <span class="text-nowrap">2 840</span>
-                        <span class="text-nowrap">₽</span>
-                    </div>
-                    <button class="col ms-md-2 py-2 px-3 d-flex align-items-center justify-content-center">
-                        <span class="d-none d-md-block text-nowrap">в корзину</span>
-                        <img class="pt-md-2 ms-md-2 text-nowrap"
-                             src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
-                    </button>
-                </div>
+        <div class="col-6 col-sm-4 col-md-3 px-0 d-flex flex-column item">
+            <div class="item-img w-100">
             </div>
+            <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
+                    <label class="btn btn-info me-3" for="btnradio1"></label>
 
-            <div class="col-6 col-sm-4 col-md-3 px-0 d-flex flex-column item">
-                <div class="item-img w-100">
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
+                    <label class="btn btn-warning me-3" for="btnradio2"></label>
+
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
+                    <label class="btn btn-primary" for="btnradio3"></label>
                 </div>
-                <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
-                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
-                        <label class="btn btn-info me-3" for="btnradio1"></label>
-
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
-                        <label class="btn btn-warning me-3" for="btnradio2"></label>
-
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
-                        <label class="btn btn-primary" for="btnradio3"></label>
-                    </div>
-                </form>
-                <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
-                <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
-                <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
-                     style="height: 60px">
-                    <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-md-6">
-                        <span class="text-nowrap">2 840</span>
-                        <span class="text-nowrap">₽</span>
-                    </div>
-                    <button class="col ms-md-2 py-2 px-3 d-flex align-items-center justify-content-center">
-                        <span class="d-none d-md-block text-nowrap">в корзину</span>
-                        <img class="pt-md-2 ms-md-2 text-nowrap"
-                             src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
-                    </button>
+            </form>
+            <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
+            <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
+            <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
+                 style="height: 60px">
+                <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-md-6">
+                    <span class="text-nowrap">2 840</span>
+                    <span class="text-nowrap">₽</span>
                 </div>
+                <button class="col ms-md-2 py-2 px-3 d-flex align-items-center justify-content-center">
+                    <span class="d-none d-md-block text-nowrap">в корзину</span>
+                    <img class="pt-md-2 ms-md-2 text-nowrap"
+                         src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
+                </button>
             </div>
+        </div>
 
-            <div class="col-6 col-sm-4 col-md-3 px-0 d-flex flex-column item">
-                <div class="item-img w-100">
-                </div>
-                <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
-                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
-                        <label class="btn btn-info me-3" for="btnradio1"></label>
-
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
-                        <label class="btn btn-warning me-3" for="btnradio2"></label>
-
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
-                        <label class="btn btn-primary" for="btnradio3"></label>
-                    </div>
-                </form>
-                <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
-                <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
-                <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
-                     style="height: 60px">
-                    <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-md-6">
-                        <span class="text-nowrap">2 840</span>
-                        <span class="text-nowrap">₽</span>
-                    </div>
-                    <button class="col ms-md-2 py-2 px-3 d-flex align-items-center justify-content-center">
-                        <span class="d-none d-md-block text-nowrap">в корзину</span>
-                        <img class="pt-md-2 ms-md-2 text-nowrap"
-                             src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
-                    </button>
-                </div>
+        <div class="col-6 col-sm-4 col-md-3 px-0 d-flex flex-column item">
+            <div class="item-img w-100">
             </div>
+            <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
+                    <label class="btn btn-info me-3" for="btnradio1"></label>
 
-        </section>
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
+                    <label class="btn btn-warning me-3" for="btnradio2"></label>
 
-
-        <main class="position-relative mt-5">
-            <div class="main-content d-flex py-4 align-items-center flex-column bg-white position-absolute">
-                <h1>
-                    Скидки до 70%
-                </h1>
-                <p>На самые популярные товары</p>
-                <button class="px-3">Смотреть все скидки</button>
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
+                    <label class="btn btn-primary" for="btnradio3"></label>
+                </div>
+            </form>
+            <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
+            <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
+            <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
+                 style="height: 60px">
+                <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-md-6">
+                    <span class="text-nowrap">2 840</span>
+                    <span class="text-nowrap">₽</span>
+                </div>
+                <button class="col ms-md-2 py-2 px-3 d-flex align-items-center justify-content-center">
+                    <span class="d-none d-md-block text-nowrap">в корзину</span>
+                    <img class="pt-md-2 ms-md-2 text-nowrap"
+                         src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
+                </button>
             </div>
-        </main>
+        </div>
 
-        <section class="new-items pb-4 w-100 row mx-0 px-md-5">
-
-            <div class="col-6 col-sm-4 col-md-3 px-0 d-flex flex-column item">
-                <div class="item-img w-100">
-                </div>
-                <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
-                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
-                        <label class="btn btn-info me-3"></label>
-
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
-                        <label class="btn btn-warning me-3"></label>
-
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
-                        <label class="btn btn-primary"></label>
-                    </div>
-                </form>
-                <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
-                <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
-                <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
-                     style="height: 60px">
-                    <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-md-6">
-                        <span class="text-nowrap">2 840</span>
-                        <span class="text-nowrap">₽</span>
-                    </div>
-                    <button class="col ms-md-2 py-2 px-3 d-flex align-items-center justify-content-center">
-                        <span class="d-none d-md-block text-nowrap">в корзину</span>
-                        <img class="pt-md-2 ms-md-2 text-nowrap"
-                             src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
-                    </button>
-                </div>
+        <div class="col-6 col-sm-4 col-md-3 px-0 d-flex flex-column item">
+            <div class="item-img w-100">
             </div>
+            <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
+                    <label class="btn btn-info me-3" for="btnradio1"></label>
 
-            <div class="col-6 col-sm-4 col-md-3 px-0 d-flex flex-column item">
-                <div class="item-img w-100">
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
+                    <label class="btn btn-warning me-3" for="btnradio2"></label>
+
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
+                    <label class="btn btn-primary" for="btnradio3"></label>
                 </div>
-                <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
-                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
-                        <label class="btn btn-info me-3" for="btnradio1"></label>
-
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
-                        <label class="btn btn-warning me-3" for="btnradio2"></label>
-
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
-                        <label class="btn btn-primary" for="btnradio3"></label>
-                    </div>
-                </form>
-                <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
-                <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
-                <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
-                     style="height: 60px">
-                    <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-md-6">
-                        <span class="text-nowrap">2 840</span>
-                        <span class="text-nowrap">₽</span>
-                    </div>
-                    <button class="col ms-md-2 py-2 px-3 d-flex align-items-center justify-content-center">
-                        <span class="d-none d-md-block text-nowrap">в корзину</span>
-                        <img class="pt-md-2 ms-md-2 text-nowrap"
-                             src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
-                    </button>
+            </form>
+            <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
+            <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
+            <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
+                 style="height: 60px">
+                <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-md-6">
+                    <span class="text-nowrap">2 840</span>
+                    <span class="text-nowrap">₽</span>
                 </div>
+                <button class="col ms-md-2 py-2 px-3 d-flex align-items-center justify-content-center">
+                    <span class="d-none d-md-block text-nowrap">в корзину</span>
+                    <img class="pt-md-2 ms-md-2 text-nowrap"
+                         src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
+                </button>
             </div>
+        </div>
 
-            <div class="col-6 col-sm-4 col-md-3 px-0 d-flex flex-column item">
-                <div class="item-img w-100">
-                </div>
-                <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
-                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
-                        <label class="btn btn-info me-3" for="btnradio1"></label>
+    </section>
 
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
-                        <label class="btn btn-warning me-3" for="btnradio2"></label>
 
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
-                        <label class="btn btn-primary" for="btnradio3"></label>
-                    </div>
-                </form>
-                <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
-                <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
-                <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
-                     style="height: 60px">
-                    <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-md-6">
-                        <span class="text-nowrap">2 840</span>
-                        <span class="text-nowrap">₽</span>
-                    </div>
-                    <button class="col ms-md-2 py-2 px-3 d-flex align-items-center justify-content-center">
-                        <span class="d-none d-md-block text-nowrap">в корзину</span>
-                        <img class="pt-md-2 ms-md-2 text-nowrap"
-                             src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
-                    </button>
-                </div>
+    <main class="position-relative mt-5">
+        <div class="main-content d-flex py-4 align-items-center flex-column bg-white position-absolute">
+            <h1>
+                Скидки до 70%
+            </h1>
+            <p>На самые популярные товары</p>
+            <button class="px-3">Смотреть все скидки</button>
+        </div>
+    </main>
+
+    <section class="new-items pb-4 w-100 row mx-0 px-md-5">
+
+        <div class="col-6 col-sm-4 col-md-3 px-0 d-flex flex-column item">
+            <div class="item-img w-100">
             </div>
+            <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
+                    <label class="btn btn-info me-3"></label>
 
-            <div class="col-6 col-sm-4 col-md-3 px-0 d-flex flex-column item">
-                <div class="item-img w-100">
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
+                    <label class="btn btn-warning me-3"></label>
+
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
+                    <label class="btn btn-primary"></label>
                 </div>
-                <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
-                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
-                        <label class="btn btn-info me-3" for="btnradio1"></label>
-
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
-                        <label class="btn btn-warning me-3" for="btnradio2"></label>
-
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
-                        <label class="btn btn-primary" for="btnradio3"></label>
-                    </div>
-                </form>
-                <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
-                <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
-                <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
-                     style="height: 60px">
-                    <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-md-6">
-                        <span class="text-nowrap">2 840</span>
-                        <span class="text-nowrap">₽</span>
-                    </div>
-                    <button class="col ms-md-2 py-2 px-3 d-flex align-items-center justify-content-center">
-                        <span class="d-none d-md-block text-nowrap">в корзину</span>
-                        <img class="pt-md-2 ms-md-2 text-nowrap"
-                             src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
-                    </button>
+            </form>
+            <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
+            <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
+            <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
+                 style="height: 60px">
+                <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-md-6">
+                    <span class="text-nowrap">2 840</span>
+                    <span class="text-nowrap">₽</span>
                 </div>
+                <button class="col ms-md-2 py-2 px-3 d-flex align-items-center justify-content-center">
+                    <span class="d-none d-md-block text-nowrap">в корзину</span>
+                    <img class="pt-md-2 ms-md-2 text-nowrap"
+                         src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
+                </button>
             </div>
+        </div>
 
-        </section>
-
-        <section class="catalogue mt-4 mt-md-5">
-            <h1 class="text-center text-md-start ms-sm-4 ms-md-5 mb-4 mb-md-5">Каталог товаров</h1>
-            <div class="row w-100 px-3 px-sm-0 row row-gap-5 mx-0">
-                <div class="col-12 col-sm-6 col-md-4 position-relative" style="
-                        background: url('{% static 'main/img/home-page/sales-banner.svg' %}') lightgray 50% / cover no-repeat;
-                        aspect-ratio: 1 / 1">
-                    <div class="content py-2 py-md-3 py-md-5 px-4 position-absolute d-flex flex-column align-items-center">
-                        <h3 class="mb-0">Спальня</h3>
-                        <hr class="w-75">
-                        <p>
-                            Для комфортного сна
-                            и отдыха
-                        </p>
-                    </div>
-                </div>
-
-                <div class=" col-12 col-sm-6 col-md-4 position-relative" style="
-                        background: url('{% static 'main/img/home-page/sales-banner.svg' %}') lightgray 50% / cover no-repeat;
-                        aspect-ratio: 1 / 1">
-
-                    <div class="content py-2 py-md-3 py-md-5 px-4 position-absolute d-flex flex-column align-items-center">
-                        <h3 class="mb-0">Спальня</h3>
-                        <hr class="w-75">
-                        <p>
-                            Для комфортного сна
-                            и отдыха
-                        </p>
-                    </div>
-
-                </div>
-
-                <div class=" col-12 col-sm-6 col-md-4 position-relative" style="
-                        background: url('{% static 'main/img/home-page/sales-banner.svg' %}') lightgray 50% / cover no-repeat;
-                        aspect-ratio: 1 / 1">
-
-                    <div class="content py-2 py-md-3 py-md-5 px-4 position-absolute d-flex flex-column align-items-center">
-                        <h3 class="mb-0">Спальня</h3>
-                        <hr class="w-75">
-                        <p>
-                            Для комфортного сна
-                            и отдыха
-                        </p>
-                    </div>
-                </div>
-
-                <div class=" col-12 col-sm-6 col-md-4 position-relative" style="
-                        background: url('{% static 'main/img/home-page/sales-banner.svg' %}') lightgray 50% / cover no-repeat;
-                        aspect-ratio: 1 / 1">
-
-                    <div class="content py-2 py-md-3 py-md-5 px-4 position-absolute d-flex flex-column align-items-center">
-                        <h3 class="mb-0">Спальня</h3>
-                        <hr class="w-75">
-                        <p>
-                            Для комфортного сна
-                            и отдыха
-                        </p>
-                    </div>
-                </div>
-
-                <div class=" col-12 col-sm-6 col-md-4 position-relative" style="
-                        background: url('{% static 'main/img/home-page/sales-banner.svg' %}') lightgray 50% / cover no-repeat;
-                        aspect-ratio: 1 / 1">
-
-                    <div class="content py-2 py-md-3 py-md-5 px-4 position-absolute d-flex flex-column align-items-center">
-                        <h3 class="mb-0">Спальня</h3>
-                        <hr class="w-75">
-                        <p>
-                            Для комфортного сна
-                            и отдыха
-                        </p>
-                    </div>
-                </div>
-
-                <div class=" col-12 col-sm-6 col-md-4 position-relative" style="
-                        background: url('{% static 'main/img/home-page/sales-banner.svg' %}') lightgray 50% / cover no-repeat;
-                        aspect-ratio: 1 / 1">
-
-                    <div class="content py-2 py-md-3 py-md-5 px-4 position-absolute d-flex flex-column align-items-center">
-                        <h3 class="mb-0">Спальня</h3>
-                        <hr class="w-75">
-                        <p>
-                            Для комфортного сна
-                            и отдыха
-                        </p>
-                    </div>
-                </div>
-
-                <div class=" col-12 col-sm-6 col-md-4 position-relative" style="
-                        background: url('{% static 'main/img/home-page/sales-banner.svg' %}') lightgray 50% / cover no-repeat;
-                        aspect-ratio: 1 / 1">
-
-                    <div class="content py-2 py-md-3 py-md-5 px-4 position-absolute d-flex flex-column align-items-center">
-                        <h3 class="mb-0">Спальня</h3>
-                        <hr class="w-75">
-                        <p>
-                            Для комфортного сна
-                            и отдыха
-                        </p>
-                    </div>
-                </div>
-
-                <div class=" col-12 col-sm-6 col-md-4 position-relative" style="
-                        background: url('{% static 'main/img/home-page/sales-banner.svg' %}') lightgray 50% / cover no-repeat;
-                        aspect-ratio: 1 / 1">
-
-                    <div class="content py-2 py-md-3 py-md-5 px-4 position-absolute d-flex flex-column align-items-center">
-                        <h3 class="mb-0">Спальня</h3>
-                        <hr class="w-75">
-                        <p>
-                            Для комфортного сна
-                            и отдыха
-                        </p>
-                    </div>
-                </div>
-
-                <div class=" col-12 col-sm-6 col-md-4 position-relative" style="
-                        background: url('{% static 'main/img/home-page/sales-banner.svg' %}') lightgray 50% / cover no-repeat;
-                        aspect-ratio: 1 / 1">
-
-                    <div class="content py-2 py-md-3 py-md-5 px-4 position-absolute d-flex flex-column align-items-center">
-                        <h3 class="mb-0">Спальня</h3>
-                        <hr class="w-75">
-                        <p>
-                            Для комфортного сна
-                            и отдыха
-                        </p>
-                    </div>
-                </div>
+        <div class="col-6 col-sm-4 col-md-3 px-0 d-flex flex-column item">
+            <div class="item-img w-100">
             </div>
-        </section>
+            <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
+                    <label class="btn btn-info me-3" for="btnradio1"></label>
 
-        <section class="why-us px-0 pb-md-5 px-sm-5 d-flex flex-column">
-            <div class="mx-auto me-md-0 ms-md-auto mb-3">
-                <h1 class="text-center">Почему выбирают нас?</h1>
-                <h6 class="text-center text-md-start">Наши преимущества</h6>
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
+                    <label class="btn btn-warning me-3" for="btnradio2"></label>
+
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
+                    <label class="btn btn-primary" for="btnradio3"></label>
+                </div>
+            </form>
+            <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
+            <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
+            <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
+                 style="height: 60px">
+                <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-md-6">
+                    <span class="text-nowrap">2 840</span>
+                    <span class="text-nowrap">₽</span>
+                </div>
+                <button class="col ms-md-2 py-2 px-3 d-flex align-items-center justify-content-center">
+                    <span class="d-none d-md-block text-nowrap">в корзину</span>
+                    <img class="pt-md-2 ms-md-2 text-nowrap"
+                         src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
+                </button>
             </div>
+        </div>
 
-            <div class="content mx-auto position-relative">
-                <div class="text w-100 px-5 py-3 py-sm-5 ">
-                    <div class="row">
-                        <div class="col-12 col-sm-6 pb-4 px-4 border-bottom">
-                            <h2 class="mt-5 text-center text-sm-end mb-3">100% Оригинальный товар</h2>
-                            <p class="text-center text-sm-end"> Предоставляем чеки о покупке</p>
-                        </div>
-                        <div class="col-12 col-sm-6 pb-4 border-bottom px-4">
-                            <h2 class="mt-5 text-center text-sm-start mb-3">Удобная оплата </h2>
-                            <p class="text-center text-sm-start"> Работаем через платежный терминал от Тинькофф.
-                                Принимаем карты
-                                российских банков</p>
-                        </div>
-                    </div>
-                    <h2 class="text-center text-sm-center mt-4">О нас говорят</h2>
-                    <p class="text-center text-sm-center">Наша команда всегда заботится о каждом клиенте и старается
-                        предоставить
-                        высококачественный сервис
-                        и максимально удобные условия сотрудничества</p>
-                    <div class="row statistics">
-                        <div class="col-12 col-md-4 d-flex flex-column align-items-center">
-                            <h1>200+</h1>
-                            <h4>Доставок в этом году</h4>
-                        </div>
-                        <div class="col-12 col-md-4 d-flex flex-column align-items-center">
-                            <h1>600</h1>
-                            <h4>Отзывов на Отзовик.ru</h4>
-                        </div>
-                        <div class="col-12 col-md-4 d-flex flex-column align-items-center">
-                            <h1>71%</h1>
-                            <h4>Клиентов нас рекомендуют</h4>
-                        </div>
-                    </div>
-                    <div class="d-flex mt-4">
-                        <div class="rating mx-auto">
-                            <input value="5" name="rating" id="star5" type="radio">
-                            <label for="star5"></label>
-                            <input value="4" name="rating" id="star4" type="radio">
-                            <label for="star4"></label>
-                            <input value="3" name="rating" id="star3" type="radio">
-                            <label for="star3"></label>
-                            <input value="2" name="rating" id="star2" type="radio">
-                            <label for="star2"></label>
-                            <input value="1" name="rating" id="star1" type="radio">
-                            <label for="star1"></label>
-                        </div>
-                    </div>
-                    <div class="d-flex mt-4">
-                        <a href="" class="mx-auto"> <img src="{% static 'main/img/home-page/responces.svg' %}" alt="">
-                            <span>Смотреть все отзывы</span></a>
-                    </div>
-                </div>
-
-                <img class="position-absolute d-none d-sm-block" src="{% static 'main/img/home-page/why-us-logo.svg' %}"
-                     alt="">
-                <img class="position-absolute d-none d-sm-block"
-                     src="{% static 'main/img/home-page/why-us-payment.svg' %}" alt="">
+        <div class="col-6 col-sm-4 col-md-3 px-0 d-flex flex-column item">
+            <div class="item-img w-100">
             </div>
-        </section>
+            <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
+                    <label class="btn btn-info me-3" for="btnradio1"></label>
 
-        <section class="common-questions px-3 px-sm-5 mt-5">
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
+                    <label class="btn btn-warning me-3" for="btnradio2"></label>
 
-            <h1 class="text-center text-md-start">Часто задаваемые вопросы</h1>
-            <p class="text-center text-md-start">Скорее всего тут уже есть ответ и на ваш</p>
-
-            <div class="accordion px-md-5 mt-5">
-                <div class="content-box mx-md-5 position-relative px-5">
-                    <img src="{% static 'main/img/home-page/accordion-btn.svg' %}"
-                         class="position-absolute" alt="">
-
-                    <div class="label">Как H&M удается поддерживать такие низкие цены?</div>
-                    <div class="content mt-4">Информацию обо всех кампаниях, проводимых H&M, вы можете найти на нашем
-                        сайте в
-                        разделе Акции / Скидки H&M. При подаче заявки на участие в конкурсе в Интернете мы советуем вам
-                        прочитать текст, напечатанный мелким шрифтом и правовые оговорки. При этом в большинстве случаев
-                        вы сможете заметить, что рекламная кампания не имеет никакого отношения к бренду HM. Если в
-                        ответ на электронное письмо, предлагающее выиграть конкурс H&M, вы отправили свой номер
-                        мобильного телефона, если вы стали жертвой мошенников и теперь получаете смс-сообщения
-                        нежелательного характера, мы советуем вам связаться со своим провайдером сотовой связи и
-                        заблокировать нежелательный номер.
-                    </div>
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
+                    <label class="btn btn-primary" for="btnradio3"></label>
                 </div>
-
-                <div class="content-box mx-md-5 position-relative px-5">
-                    <img src="{% static 'main/img/home-page/accordion-btn.svg' %}"
-                         class="position-absolute" alt="">
-
-                    <div class="label">Проводит ли H&M конкурсы для своих покупателей?</div>
-                    <div class="content mt-4">
-                        Информацию обо всех кампаниях, проводимых H&M, вы можете найти на нашем сайте в разделе Акции /
-                        Скидки H&M. При подаче заявки на участие в конкурсе в Интернете мы советуем вам прочитать текст,
-                        напечатанный мелким шрифтом и правовые оговорки. При этом в большинстве случаев вы сможете
-                        заметить, что рекламная кампания не имеет никакого отношения к бренду HM. Если в ответ на
-                        электронное письмо, предлагающее выиграть конкурс H&M, вы отправили свой номер мобильного
-                        телефона, если вы стали жертвой мошенников и теперь получаете смс-сообщения нежелательного
-                        характера, мы советуем вам связаться со своим провайдером сотовой связи и заблокировать
-                        нежелательный номер.
-                    </div>
+            </form>
+            <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
+            <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
+            <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
+                 style="height: 60px">
+                <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-md-6">
+                    <span class="text-nowrap">2 840</span>
+                    <span class="text-nowrap">₽</span>
                 </div>
+                <button class="col ms-md-2 py-2 px-3 d-flex align-items-center justify-content-center">
+                    <span class="d-none d-md-block text-nowrap">в корзину</span>
+                    <img class="pt-md-2 ms-md-2 text-nowrap"
+                         src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
+                </button>
+            </div>
+        </div>
 
-                <div class="content-box mx-md-5 position-relative px-5">
-                    <img src="{% static 'main/img/home-page/accordion-btn.svg' %}"
-                         class="position-absolute" alt="">
+        <div class="col-6 col-sm-4 col-md-3 px-0 d-flex flex-column item">
+            <div class="item-img w-100">
+            </div>
+            <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
+                    <label class="btn btn-info me-3" for="btnradio1"></label>
 
-                    <div class="label">В Facebook и Instagram предлагают подарочные карты, которые якобы действительны в
-                        магазинах H&M. Это правда?
-                    </div>
-                    <div class="content mt-4">Информацию обо всех кампаниях, проводимых H&M, вы можете найти на нашем
-                        сайте в
-                        разделе Акции / Скидки H&M. При подаче заявки на участие в конкурсе в Интернете мы советуем вам
-                        прочитать текст, напечатанный мелким шрифтом и правовые оговорки. При этом в большинстве случаев
-                        вы сможете заметить, что рекламная кампания не имеет никакого отношения к бренду HM. Если в
-                        ответ на электронное письмо, предлагающее выиграть конкурс H&M, вы отправили свой номер
-                        мобильного телефона, если вы стали жертвой мошенников и теперь получаете смс-сообщения
-                        нежелательного характера, мы советуем вам связаться со своим провайдером сотовой связи и
-                        заблокировать нежелательный номер.
-                    </div>
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
+                    <label class="btn btn-warning me-3" for="btnradio2"></label>
+
+                    {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
+                    <label class="btn btn-primary" for="btnradio3"></label>
                 </div>
+            </form>
+            <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
+            <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
+            <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
+                 style="height: 60px">
+                <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-md-6">
+                    <span class="text-nowrap">2 840</span>
+                    <span class="text-nowrap">₽</span>
+                </div>
+                <button class="col ms-md-2 py-2 px-3 d-flex align-items-center justify-content-center">
+                    <span class="d-none d-md-block text-nowrap">в корзину</span>
+                    <img class="pt-md-2 ms-md-2 text-nowrap"
+                         src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
+                </button>
+            </div>
+        </div>
 
-                <div class="content-box mx-md-5 position-relative px-5">
-                    <img src="{% static 'main/img/home-page/accordion-btn.svg' %}"
-                         class="position-absolute" alt="">
+    </section>
 
-                    <div class="label">Где можно купить подарочные карты H&M?</div>
-                    <div class="content mt-4">Информацию обо всех кампаниях, проводимых H&M, вы можете найти на нашем
-                        сайте в
-                        разделе Акции / Скидки H&M. При подаче заявки на участие в конкурсе в Интернете мы советуем вам
-                        прочитать текст, напечатанный мелким шрифтом и правовые оговорки. При этом в большинстве случаев
-                        вы сможете заметить, что рекламная кампания не имеет никакого отношения к бренду HM. Если в
-                        ответ на электронное письмо, предлагающее выиграть конкурс H&M, вы отправили свой номер
-                        мобильного телефона, если вы стали жертвой мошенников и теперь получаете смс-сообщения
-                        нежелательного характера, мы советуем вам связаться со своим провайдером сотовой связи и
-                        заблокировать нежелательный номер.
-                    </div>
+    <section class="catalogue mt-4 mt-md-5">
+        <h1 class="text-center text-md-start ms-sm-4 ms-md-5 mb-4 mb-md-5">Каталог товаров</h1>
+        <div class="row w-100 px-3 px-sm-0 row row-gap-5 mx-0">
+            <div class="col-12 col-sm-6 col-md-4 position-relative" style="
+                    background: url('{% static 'main/img/home-page/sales-banner.svg' %}') lightgray 50% / cover no-repeat;
+                    aspect-ratio: 1 / 1">
+                <div class="content py-2 py-md-3 py-md-5 px-4 position-absolute d-flex flex-column align-items-center">
+                    <h3 class="mb-0">Спальня</h3>
+                    <hr class="w-75">
+                    <p>
+                        Для комфортного сна
+                        и отдыха
+                    </p>
                 </div>
             </div>
 
-        </section>
+            <div class=" col-12 col-sm-6 col-md-4 position-relative" style="
+                    background: url('{% static 'main/img/home-page/sales-banner.svg' %}') lightgray 50% / cover no-repeat;
+                    aspect-ratio: 1 / 1">
 
-        <section class="add-links mb-5 d-flex flex-column px-3 mt-5 px-sm-5">
-            <div class="mx-auto me-md-0 ms-md-auto mb-3">
-                <h1 class="text-center">Не нашли ответ на свой вопрос?</h1>
-                <h6 class=" text-center text-md-start">Мы всегда готовы прийти на помощь</h6>
+                <div class="content py-2 py-md-3 py-md-5 px-4 position-absolute d-flex flex-column align-items-center">
+                    <h3 class="mb-0">Спальня</h3>
+                    <hr class="w-75">
+                    <p>
+                        Для комфортного сна
+                        и отдыха
+                    </p>
+                </div>
+
             </div>
-            <div class="row mt-4">
-                <a href="#" class="col-12 col-sm-8 offset-sm-2 offset-md-0 row-gap-2 row-gap-md-3 col-md-4 px-4 py-4 py-md-5 d-flex flex-column align-items-center position-relative">
-                    <img src="{% static 'main/img/home-page/Out-icon.svg' %}"  alt="">
-                    <img src="{% static 'main/img/home-page/tg-icon.svg' %}" alt="">
-                    <h4>Задайте его нам</h4>
-                    <p>Напишите в наш Telegram</p>
 
-                </a>
-                <a href="#" class="col-12 col-sm-8 offset-sm-2 offset-md-0 row-gap-2 row-gap-md-3 col-md-4 px-4 py-4 py-md-5 d-flex flex-column align-items-center position-relative">
-                    <img src="{% static 'main/img/home-page/Out-icon.svg' %}"  alt="">
-                    <img src="{% static 'main/img/home-page/dzhen-icon.svg' %}" alt="">
-                    <h4>Наши статьи в Дзен</h4>
-                    <p>Все самое полезное для вас мы собрали тут</p>
+            <div class=" col-12 col-sm-6 col-md-4 position-relative" style="
+                    background: url('{% static 'main/img/home-page/sales-banner.svg' %}') lightgray 50% / cover no-repeat;
+                    aspect-ratio: 1 / 1">
 
-                </a>
-
-                <a href="#" class="col-12 col-sm-8 offset-sm-2 offset-md-0 row-gap-2 row-gap-md-3 col-md-4 px-4 py-4 py-md-5 d-flex flex-column align-items-center position-relative">
-                    <img src="{% static 'main/img/home-page/Out-icon.svg' %}"  alt="">
-                    <img src="{% static 'main/img/home-page/vk-icon.svg' %}" alt="">
-                    <h4>Присоединяйтесь</h4>
-                    <p>Наше сообщество с радостью вас приймет</p>
-
-                </a>
+                <div class="content py-2 py-md-3 py-md-5 px-4 position-absolute d-flex flex-column align-items-center">
+                    <h3 class="mb-0">Спальня</h3>
+                    <hr class="w-75">
+                    <p>
+                        Для комфортного сна
+                        и отдыха
+                    </p>
+                </div>
             </div>
-        </section>
 
-    </div>
+            <div class=" col-12 col-sm-6 col-md-4 position-relative" style="
+                    background: url('{% static 'main/img/home-page/sales-banner.svg' %}') lightgray 50% / cover no-repeat;
+                    aspect-ratio: 1 / 1">
+
+                <div class="content py-2 py-md-3 py-md-5 px-4 position-absolute d-flex flex-column align-items-center">
+                    <h3 class="mb-0">Спальня</h3>
+                    <hr class="w-75">
+                    <p>
+                        Для комфортного сна
+                        и отдыха
+                    </p>
+                </div>
+            </div>
+
+            <div class=" col-12 col-sm-6 col-md-4 position-relative" style="
+                    background: url('{% static 'main/img/home-page/sales-banner.svg' %}') lightgray 50% / cover no-repeat;
+                    aspect-ratio: 1 / 1">
+
+                <div class="content py-2 py-md-3 py-md-5 px-4 position-absolute d-flex flex-column align-items-center">
+                    <h3 class="mb-0">Спальня</h3>
+                    <hr class="w-75">
+                    <p>
+                        Для комфортного сна
+                        и отдыха
+                    </p>
+                </div>
+            </div>
+
+            <div class=" col-12 col-sm-6 col-md-4 position-relative" style="
+                    background: url('{% static 'main/img/home-page/sales-banner.svg' %}') lightgray 50% / cover no-repeat;
+                    aspect-ratio: 1 / 1">
+
+                <div class="content py-2 py-md-3 py-md-5 px-4 position-absolute d-flex flex-column align-items-center">
+                    <h3 class="mb-0">Спальня</h3>
+                    <hr class="w-75">
+                    <p>
+                        Для комфортного сна
+                        и отдыха
+                    </p>
+                </div>
+            </div>
+
+            <div class=" col-12 col-sm-6 col-md-4 position-relative" style="
+                    background: url('{% static 'main/img/home-page/sales-banner.svg' %}') lightgray 50% / cover no-repeat;
+                    aspect-ratio: 1 / 1">
+
+                <div class="content py-2 py-md-3 py-md-5 px-4 position-absolute d-flex flex-column align-items-center">
+                    <h3 class="mb-0">Спальня</h3>
+                    <hr class="w-75">
+                    <p>
+                        Для комфортного сна
+                        и отдыха
+                    </p>
+                </div>
+            </div>
+
+            <div class=" col-12 col-sm-6 col-md-4 position-relative" style="
+                    background: url('{% static 'main/img/home-page/sales-banner.svg' %}') lightgray 50% / cover no-repeat;
+                    aspect-ratio: 1 / 1">
+
+                <div class="content py-2 py-md-3 py-md-5 px-4 position-absolute d-flex flex-column align-items-center">
+                    <h3 class="mb-0">Спальня</h3>
+                    <hr class="w-75">
+                    <p>
+                        Для комфортного сна
+                        и отдыха
+                    </p>
+                </div>
+            </div>
+
+            <div class=" col-12 col-sm-6 col-md-4 position-relative" style="
+                    background: url('{% static 'main/img/home-page/sales-banner.svg' %}') lightgray 50% / cover no-repeat;
+                    aspect-ratio: 1 / 1">
+
+                <div class="content py-2 py-md-3 py-md-5 px-4 position-absolute d-flex flex-column align-items-center">
+                    <h3 class="mb-0">Спальня</h3>
+                    <hr class="w-75">
+                    <p>
+                        Для комфортного сна
+                        и отдыха
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-us px-0 pb-md-5 px-sm-5 d-flex flex-column">
+        <div class="mx-auto me-md-0 ms-md-auto mb-3">
+            <h1 class="text-center">Почему выбирают нас?</h1>
+            <h6 class="text-center text-md-start">Наши преимущества</h6>
+        </div>
+
+        <div class="content mx-auto position-relative">
+            <div class="text w-100 px-5 py-3 py-sm-5 ">
+                <div class="row">
+                    <div class="col-12 col-sm-6 pb-4 px-4 border-bottom">
+                        <h2 class="mt-5 text-center text-sm-end mb-3">100% Оригинальный товар</h2>
+                        <p class="text-center text-sm-end"> Предоставляем чеки о покупке</p>
+                    </div>
+                    <div class="col-12 col-sm-6 pb-4 border-bottom px-4">
+                        <h2 class="mt-5 text-center text-sm-start mb-3">Удобная оплата </h2>
+                        <p class="text-center text-sm-start"> Работаем через платежный терминал от Тинькофф.
+                            Принимаем карты
+                            российских банков</p>
+                    </div>
+                </div>
+                <h2 class="text-center text-sm-center mt-4">О нас говорят</h2>
+                <p class="text-center text-sm-center">Наша команда всегда заботится о каждом клиенте и старается
+                    предоставить
+                    высококачественный сервис
+                    и максимально удобные условия сотрудничества</p>
+                <div class="row statistics">
+                    <div class="col-12 col-md-4 d-flex flex-column align-items-center">
+                        <h1>200+</h1>
+                        <h4>Доставок в этом году</h4>
+                    </div>
+                    <div class="col-12 col-md-4 d-flex flex-column align-items-center">
+                        <h1>600</h1>
+                        <h4>Отзывов на Отзовик.ru</h4>
+                    </div>
+                    <div class="col-12 col-md-4 d-flex flex-column align-items-center">
+                        <h1>71%</h1>
+                        <h4>Клиентов нас рекомендуют</h4>
+                    </div>
+                </div>
+                <div class="d-flex mt-4">
+                    <div class="rating mx-auto">
+                        <input value="5" name="rating" id="star5" type="radio">
+                        <label for="star5"></label>
+                        <input value="4" name="rating" id="star4" type="radio">
+                        <label for="star4"></label>
+                        <input value="3" name="rating" id="star3" type="radio">
+                        <label for="star3"></label>
+                        <input value="2" name="rating" id="star2" type="radio">
+                        <label for="star2"></label>
+                        <input value="1" name="rating" id="star1" type="radio">
+                        <label for="star1"></label>
+                    </div>
+                </div>
+                <div class="d-flex mt-4">
+                    <a href="" class="mx-auto"> <img src="{% static 'main/img/home-page/responces.svg' %}" alt="">
+                        <span>Смотреть все отзывы</span></a>
+                </div>
+            </div>
+
+            <img class="position-absolute d-none d-sm-block" src="{% static 'main/img/home-page/why-us-logo.svg' %}"
+                 alt="">
+            <img class="position-absolute d-none d-sm-block"
+                 src="{% static 'main/img/home-page/why-us-payment.svg' %}" alt="">
+        </div>
+    </section>
+
+    <section class="common-questions px-3 px-sm-5 mt-5">
+
+        <h1 class="text-center text-md-start">Часто задаваемые вопросы</h1>
+        <p class="text-center text-md-start">Скорее всего тут уже есть ответ и на ваш</p>
+
+        <div class="accordion px-md-5 mt-5">
+            <div class="content-box mx-md-5 position-relative px-5">
+                <img src="{% static 'main/img/home-page/accordion-btn.svg' %}"
+                     class="position-absolute" alt="">
+
+                <div class="label">Как H&M удается поддерживать такие низкие цены?</div>
+                <div class="content mt-4">Информацию обо всех кампаниях, проводимых H&M, вы можете найти на нашем
+                    сайте в
+                    разделе Акции / Скидки H&M. При подаче заявки на участие в конкурсе в Интернете мы советуем вам
+                    прочитать текст, напечатанный мелким шрифтом и правовые оговорки. При этом в большинстве случаев
+                    вы сможете заметить, что рекламная кампания не имеет никакого отношения к бренду HM. Если в
+                    ответ на электронное письмо, предлагающее выиграть конкурс H&M, вы отправили свой номер
+                    мобильного телефона, если вы стали жертвой мошенников и теперь получаете смс-сообщения
+                    нежелательного характера, мы советуем вам связаться со своим провайдером сотовой связи и
+                    заблокировать нежелательный номер.
+                </div>
+            </div>
+
+            <div class="content-box mx-md-5 position-relative px-5">
+                <img src="{% static 'main/img/home-page/accordion-btn.svg' %}"
+                     class="position-absolute" alt="">
+
+                <div class="label">Проводит ли H&M конкурсы для своих покупателей?</div>
+                <div class="content mt-4">
+                    Информацию обо всех кампаниях, проводимых H&M, вы можете найти на нашем сайте в разделе Акции /
+                    Скидки H&M. При подаче заявки на участие в конкурсе в Интернете мы советуем вам прочитать текст,
+                    напечатанный мелким шрифтом и правовые оговорки. При этом в большинстве случаев вы сможете
+                    заметить, что рекламная кампания не имеет никакого отношения к бренду HM. Если в ответ на
+                    электронное письмо, предлагающее выиграть конкурс H&M, вы отправили свой номер мобильного
+                    телефона, если вы стали жертвой мошенников и теперь получаете смс-сообщения нежелательного
+                    характера, мы советуем вам связаться со своим провайдером сотовой связи и заблокировать
+                    нежелательный номер.
+                </div>
+            </div>
+
+            <div class="content-box mx-md-5 position-relative px-5">
+                <img src="{% static 'main/img/home-page/accordion-btn.svg' %}"
+                     class="position-absolute" alt="">
+
+                <div class="label">В Facebook и Instagram предлагают подарочные карты, которые якобы действительны в
+                    магазинах H&M. Это правда?
+                </div>
+                <div class="content mt-4">Информацию обо всех кампаниях, проводимых H&M, вы можете найти на нашем
+                    сайте в
+                    разделе Акции / Скидки H&M. При подаче заявки на участие в конкурсе в Интернете мы советуем вам
+                    прочитать текст, напечатанный мелким шрифтом и правовые оговорки. При этом в большинстве случаев
+                    вы сможете заметить, что рекламная кампания не имеет никакого отношения к бренду HM. Если в
+                    ответ на электронное письмо, предлагающее выиграть конкурс H&M, вы отправили свой номер
+                    мобильного телефона, если вы стали жертвой мошенников и теперь получаете смс-сообщения
+                    нежелательного характера, мы советуем вам связаться со своим провайдером сотовой связи и
+                    заблокировать нежелательный номер.
+                </div>
+            </div>
+
+            <div class="content-box mx-md-5 position-relative px-5">
+                <img src="{% static 'main/img/home-page/accordion-btn.svg' %}"
+                     class="position-absolute" alt="">
+
+                <div class="label">Где можно купить подарочные карты H&M?</div>
+                <div class="content mt-4">Информацию обо всех кампаниях, проводимых H&M, вы можете найти на нашем
+                    сайте в
+                    разделе Акции / Скидки H&M. При подаче заявки на участие в конкурсе в Интернете мы советуем вам
+                    прочитать текст, напечатанный мелким шрифтом и правовые оговорки. При этом в большинстве случаев
+                    вы сможете заметить, что рекламная кампания не имеет никакого отношения к бренду HM. Если в
+                    ответ на электронное письмо, предлагающее выиграть конкурс H&M, вы отправили свой номер
+                    мобильного телефона, если вы стали жертвой мошенников и теперь получаете смс-сообщения
+                    нежелательного характера, мы советуем вам связаться со своим провайдером сотовой связи и
+                    заблокировать нежелательный номер.
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="add-links mb-5 d-flex flex-column px-3 mt-5 px-sm-5">
+        <div class="mx-auto me-md-0 ms-md-auto mb-3">
+            <h1 class="text-center">Не нашли ответ на свой вопрос?</h1>
+            <h6 class=" text-center text-md-start">Мы всегда готовы прийти на помощь</h6>
+        </div>
+        <div class="row mt-4">
+            <a href="#"
+               class="col-12 col-sm-8 offset-sm-2 offset-md-0 row-gap-2 row-gap-md-3 col-md-4 px-4 py-4 py-md-5 d-flex flex-column align-items-center position-relative">
+                <img src="{% static 'main/img/home-page/Out-icon.svg' %}" alt="">
+                <img src="{% static 'main/img/home-page/tg-icon.svg' %}" alt="">
+                <h4>Задайте его нам</h4>
+                <p>Напишите в наш Telegram</p>
+
+            </a>
+            <a href="#"
+               class="col-12 col-sm-8 offset-sm-2 offset-md-0 row-gap-2 row-gap-md-3 col-md-4 px-4 py-4 py-md-5 d-flex flex-column align-items-center position-relative">
+                <img src="{% static 'main/img/home-page/Out-icon.svg' %}" alt="">
+                <img src="{% static 'main/img/home-page/dzhen-icon.svg' %}" alt="">
+                <h4>Наши статьи в Дзен</h4>
+                <p>Все самое полезное для вас мы собрали тут</p>
+
+            </a>
+
+            <a href="#"
+               class="col-12 col-sm-8 offset-sm-2 offset-md-0 row-gap-2 row-gap-md-3 col-md-4 px-4 py-4 py-md-5 d-flex flex-column align-items-center position-relative">
+                <img src="{% static 'main/img/home-page/Out-icon.svg' %}" alt="">
+                <img src="{% static 'main/img/home-page/vk-icon.svg' %}" alt="">
+                <h4>Присоединяйтесь</h4>
+                <p>Наше сообщество с радостью вас приймет</p>
+
+            </a>
+        </div>
+    </section>
+
+    {#    </div>#}
 
 {% endblock %}
 
@@ -615,10 +622,17 @@
     <script>
 
         const accordion = document.getElementsByClassName('content-box');
-        for (i = 0; i < accordion.length; i++) {
-            console.log(accordion[i])
+        for (let i = 0; i < accordion.length; i++) {
             accordion[i].addEventListener('click', function () {
-                this.classList.toggle('active')
+                this.classList.toggle('active');
+                const accordionContent = this.querySelector('.content');
+
+                if (accordionContent.style.height) {
+                    accordionContent.style.height = null;
+                } else {
+                    accordionContent.style.height = accordionContent.scrollHeight + 'px';
+                }
+
             })
         }
 
