@@ -152,7 +152,8 @@ nav ul > li:last-child > a > span:last-of-type,
     justify-content: center;
     background: #000;
 }
-#cart-focus .cart-button a{
+
+#cart-focus .cart-button a {
     text-align: center;
     background: #000;
     color: #FFF !important;
@@ -163,7 +164,8 @@ nav ul > li:last-child > a > span:last-of-type,
     line-height: 54px; /* 300% */
 }
 
-#navCart .cartItemCounter {
+#navCart .cartItemCounter,
+#navCart .cartItemCounter2 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -177,6 +179,21 @@ nav ul > li:last-child > a > span:last-of-type,
     font-size: 14px;
     font-style: normal;
     font-weight: 700;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1.5px solid #000
+}
+
+#navCart .cartItemCounter2 {
+    top: -22px;
+    left: -17px;
+    background-color: transparent;
+    border-radius: 0;
+    border: none;
+    font-size: 18px;
+    color: var(--green);
+
 }
 
 
@@ -202,8 +219,7 @@ nav ul > li:last-child > a > span:last-of-type,
     box-shadow: 4px 0px 15px 0px rgba(0, 0, 0, 0.07);
 }
 
-.custom-off-canvas .sidebar-header,
-.catalogue-detail-page .sidebar-header{
+.has-side-links .sidebar-header {
     color: var(--light-black);
     font-family: var(--main-font);
     font-size: 16px;
@@ -212,7 +228,7 @@ nav ul > li:last-child > a > span:last-of-type,
     line-height: normal;
 }
 
-.catalogue-detail-page .filters{
+.catalogue-detail-page .filters {
     color: #000;
     font-family: var(--main-font);
     font-size: 14px;
@@ -221,11 +237,11 @@ nav ul > li:last-child > a > span:last-of-type,
     line-height: normal;
 }
 
-.catalogue-detail-page .filters span:hover{
+.catalogue-detail-page .filters span:hover {
     cursor: pointer !important;
 }
 
-.catalogue-detail-page .catalogue-title{
+.catalogue-detail-page .catalogue-title {
     color: #000;
     font-family: var(--main-font);
     font-size: 42px;
@@ -235,7 +251,7 @@ nav ul > li:last-child > a > span:last-of-type,
 }
 
 
-.custom-breadcrumb{
+.custom-breadcrumb {
     color: rgba(0, 0, 0, 0.30);
     font-family: var(--main-font);
     font-size: 14px;
@@ -243,6 +259,12 @@ nav ul > li:last-child > a > span:last-of-type,
     font-weight: 500;
     line-height: normal;
 }
+
+
+.custom-breadcrumb a {
+    color: rgba(0, 0, 0, 0.30) !important;
+}
+
 
 .home-page main {
     height: 430px;
@@ -316,6 +338,7 @@ nav ul > li:last-child > a > span:last-of-type,
 }
 
 .home-page .new-items .btn-group label,
+.product-detail-page .new-items .btn-group label,
 .catalogue-detail-page .new-items .btn-group label {
     width: 8px !important;
     height: 23px !important;
@@ -324,6 +347,7 @@ nav ul > li:last-child > a > span:last-of-type,
 }
 
 .home-page .new-items .btn-group input:checked + label,
+.product-detail-page .new-items .btn-group input:checked + label,
 .catalogue-detail-page .new-items .btn-group input:checked + label {
     outline: white solid 4px !important;
     box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 4px;
@@ -345,8 +369,10 @@ nav ul > li:last-child > a > span:last-of-type,
     max-height: 60px;
 }
 
+
 .home-page .new-items button:hover,
-.catalogue-detail-page .new-items button:hover {
+.catalogue-detail-page .new-items button:hover,
+.product-detail-page button.add-to-cart:hover{
     background-color: rgba(0, 0, 0, 0.75) !important;
 }
 
@@ -697,8 +723,7 @@ footer span {
     line-height: normal;
 }
 
-.all-products-page .search-wrapper input,
-#customOffCanvas .search-wrapper input {
+.has-search-input .search-wrapper input {
     color: #000;
     font-family: var(--main-font);
     font-size: 24px;
@@ -711,17 +736,14 @@ footer span {
     outline: none;
 }
 
-.all-products-page .search-wrapper input:hover,
-.all-products-page .search-wrapper input:focus,
-#customOffCanvas .search-wrapper input:hover,
-#customOffCanvas .search-wrapper input:focus {
+.has-search-input .search-wrapper input:hover,
+.has-search-input .search-wrapper input:focus {
     border-bottom: 1px solid rgba(0, 0, 0, 0.15) !important;
     outline: none;
 }
 
 
-.all-products-page .search-wrapper input::placeholder,
-#customOffCanvas .search-wrapper input::placeholder {
+.has-search-input .search-wrapper input::placeholder {
     color: rgba(0, 0, 0, 0.20);
     font-family: var(--main-font);
     font-size: 24px;
@@ -730,8 +752,7 @@ footer span {
     line-height: normal;
 }
 
-.all-products-page .search-wrapper button,
-#customOffCanvas .search-wrapper button {
+.has-search-input .search-wrapper button {
     background-color: transparent;
     border: none;
     top: 25px;
@@ -770,9 +791,7 @@ footer span {
 }
 
 
-.all-products-page .catalogues h2,
-#customOffCanvas .side-links h2 ,
-.catalogue-detail-page .side-links h2 {
+.has-side-links .side-links h2 {
     color: var(--black);
     font-family: var(--main-font);
     font-size: 22px;
@@ -782,13 +801,11 @@ footer span {
 }
 
 
-.all-products-page .catalogues .label,
-#customOffCanvas .side-links .label,
-.catalogue-detail-page .side-links .label {
+.has-side-links .side-links .label {
     margin-left: 20px;
     margin-bottom: 0;
     color: var(--black);
-    font-family: var(--main-font);
+    font-family: var(--main-font) !important;
     font-size: 14px;
     font-style: normal;
     font-weight: 700;
@@ -796,9 +813,7 @@ footer span {
 }
 
 
-.all-products-page .catalogues ul,
-#customOffCanvas .side-links ul,
-.catalogue-detail-page .side-links ul {
+.has-side-links .side-links ul {
     height: 0;
     overflow: hidden;
     /*overflow-y: auto;*/
@@ -809,9 +824,7 @@ footer span {
 }
 
 
-.all-products-page .catalogues .content-box a,
-#customOffCanvas .side-links .content-box a,
-.catalogue-detail-page .side-links .content-box a {
+.has-side-links .side-links .content-box a {
     color: var(--mid-black) !important;
     font-family: var(--main-font);
     font-size: 18px;
@@ -821,32 +834,68 @@ footer span {
 }
 
 
-.all-products-page .catalogues .content-box a:hover,
-#customOffCanvas .side-links .content-box a:hover,
-.catalogue-detail-page .side-links .content-box a:hover {
+.has-side-links .side-links .content-box a:hover {
     text-decoration: underline !important;
 }
 
-.all-products-page .catalogues .content-box:hover,
-#customOffCanvas .side-links .content-box:hover,
-.catalogue-detail-page .side-links .content-box:hover {
+.has-side-links .side-links .content-box:hover {
     cursor: pointer;
 }
 
-.all-products-page .catalogues .content-box img,
-#customOffCanvas .side-links .content-box img,
-.catalogue-detail-page .side-links .content-box img {
+.has-side-links .side-links .content-box img {
     position: absolute;
     top: -5px;
     left: -10px;
     transition: 250ms ease;
 }
 
-.all-products-page .catalogues .content-box.active img,
-#customOffCanvas .side-links .content-box.active img,
-.catalogue-detail-page .side-links .content-box.active img {
+.has-side-links .side-links .content-box.active img {
     rotate: 90deg;
 }
+
+.product-detail-page .item-title {
+    color: var(--black);
+    font-family: var(--main-font);
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 38px; /* 90.476% */
+}
+
+.product-detail-page .sub-catalogue {
+    color: var(--mid-black);
+    font-family: var(--main-font);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.product-detail-page .product-options {
+    color: var(--black);
+    font-family: var(--main-font);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 18px; /* 112.5% */
+}
+.product-detail-page .add-to-cart{
+    background-color: var(--black);
+    border: none;
+    color: #FFF;
+    font-family: var(--main-font);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 54px; /* 300% */
+}
+
+
+.product-detail-page button.add-to-cart{
+    transition: 250ms ease;
+}
+
+
 
 
 @media (max-width: 1400px) {
@@ -905,7 +954,9 @@ footer span {
         height: 257px;
     }
 
-    .home-page .new-items .btn-group label {
+    .home-page .new-items .btn-group label,
+    .catalogue-detail-page .new-items .btn-group label,
+    .product-detail-page .new-items .btn-group label {
         padding-inline: 10px;
         height: 20px !important;
 
@@ -969,7 +1020,9 @@ footer span {
         height: 211px;
     }
 
-    .home-page .new-items .btn-group label {
+    .home-page .new-items .btn-group label,
+    .catalogue-detail-page .new-items .btn-group label,
+    .product-detail-page .new-items .btn-group label {
         padding-inline: 8px;
         height: 17px !important;
         /*height: 20px !important;*/

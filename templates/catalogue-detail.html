@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block page-wrapper %}
-    catalogue-detail-page
+    catalogue-detail-page has-side-links
 {% endblock %}
 
 {% block content %}
@@ -148,12 +148,19 @@
             </div>
 
         </div>
-        <div style="min-height: 500px"
-             class="col-12 py-5 d-flex flex-column col-md-7 col-lg-8 col-xl-9 ">
-            <p class="custom-breadcrumb">
-                <img src="{% static 'main/img/catalogue-detail-page/Home_light.svg' %}" style="position: relative;
+        <div class="col-12 py-5 d-flex flex-column col-md-7 col-lg-8 col-xl-9 ">
+            <p class="custom-breadcrumb d-flex gap-2">
+                <a href="{% url 'shop:home' %}">
+                    <img src="{% static 'main/img/catalogue-detail-page/Home_light.svg' %}" style="position: relative;
                  top: -1.5px" alt="">
-                > Каталог товаров > Ванная комната
+                </a> >
+                <a href="{% url 'shop:all-products' %}">
+                    Каталог товаров</a>
+                >
+                <a href="" style="color: #000 !important;"
+                   class="text-decoration-underline">
+                    Ванная комната
+                </a>
             </p>
             <h1 class="catalogue-title mb-5">Ванная комната</h1>
             <div class="d-flex filters mb-4 gap-3 justify-content-end">
@@ -168,13 +175,13 @@
                     </div>
                     <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
                         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
+                                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
                             <label class="btn btn-info me-3" for="btnradio1"></label>
 
-                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
+                                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
                             <label class="btn btn-warning me-3" for="btnradio2"></label>
 
-                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
+                                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
                             <label class="btn btn-primary" for="btnradio3"></label>
                         </div>
                     </form>
@@ -256,6 +263,96 @@
                     </div>
                 </div>
 
+                <div class="col-6 col-sm-4 col-md-6 col-lg-4 px-0 d-flex flex-column item">
+                    <div class="item-img w-100">
+                    </div>
+                    <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
+                            <label class="btn btn-info me-3" for="btnradio1"></label>
+
+                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
+                            <label class="btn btn-warning me-3" for="btnradio2"></label>
+
+                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
+                            <label class="btn btn-primary" for="btnradio3"></label>
+                        </div>
+                    </form>
+                    <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
+                    <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
+                    <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
+                         style="height: 60px">
+                        <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-xxl-6">
+                            <span class="text-nowrap">2 840</span>
+                            <span class="text-nowrap">₽</span>
+                        </div>
+                        <button class="col py-2 px-3 d-flex align-items-center justify-content-center">
+                            <span class="d-none d-xxl-block text-nowrap">в корзину</span>
+                            <img class="pt-md-2 ms-md-2 text-nowrap"
+                                 src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
+                        </button>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-6 col-lg-4 px-0 d-flex flex-column item">
+                    <div class="item-img w-100">
+                    </div>
+                    <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
+                            <label class="btn btn-info me-3" for="btnradio1"></label>
+
+                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
+                            <label class="btn btn-warning me-3" for="btnradio2"></label>
+
+                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
+                            <label class="btn btn-primary" for="btnradio3"></label>
+                        </div>
+                    </form>
+                    <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
+                    <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
+                    <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
+                         style="height: 60px">
+                        <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-xxl-6">
+                            <span class="text-nowrap">2 840</span>
+                            <span class="text-nowrap">₽</span>
+                        </div>
+                        <button class="col py-2 px-3 d-flex align-items-center justify-content-center">
+                            <span class="d-none d-xxl-block text-nowrap">в корзину</span>
+                            <img class="pt-md-2 ms-md-2 text-nowrap"
+                                 src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
+                        </button>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-6 col-lg-4 px-0 d-flex flex-column item">
+                    <div class="item-img w-100">
+                    </div>
+                    <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
+                            <label class="btn btn-info me-3" for="btnradio1"></label>
+
+                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
+                            <label class="btn btn-warning me-3" for="btnradio2"></label>
+
+                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
+                            <label class="btn btn-primary" for="btnradio3"></label>
+                        </div>
+                    </form>
+                    <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
+                    <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
+                    <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
+                         style="height: 60px">
+                        <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-xxl-6">
+                            <span class="text-nowrap">2 840</span>
+                            <span class="text-nowrap">₽</span>
+                        </div>
+                        <button class="col py-2 px-3 d-flex align-items-center justify-content-center">
+                            <span class="d-none d-xxl-block text-nowrap">в корзину</span>
+                            <img class="pt-md-2 ms-md-2 text-nowrap"
+                                 src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
+                        </button>
+                    </div>
+                </div>
                 <div class="col-6 col-sm-4 col-md-6 col-lg-4 px-0 d-flex flex-column item">
                     <div class="item-img w-100">
                     </div>

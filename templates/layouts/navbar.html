@@ -18,10 +18,13 @@
         <li id="navCart" class="ps-4 pe-3 pe-md-0 py-3">
             <a href="#" class="d-flex align-items-center">
                 <img src="{% static 'main/img/navbar/cart-icon.svg' %}" alt="">
-                <div class="cartItemCounter" style="width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #000">
-                    <span>19</span>
+                <div class="cartItemCounter">
+                    <span>99</span>
                 </div>
-                <span class="ms-2 d-none d-sm-block text-nowrap">12 440</span>
+                <div class="cartItemCounter2">
+                    <span>+</span>
+                </div>
+                <span class="ms-0 d-none d-sm-block text-nowrap">12 440</span>
                 <span class="ms-1 d-none d-sm-block">₽</span>
             </a>
             <ul id="cart-focus" class="position-absolute  overflow-y-scroll end-0 z-3"
@@ -78,7 +81,7 @@
         <li><a href="{% url 'shop:all-products' %}">Все товары</a></li>
         <li><a href="">Скидки</a></li>
         <li><a href="{% url 'shop:catalogue-detail' %}">Новинки</a></li>
-        <li><a href="">Информация</a></li>
+        <li><a href="{% url 'shop:product-detail' %}">Информация</a></li>
     </ul>
 </section>
 

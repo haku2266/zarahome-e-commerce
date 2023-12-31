@@ -1,0 +1,350 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block page_title %}
+    Продукт
+{% endblock %}
+
+{% block extra_css %}
+    <style>
+
+        .new-items .item-img {
+            background: url("{% static 'main/img/home-page/new-item-1.svg' %}") lightgray 50% / cover no-repeat;
+        }
+
+        .dropbtn {
+            background: #FFF;
+            box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.15);
+            color: var(--black);
+            font-family: var(--main-font);
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 18px; /* 100% */
+            border: none;
+            cursor: pointer;
+            transition: 250ms ease;
+        }
+
+        .dropbtn img {
+            transition: 250ms linear;
+        }
+
+        /* Dropdown button on hover & focus */
+        .dropbtn:hover, .dropbtn:focus {
+            border: none;
+            outline: none;
+            filter: brightness(0.96);
+        }
+
+        .dropbtn.active > img {
+            rotate: 180deg;
+        }
+
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            filter: brightness(0.96);
+            background-color: #fff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+        }
+
+        .dropdown .price-label {
+            color: var(--black);
+            font-family: var(--roboto-font);
+            font-size: 28px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 54px; /* 192.857% */
+        }
+
+        .dropdown .currency-label {
+            color: var(--black);
+            font-family: var(--main-font) ;
+            font-size: 22px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 54px; /* 245.455% */
+        }
+
+        /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+        .show {
+            display: block;
+        }
+
+
+    </style>
+{% endblock %}
+
+{% block page-wrapper %}
+    product-detail-page has-side-links
+{% endblock %}
+
+{% block content %}
+    <div class="row mx-auto mx-md-4 mx-lg-5">
+        <div class="col-md-5 col-lg-4 col-xl-3 bg-success-subtle  d-none d-md-block">
+            <div class="side-links">
+                <div class="row sidebar-header mt-5">
+                    <div class="col-6 col-xl-6 col-lg-6 col-xxl-5 pe-0 text-nowrap"><p>Каталог товаров</p></div>
+                    <div class="col-6 col-xl-6 col-lg-6 col-xxl-7 ps-0">
+                        <hr style="margin-top: 13px">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <h2>Спальня</h2>
+                    <div class="content-box ms-3 position-relative">
+                        <img src="{% static 'main/img/all-products/accordion-arrow.svg' %}" alt="">
+                        <h4 class="label">ПОСТЕЛЬНОЕ БЕЛЬЕ</h4>
+                        <ul class="content list-unstyled">
+                            <li><a href="">Смотреть все</a></li>
+                            <li><a href="">Основное постельное белье</a></li>
+                            <li><a href="">Пододеяльники</a></li>
+                            <li><a href="">Наволочки</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <h2 class="mt-3">Спальня</h2>
+                    <div class="content-box ms-3 position-relative">
+                        <img src="{% static 'main/img/all-products/accordion-arrow.svg' %}" alt="">
+                        <h4 class="label">ПОСТЕЛЬНОЕ БЕЛЬЕ</h4>
+                        <ul class="content list-unstyled">
+                            <li><a href="">Смотреть все</a></li>
+                            <li><a href="">Основное постельное белье</a></li>
+                            <li><a href="">Пододеяльники</a></li>
+                            <li><a href="">Наволочки</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <h2 class="mt-3">Спальня</h2>
+                    <div class="content-box ms-3 position-relative">
+                        <img src="{% static 'main/img/all-products/accordion-arrow.svg' %}" alt="">
+                        <h4 class="label">ПОСТЕЛЬНОЕ БЕЛЬЕ</h4>
+                        <ul class="content list-unstyled">
+                            <li><a href="">Смотреть все</a></li>
+                            <li><a href="">Основное постельное белье</a></li>
+                            <li><a href="">Пододеяльники</a></li>
+                            <li><a href="">Наволочки</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <h2 class="mt-3">Спальня</h2>
+                    <div class="content-box ms-3 position-relative">
+                        <img src="{% static 'main/img/all-products/accordion-arrow.svg' %}" alt="">
+                        <h4 class="label">ПОСТЕЛЬНОЕ БЕЛЬЕ</h4>
+                        <ul class="content list-unstyled">
+                            <li><a href="">Смотреть все</a></li>
+                            <li><a href="">Основное постельное белье</a></li>
+                            <li><a href="">Пододеяльники</a></li>
+                            <li><a href="">Наволочки</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <h2 class="mt-3">Спальня</h2>
+                    <div class="content-box ms-3 position-relative">
+                        <img src="{% static 'main/img/all-products/accordion-arrow.svg' %}" alt="">
+                        <h4 class="label">ПОСТЕЛЬНОЕ БЕЛЬЕ</h4>
+                        <ul class="content list-unstyled">
+                            <li><a href="">Смотреть все</a></li>
+                            <li><a href="">Основное постельное белье</a></li>
+                            <li><a href="">Пододеяльники</a></li>
+                            <li><a href="">Наволочки</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <h2 class="mt-3">Спальня</h2>
+                    <div class="content-box ms-3 position-relative">
+                        <img src="{% static 'main/img/all-products/accordion-arrow.svg' %}" alt="">
+                        <h4 class="label">ПОСТЕЛЬНОЕ БЕЛЬЕ</h4>
+                        <ul class="content list-unstyled">
+                            <li><a href="">Смотреть все</a></li>
+                            <li><a href="">Основное постельное белье</a></li>
+                            <li><a href="">Пододеяльники</a></li>
+                            <li><a href="">Наволочки</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <h2 class="mt-3">Спальня</h2>
+                    <div class="content-box ms-3 position-relative">
+                        <img src="{% static 'main/img/all-products/accordion-arrow.svg' %}" alt="">
+                        <h4 class="label">ПОСТЕЛЬНОЕ БЕЛЬЕ</h4>
+                        <ul class="content list-unstyled">
+                            <li><a href="">Смотреть все</a></li>
+                            <li><a href="">Основное постельное белье</a></li>
+                            <li><a href="">Пододеяльники</a></li>
+                            <li><a href="">Наволочки</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <h2 class="mt-3">Спальня</h2>
+                    <div class="content-box ms-3 position-relative">
+                        <img src="{% static 'main/img/all-products/accordion-arrow.svg' %}" alt="">
+                        <h4 class="label">ПОСТЕЛЬНОЕ БЕЛЬЕ</h4>
+                        <ul class="content list-unstyled">
+                            <li><a href="">Смотреть все</a></li>
+                            <li><a href="">Основное постельное белье</a></li>
+                            <li><a href="">Пододеяльники</a></li>
+                            <li><a href="">Наволочки</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <h2 class="mt-3">Спальня</h2>
+                    <div class="content-box ms-3 position-relative">
+                        <img src="{% static 'main/img/all-products/accordion-arrow.svg' %}" alt="">
+                        <h4 class="label">ПОСТЕЛЬНОЕ БЕЛЬЕ</h4>
+                        <ul class="content list-unstyled">
+                            <li><a href="">Смотреть все</a></li>
+                            <li><a href="">Основное постельное белье</a></li>
+                            <li><a href="">Пододеяльники</a></li>
+                            <li><a href="">Наволочки</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-12 py-5 d-flex bg-danger-subtle flex-column col-md-7 col-lg-8 col-xl-9">
+            <p class="custom-breadcrumb d-flex gap-2">
+                <a href="{% url 'shop:home' %}">
+                    <img src="{% static 'main/img/catalogue-detail-page/Home_light.svg' %}" style="position: relative;
+                 top: -1.5px" alt="">
+                </a> >
+                <a href="{% url 'shop:all-products' %}">
+                    Каталог товаров</a>
+                >
+                <a href="" style="color: #000 !important;"
+                   class="text-decoration-underline">
+                    Ванная комната
+                </a>
+            </p>
+            <h1 class="item-title mt-4">TOWEL WITH LINEN APPLIQUÉ</h1>
+            <p class="sub-catalogue mb-5">Льняное мохеровое полотенце</p>
+            <div class="row">
+                <div class="col-12 px-0 px-sm-2 col-sm-6 col-md-12 col-lg-6">
+                    <img src="{% static 'main/img/home-page/new-item-1.svg' %}"
+                         style="width: 100%; object-fit: cover; aspect-ratio: 1 / 1;" alt="">
+                </div>
+                <div class="col-12 col-sm-6 d-flex flex-column col-md-12 px-3 px-lg-1 mt-4 mt-lg-0 col-lg-6">
+                    <h6 class="product-options">Выберите цвет</h6>
+                    <form action="" class="ps-2 pt-3 new-items">
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
+                                   checked>
+                            <label class="btn btn-info me-3" for="btnradio1"></label>
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                            <label class="btn btn-warning me-3" for="btnradio2"></label>
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                            <label class="btn btn-primary" for="btnradio3"></label>
+                        </div>
+                    </form>
+                    <h6 class="product-options mt-4">Выберите размер </h6>
+                    <div class="d-flex mx-auto mx-sm-0 flex-column w-100" style="width: min(500px, 100%) !important;">
+                        <div class="dropdown" >
+                            <button onclick="sizeDrop()"
+                                    class="d-flex align-items-center dropbtn w-100 py-1 py-sm-3 py-md-1 py-lg-3 py-xl-1 px-1 px-sm-3">
+                                <span class="size-label me-auto user-select-none">Банное ( 90x150 см )</span>
+                                <span class="d-block d-sm-none d-md-block d-lg-none d-xl-block price-label user-select-none text-nowrap">11 540</span>
+                                <span class="d-block d-sm-none d-md-block d-lg-none d-xl-block currency-label user-select-none text-nowrap"> ₽</span>
+                                <span class="vr my-2 mx-3 user-select-none"></span>
+                                <img class="img-label" src="{% static 'main/img/product-detail-page/Vector 14.svg' %}"
+                                     alt="">
+                            </button>
+                            <div id="myDropdown" class="dropdown-content w-100">
+                                <a href="#">Link 1</a>
+                                <a href="#">Link 2</a>
+                                <a href="#">Link 3</a>
+                            </div>
+                        </div>
+                        <div class="row w-100 gap-2 mx-auto mt-4">
+                            <button class="col-2 add-to-cart">
+                                <img src="{% static 'main/img/product-detail-page/like-white.svg' %}" alt="">
+                            </button>
+                            <button class="col add-to-cart">добавить в корзину</button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block extra_js %}
+    <script>
+
+        const accordion = document.getElementsByClassName('content-box');
+        for (let i = 0; i < accordion.length; i++) {
+            accordion[i].addEventListener('click', function () {
+                this.classList.toggle('active');
+                const accordionContent = this.querySelector('.content');
+
+                if (accordionContent.style.height) {
+                    accordionContent.style.height = null;
+                } else {
+                    accordionContent.style.height = accordionContent.scrollHeight + 'px';
+                }
+
+            })
+        }
+
+
+        function sizeDrop() {
+            document.getElementsByClassName('dropbtn')[0].classList.toggle('active')
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+
+            console.log(!event.target.matches('.dropbtn') && !event.target.matches('.prize-label') && !event.target.matches('.size-label') && !event.target.matches('.currency-label') && !event.target.matches('.img-label'));
+
+            if (!event.target.matches('.dropbtn') && !event.target.matches('.prize-label') && !event.target.matches('.size-label') && !event.target.matches('.currency-label') && !event.target.matches('.img-label')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+    </script>
+{% endblock %}
