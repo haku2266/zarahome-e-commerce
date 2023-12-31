@@ -1,25 +1,38 @@
 let counter = 0;
 
 function navbarBurgerDeploy() {
+    counter += 1
     let navBurger = document.getElementById('navBurger');
     let customOffCanvas = document.getElementById('customOffCanvas');
-    let wrapper = document.getElementById('customOffCanvasWrapper');
     let x_body = document.getElementsByTagName('body')[0];
-    let cart = document.getElementById('navCart')
 
     if (counter % 2) {
         customOffCanvas.style.width = 'min(450px, 100%)';
-        wrapper.style.visibility = 'visible';
-        wrapper.style.opacity = '1';
+        customOffCanvas.style.display = 'block';
+        // customOffCanvas.style.opacity = '1';
         x_body.style.overflow = 'hidden';
     } else {
         customOffCanvas.style.width = '0px';
-        wrapper.style.visibility = 'hidden'
-        wrapper.style.opacity = '0';
+        customOffCanvas.style.display = 'none'
+        // customOffCanvas.style.opacity = '0';
         x_body.style.overflow = 'auto';
 
     }
-    counter += 1
+}
+
+const accordion = document.getElementsByClassName('accordion-content-box');
+for (let i = 0; i < accordion.length; i++) {
+    accordion[i].addEventListener('click', function () {
+        this.classList.toggle('active');
+        const accordionContent = this.querySelector('.accordion-content');
+
+        if (accordionContent.style.height) {
+            accordionContent.style.height = null;
+        } else {
+            accordionContent.style.height = accordionContent.scrollHeight + 'px';
+        }
+
+    })
 }
 
 

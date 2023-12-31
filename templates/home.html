@@ -507,12 +507,12 @@
         <p class="text-center text-md-start">Скорее всего тут уже есть ответ и на ваш</p>
 
         <div class="accordion px-md-5 mt-5">
-            <div class="content-box mx-md-5 position-relative px-5">
+            <div class="accordion-content-box mx-md-5 position-relative px-5">
                 <img src="{% static 'main/img/home-page/accordion-btn.svg' %}"
                      class="position-absolute" alt="">
 
                 <div class="label">Как H&M удается поддерживать такие низкие цены?</div>
-                <div class="content mt-4">Информацию обо всех кампаниях, проводимых H&M, вы можете найти на нашем
+                <div class="accordion-content mt-4">Информацию обо всех кампаниях, проводимых H&M, вы можете найти на нашем
                     сайте в
                     разделе Акции / Скидки H&M. При подаче заявки на участие в конкурсе в Интернете мы советуем вам
                     прочитать текст, напечатанный мелким шрифтом и правовые оговорки. При этом в большинстве случаев
@@ -524,12 +524,12 @@
                 </div>
             </div>
 
-            <div class="content-box mx-md-5 position-relative px-5">
+            <div class="accordion-content-box mx-md-5 position-relative px-5">
                 <img src="{% static 'main/img/home-page/accordion-btn.svg' %}"
                      class="position-absolute" alt="">
 
                 <div class="label">Проводит ли H&M конкурсы для своих покупателей?</div>
-                <div class="content mt-4">
+                <div class="accordion-content mt-4">
                     Информацию обо всех кампаниях, проводимых H&M, вы можете найти на нашем сайте в разделе Акции /
                     Скидки H&M. При подаче заявки на участие в конкурсе в Интернете мы советуем вам прочитать текст,
                     напечатанный мелким шрифтом и правовые оговорки. При этом в большинстве случаев вы сможете
@@ -541,14 +541,14 @@
                 </div>
             </div>
 
-            <div class="content-box mx-md-5 position-relative px-5">
+            <div class="accordion-content-box mx-md-5 position-relative px-5">
                 <img src="{% static 'main/img/home-page/accordion-btn.svg' %}"
                      class="position-absolute" alt="">
 
                 <div class="label">В Facebook и Instagram предлагают подарочные карты, которые якобы действительны в
                     магазинах H&M. Это правда?
                 </div>
-                <div class="content mt-4">Информацию обо всех кампаниях, проводимых H&M, вы можете найти на нашем
+                <div class="accordion-content mt-4">Информацию обо всех кампаниях, проводимых H&M, вы можете найти на нашем
                     сайте в
                     разделе Акции / Скидки H&M. При подаче заявки на участие в конкурсе в Интернете мы советуем вам
                     прочитать текст, напечатанный мелким шрифтом и правовые оговорки. При этом в большинстве случаев
@@ -560,12 +560,12 @@
                 </div>
             </div>
 
-            <div class="content-box mx-md-5 position-relative px-5">
+            <div class="accordion-content-box mx-md-5 position-relative px-5">
                 <img src="{% static 'main/img/home-page/accordion-btn.svg' %}"
                      class="position-absolute" alt="">
 
                 <div class="label">Где можно купить подарочные карты H&M?</div>
-                <div class="content mt-4">Информацию обо всех кампаниях, проводимых H&M, вы можете найти на нашем
+                <div class="accordion-content mt-4">Информацию обо всех кампаниях, проводимых H&M, вы можете найти на нашем
                     сайте в
                     разделе Акции / Скидки H&M. При подаче заявки на участие в конкурсе в Интернете мы советуем вам
                     прочитать текст, напечатанный мелким шрифтом и правовые оговорки. При этом в большинстве случаев
@@ -621,20 +621,6 @@
 {% block extra_js %}
     <script>
 
-        const accordion = document.getElementsByClassName('content-box');
-        for (let i = 0; i < accordion.length; i++) {
-            accordion[i].addEventListener('click', function () {
-                this.classList.toggle('active');
-                const accordionContent = this.querySelector('.content');
-
-                if (accordionContent.style.height) {
-                    accordionContent.style.height = null;
-                } else {
-                    accordionContent.style.height = accordionContent.scrollHeight + 'px';
-                }
-
-            })
-        }
 
     </script>
 {% endblock %}
