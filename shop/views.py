@@ -15,3 +15,7 @@ def catalogue_detail_view(request):
 
 def product_detail_view(request):
     return render(request, 'product-detail.html')
+
+
+def cart_detail_view(request):
+    return render(request, 'cart-detail.html')

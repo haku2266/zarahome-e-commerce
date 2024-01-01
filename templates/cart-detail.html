@@ -2,12 +2,249 @@
 {% load static %}
 
 {% block page_title %}
-    Корзинка
+    Корзина
+{% endblock %}
+
+{% block extra_css %}
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            width: 50px;
+            -moz-appearance: textfield;
+        }
+
+        input[type=number]:focus {
+            outline: none;
+        }
+    </style>
 {% endblock %}
 
 {% block page-wrapper %}
-    cart-detail
+    cart-detail-page mb-5
 {% endblock %}
 
 {% block content %}
+    <div class="row mt-5 mx-5">
+        <p class="custom-breadcrumb d-flex gap-2">
+            <a href="{% url 'shop:home' %}">
+                <img src="{% static 'main/img/catalogue-detail-page/Home_light.svg' %}" style="position: relative;
+                 top: -1.5px" alt="">
+            </a> >
+            <a href="" style="color: #000 !important;"
+               class="text-decoration-underline">
+                Корзина
+            </a>
+        </p>
+        <h1>В вашей корзине </h1>
+    </div>
+    <div class="row mt-4 mx-2 mx-sm-3 mx-md-5">
+        <div class="col-12 col-lg-8">
+            <div class="py-3 border-bottom d-flex align-items-end align-items-md-center gap-3 position-relative">
+                <div class="d-flex gap-2 align-items-center me-auto ">
+                    <img class="ratio-1x1 object-fit-cover" width="80px"
+                         src="{% static 'main/img/home-page/new-item-1.svg' %}" alt="">
+                    <div class="">
+                        <h4>LEATHER SANDALS</h4>
+                        <p class="mb-0">Кожаные сандали</p>
+
+                        <div class="d-flex mt-2 d-md-none">
+                            <img src="{% static 'main/img/cart-page/minus-item-count.svg' %}" alt="">
+                            <div class="d-flex align-items-center">
+                                <input style="
+                border: 1px solid rgba(0, 0, 0, 0.25);
+                background: #FFF;" type="number"
+                                       class="text-center" value="1">
+                            </div>
+                            <img src="{% static 'main/img/cart-page/plus-item-count.svg' %}" alt="">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="d-md-flex d-none">
+                    <img src="{% static 'main/img/cart-page/minus-item-count.svg' %}" alt="">
+                    <div class="d-flex align-items-center">
+                        <input style="
+                border: 1px solid rgba(0, 0, 0, 0.25);
+                background: #FFF;" type="number"
+                               class="text-center" value="1">
+                    </div>
+                    <img src="{% static 'main/img/cart-page/plus-item-count.svg' %}" alt="">
+                </div>
+                <div class="">
+                    <span class="text-nowrap item-price">11 540 ₽</span>
+                </div>
+                <div class="close-item">
+                    <img style="rotate: 45deg;" src="{% static 'main/img/cart-page/plus-item-count.svg' %}" alt="">
+                </div>
+            </div>
+            <div class="py-3 border-bottom d-flex align-items-end align-items-md-center gap-3 position-relative">
+                <div class="d-flex gap-2 align-items-center me-auto ">
+                    <img class="ratio-1x1 object-fit-cover" width="80px"
+                         src="{% static 'main/img/home-page/new-item-1.svg' %}" alt="">
+                    <div class="">
+                        <h4>LEATHER SANDALS</h4>
+                        <p class="mb-0">Кожаные сандали</p>
+
+                        <div class="d-flex mt-2 d-md-none">
+                            <img src="{% static 'main/img/cart-page/minus-item-count.svg' %}" alt="">
+                            <div class="d-flex align-items-center">
+                                <input style="
+                border: 1px solid rgba(0, 0, 0, 0.25);
+                background: #FFF;" type="number"
+                                       class="text-center" value="1">
+                            </div>
+                            <img src="{% static 'main/img/cart-page/plus-item-count.svg' %}" alt="">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="d-md-flex d-none">
+                    <img src="{% static 'main/img/cart-page/minus-item-count.svg' %}" alt="">
+                    <div class="d-flex align-items-center">
+                        <input style="
+                border: 1px solid rgba(0, 0, 0, 0.25);
+                background: #FFF;" type="number"
+                               class="text-center" value="1">
+                    </div>
+                    <img src="{% static 'main/img/cart-page/plus-item-count.svg' %}" alt="">
+                </div>
+                <div class="">
+                    <span class="text-nowrap item-price">11 540 ₽</span>
+                </div>
+                <div class="close-item">
+                    <img style="rotate: 45deg;" src="{% static 'main/img/cart-page/plus-item-count.svg' %}" alt="">
+                </div>
+            </div>
+            <div class="py-3 border-bottom d-flex align-items-end align-items-md-center gap-3 position-relative">
+                <div class="d-flex gap-2 align-items-center me-auto ">
+                    <img class="ratio-1x1 object-fit-cover" width="80px"
+                         src="{% static 'main/img/home-page/new-item-1.svg' %}" alt="">
+                    <div class="">
+                        <h4>LEATHER SANDALS</h4>
+                        <p class="mb-0">Кожаные сандали</p>
+
+                        <div class="d-flex mt-2 d-md-none">
+                            <img src="{% static 'main/img/cart-page/minus-item-count.svg' %}" alt="">
+                            <div class="d-flex align-items-center">
+                                <input style="
+                border: 1px solid rgba(0, 0, 0, 0.25);
+                background: #FFF;" type="number"
+                                       class="text-center" value="1">
+                            </div>
+                            <img src="{% static 'main/img/cart-page/plus-item-count.svg' %}" alt="">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="d-md-flex d-none">
+                    <img src="{% static 'main/img/cart-page/minus-item-count.svg' %}" alt="">
+                    <div class="d-flex align-items-center">
+                        <input style="
+                border: 1px solid rgba(0, 0, 0, 0.25);
+                background: #FFF;" type="number"
+                               class="text-center" value="1">
+                    </div>
+                    <img src="{% static 'main/img/cart-page/plus-item-count.svg' %}" alt="">
+                </div>
+                <div class="">
+                    <span class="text-nowrap item-price">11 540 ₽</span>
+                </div>
+                <div class="close-item">
+                    <img style="rotate: 45deg;" src="{% static 'main/img/cart-page/plus-item-count.svg' %}" alt="">
+                </div>
+            </div>
+            <div class="py-3 border-bottom d-flex align-items-end align-items-md-center gap-3 position-relative">
+                <div class="d-flex gap-2 align-items-center me-auto ">
+                    <img class="ratio-1x1 object-fit-cover" width="80px"
+                         src="{% static 'main/img/home-page/new-item-1.svg' %}" alt="">
+                    <div class="">
+                        <h4>LEATHER SANDALS</h4>
+                        <p class="mb-0">Кожаные сандали</p>
+
+                        <div class="d-flex mt-2 d-md-none">
+                            <img src="{% static 'main/img/cart-page/minus-item-count.svg' %}" alt="">
+                            <div class="d-flex align-items-center">
+                                <input style="
+                border: 1px solid rgba(0, 0, 0, 0.25);
+                background: #FFF;" type="number"
+                                       class="text-center" value="1">
+                            </div>
+                            <img src="{% static 'main/img/cart-page/plus-item-count.svg' %}" alt="">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="d-md-flex d-none">
+                    <img src="{% static 'main/img/cart-page/minus-item-count.svg' %}" alt="">
+                    <div class="d-flex align-items-center">
+                        <input style="
+                border: 1px solid rgba(0, 0, 0, 0.25);
+                background: #FFF;" type="number"
+                               class="text-center" value="1">
+                    </div>
+                    <img src="{% static 'main/img/cart-page/plus-item-count.svg' %}" alt="">
+                </div>
+                <div class="">
+                    <span class="text-nowrap item-price">11 540 ₽</span>
+                </div>
+                <div class="close-item">
+                    <img style="rotate: 45deg;" src="{% static 'main/img/cart-page/plus-item-count.svg' %}" alt="">
+                </div>
+            </div>
+            <div class="py-3 border-bottom d-flex align-items-end align-items-md-center gap-3 position-relative">
+                <div class="d-flex gap-2 align-items-center me-auto ">
+                    <img class="ratio-1x1 object-fit-cover" width="80px"
+                         src="{% static 'main/img/home-page/new-item-1.svg' %}" alt="">
+                    <div class="">
+                        <h4>LEATHER SANDALS</h4>
+                        <p class="mb-0">Кожаные сандали</p>
+
+                        <div class="d-flex mt-2 d-md-none">
+                            <img src="{% static 'main/img/cart-page/minus-item-count.svg' %}" alt="">
+                            <div class="d-flex align-items-center">
+                                <input style="
+                border: 1px solid rgba(0, 0, 0, 0.25);
+                background: #FFF;" type="number"
+                                       class="text-center" value="1">
+                            </div>
+                            <img src="{% static 'main/img/cart-page/plus-item-count.svg' %}" alt="">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="d-md-flex d-none">
+                    <img src="{% static 'main/img/cart-page/minus-item-count.svg' %}" alt="">
+                    <div class="d-flex align-items-center">
+                        <input style="
+                border: 1px solid rgba(0, 0, 0, 0.25);
+                background: #FFF;" type="number"
+                               class="text-center" value="1">
+                    </div>
+                    <img src="{% static 'main/img/cart-page/plus-item-count.svg' %}" alt="">
+                </div>
+                <div class="">
+                    <span class="text-nowrap item-price">11 540 ₽</span>
+                </div>
+                <div class="close-item">
+                    <img style="rotate: 45deg;" src="{% static 'main/img/cart-page/plus-item-count.svg' %}" alt="">
+                </div>
+            </div>
+
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="total-cost p-4 mt-5 mt-lg-0  d-flex flex-column align-items-center position-relative">
+                <span style="top: 10px" class="px-3 position-absolute z-2 ">Итого</span>
+                <div class="w-100 opacity-50" style="border-bottom: 1px solid var(--light-black)"></div>
+                <h1 class="mt-4 mb-0">162 765 ₽</h1>
+                <h4 class="mb-4">12 товаров</h4>
+                <a class="text-lowercase" href="">Перейти к оформлению</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
