@@ -1,0 +1,30 @@
+{% extends 'layouts/base.html' %}
+{% block page_title %}
+    Register
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.1.0/css/flag-icons.min.css"
+          integrity="sha512-bZBu2H0+FGFz/stDN/L0k8J0G8qVsAL0ht1qg5kTwtAheiXwiRKyCq1frwfbSFSJN3jooR5kauE0YjtPzhZtJQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+{% endblock %}
+
+{% block page-wrapper %}
+    register
+{% endblock %}
+{% block content %}
+    {% block flag-update %}
+        <div id="reg-form">
+            <span class="fi fi-{{ code|lower }} fis"></span>
+        </div>
+    {% endblock %}
+
+    <form action="{% url 'users:register' %}" method="post">
+        {% csrf_token %}
+        {% include 'partials/flag-control.html' %}
+        {{ form }}
+        <button type="submit">Save</button>
+    </form>
+    <div class="errors">    {{ form.password.errors }}</div>
+
+{% endblock %}

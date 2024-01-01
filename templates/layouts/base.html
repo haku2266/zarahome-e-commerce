@@ -14,11 +14,12 @@
     <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'bootstrap-icons/font/bootstrap-icons.css' %}">
+
     {% block extra_css %}
     {% endblock %}
 
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
 {% include 'layouts/navbar.html' %}
 
 <div class="{% block page-wrapper %}{% endblock %}">
@@ -218,6 +219,7 @@
 
 <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'main/js/main.js' %}"></script>
+<script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
 {% block extra_js %}
 
 {% endblock %}
