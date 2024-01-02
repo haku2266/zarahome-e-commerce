@@ -21,6 +21,8 @@ def create_cart(sender, instance, created, **kwargs):
 def real_price_product(sender, instance, **kwargs):
     if instance.is_discount():
         instance.real_price = round((1 - instance.discount / 100) * float(instance.price), 2)
+    else:
+        instance.real_price = instance.price
 
 
 @receiver(pre_save, sender=CartItemModel)
