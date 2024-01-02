@@ -1,18 +1,37 @@
+from PIL.ImageEnhance import Color
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
 from .models import *
 from .forms import ColorModelAdminForms
 
-admin.site.register(CategoryModel)
-admin.site.register(TypeModel)
-admin.site.register(ProductClassModel)
+
+@admin.register(CartModel)
+class CartModelAdmin(admin.ModelAdmin):
+    readonly_fields = ('user',)
+
+
+@admin.register(CategoryModel)
+class CategoryModelAdmin(admin.ModelAdmin):
+    readonly_fields = ('slug',)
+
+
+@admin.register(TypeModel)
+class TypeModelAdmin(admin.ModelAdmin):
+    readonly_fields = ('slug',)
+
+
+@admin.register(ProductClassModel)
+class ProductClassModelAdmin(admin.ModelAdmin):
+    readonly_fields = ('slug',)
+
+
 admin.site.register(SizeModel)
 
 
 @admin.register(ProductModel)
 class ProductModelAdmin(admin.ModelAdmin):
-    readonly_fields = ('real_price', 'slug')
+    readonly_fields = ('real_price', 'slug', 'sale')
 
 
 @admin.register(CartItemModel)
@@ -31,4 +50,3 @@ class ColorModelAdmin(admin.ModelAdmin):
     def color(obj):
         free_space = '&nbsp;' * 5
         return mark_safe(f"<div style='background-color:{obj.code}; width:200px;'>{free_space}</div>")
-

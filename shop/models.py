@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils.text import slugify
+from users.models import CustomUserModel
 
 
 class CategoryModel(models.Model):
@@ -12,6 +13,7 @@ class CategoryModel(models.Model):
         return self.name
 
     class Meta:
+        db_table = 'product_category'
         verbose_name = _('category')
         verbose_name_plural = _('categories')
         ordering = ('-created_at',)
@@ -42,6 +44,7 @@ class ColorModel(models.Model):
         return self.code
 
     class Meta:
+        db_table = 'color'
         verbose_name = _('color code')
         verbose_name_plural = _('color codes')
 
@@ -54,6 +57,7 @@ class SizeModel(models.Model):
         return self.size
 
     class Meta:
+        db_table = 'product_size'
         verbose_name = _('size')
         verbose_name_plural = _('sizes')
 
@@ -69,6 +73,7 @@ class TypeModel(models.Model):
         return f'{self.name}, category: {self.category}'
 
     class Meta:
+        db_table = 'product_type'
         verbose_name = _('type')
         verbose_name_plural = _('type')
         ordering = ('-created_at',)
@@ -101,6 +106,7 @@ class ProductClassModel(models.Model):
         return f'class: {self.name}, type: {self.type}'
 
     class Meta:
+        db_table = 'product_class'
         verbose_name = _('product class')
         verbose_name_plural = _('product classes')
         ordering = ('-created_at',)
@@ -129,10 +135,9 @@ class ProductModel(models.Model):
 
     class_of_product = models.ForeignKey(ProductClassModel, on_delete=models.SET_NULL,
                                          related_name='products', null=True, blank=True)
-    size = models.ForeignKey(SizeModel, on_delete=models.SET_NULL, related_name='products',
-                             null=True, blank=True, verbose_name=_('size'))
+    sizes = models.ManyToManyField(SizeModel, related_name='products', verbose_name=_('size'))
 
-    color = models.ForeignKey(ColorModel, on_delete=models.SET_NULL, related_name='products', null=True, blank=True)
+    colors = models.ManyToManyField(ColorModel, related_name='products')
 
     name = models.CharField(max_length=60, verbose_name=_('name'), help_text=_('name of product [max 60 characters]'))
     slug = models.SlugField(null=True, blank=True)
@@ -140,7 +145,9 @@ class ProductModel(models.Model):
                                    help_text=_('description of product'))
     image = models.ImageField(upload_to=dynamic_directory, null=True, blank=True)
 
-    price = models.DecimalField(decimal_places=2, verbose_name=_('price'), max_digits=100, blank=True, null=True,
+    sale = models.BooleanField(verbose_name=_('sale'), default=False, help_text=_('is the product on sale'))
+
+    price = models.DecimalField(decimal_places=2, verbose_name=_('price'), default=0, max_digits=100, blank=True, null=True,
                                 help_text=_('original price of product. at most 2 decimals. f.e: 1234,56'))
     discount = models.PositiveSmallIntegerField(default=0, verbose_name=_('discount'),
                                                 help_text=_('discount percentage of product. [1-100]'))
@@ -159,6 +166,7 @@ class ProductModel(models.Model):
         return f'{self.name}'
 
     class Meta:
+        db_table = 'product'
         verbose_name = _('product')
         verbose_name_plural = _('products')
 
@@ -180,7 +188,20 @@ class ProductModel(models.Model):
         return super().save(*args, **kwargs)
 
 
+class CartModel(models.Model):
+    user = models.OneToOneField(CustomUserModel, on_delete=models.CASCADE, verbose_name=_('user'), related_name='cart')
+
+    def __str__(self):
+        return f'cart of {self.user}'
+
+    class Meta:
+        db_table = 'cart'
+        verbose_name = _('cart')
+        verbose_name_plural = _('carts')
+
+
 class CartItemModel(models.Model):
+    cart = models.ForeignKey(CartModel, on_delete=models.CASCADE, verbose_name=_('cart'), related_name='items')
     product = models.OneToOneField(ProductModel, on_delete=models.CASCADE,
                                    related_name='cart_item',
                                    verbose_name=_('cart item'))
@@ -192,5 +213,6 @@ class CartItemModel(models.Model):
         return f'cart-item: {self.product} x {self.quantity}'
 
     class Meta:
+        db_table = 'cart_item'
         verbose_name = _('cart item')
         verbose_name_plural = _('cart items')
