@@ -22,7 +22,7 @@ font-family: 'Ysabeau SC', sans-serif;
 
 ::selection{
     color: #fff;
-    background-color: var(--green);
+    background-color: var(--yellow);
 }
 
 html {

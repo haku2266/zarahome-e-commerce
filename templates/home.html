@@ -33,7 +33,9 @@
 
             </h1>
             <p>Коллекции этого сезона</p>
-            <button class="px-3">Смотреть все новинки</button>
+            <button class="px-3">
+                <a class="text-white" href="{% url 'shop:all-products' 'new' %}">Смотреть все новинки</a>
+            </button>
         </div>
     </main>
 
@@ -103,7 +105,10 @@
                 Скидки до 70%
             </h1>
             <p>На самые популярные товары</p>
-            <button class="px-3">Смотреть все скидки</button>
+            <button class="px-3">
+                <a class="text-white" href="{% url 'shop:all-products' filter_by='sale' %}">Смотреть все скидки
+                </a>
+            </button>
         </div>
     </main>
 
@@ -188,7 +193,7 @@
                         <h3 class="mb-0">{{ catalogue.name }}</h3>
                         <hr class="w-75">
                         <p>
-                            {{ catalogue.short_description|default:'No Description'}}
+                            {{ catalogue.short_description|default:'No Description' }}
                         </p>
                     </div>
                 </div>

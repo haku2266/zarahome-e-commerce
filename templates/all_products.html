@@ -1,8 +1,17 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
-
+{% load shop_custom_filters %}
 {% block page_title %}
     Все товары
+{% endblock %}
+
+
+{% block extra_css %}
+    <style>
+        span.highlight {
+            background-color: var(--yellow);
+        }
+    </style>
 {% endblock %}
 
 {% block page-wrapper %}
@@ -20,96 +29,58 @@
                     </button>
                     <input name="search" class="w-100 py-4 border-bottom h-100 bg-transparent"
                            type="text"
-                           placeholder="Что хотите найти?">
+                           placeholder="Что хотите найти?"
+                           hx-get="{% url 'shop:search-product' %}"
+                           hx-target="#search-results"
+                           hx-trigger="keyup changed">
+
                 </div>
             </form>
         </div>
     </div>
 
-    <div class="search-results row row-gap-4 my-5">
-        <a href="" class="col-12 col-sm-6 col-lg-4">
-            <div class="row w-100">
-                <div class="col-5 px-0"
-                     style="background-image: url('{% static 'main/img/all-products/search-result-1.png' %}');
-                             background-repeat: no-repeat;
-                             background-size: cover;
-                             background-position: center;
-                             aspect-ratio: 1 / 1">
-                </div>
+    <div id="search-results" class="search-results row row-gap-4 my-5">
+        {% block search-results %}
 
-                <div class="col">
-                    <div class="content">
-                        <h3>LEATHER STOOL</h3>
-                        <p>Кожаный стул</p>
-                        <h4>3 120 ₽</h4>
+            {% for product in products %}
+
+                <a href="" class="col-12 col-sm-6 col-lg-4">
+                    <div class="row w-100">
+                        <div class="col-5 px-0"
+                             style="
+                                     background-image:
+                                     {% if product.image %}
+                                         url('{{ product.image.url }}');
+                                     {% else %}
+                                         url('https://burst.shopifycdn.com/photos/wrist-watches.jpg?width=1000&format=pjpg&exif=0&iptc=0');
+                                     {% endif %}
+
+                                     background-repeat: no-repeat;
+                                     background-size: cover;
+                                     background-position: center;
+                                     aspect-ratio: 1 / 1">
+                        </div>
+
+                        <div class="col">
+                            <div class="content">
+                                {% if search is not None %}
+                                    <h3 class="search-result">{{ product.name|highlight_search:search }}</h3>
+                                    <p>{{ product.class_of_product.name|highlight_search:search }}</p>
+                                {% else %}
+                                    <h3 class="search-result">{{ product.name }}</h3>
+                                    <p>{{ product.class_of_product.name }}</p>
+                                {% endif %}
+                                <h4>{{ product.real_price }}</h4>
+                            </div>
+                        </div>
+
                     </div>
-                </div>
+                </a>
 
-            </div>
-        </a>
+            {% endfor %}
 
-        <a href="" class="col-12 col-sm-6 col-lg-4">
-            <div class="row w-100">
-                <div class="col-5 px-0"
-                     style="background-image: url('{% static 'main/img/all-products/search-result-1.png' %}');
-                             background-repeat: no-repeat;
-                             background-size: cover;
-                             background-position: center;
-                             aspect-ratio: 1 / 1">
-                </div>
+        {% endblock %}
 
-                <div class="col">
-                    <div class="content">
-                        <h3>LEATHER STOOL</h3>
-                        <p>Кожаный стул</p>
-                        <h4>3 120 ₽</h4>
-                    </div>
-                </div>
-
-            </div>
-        </a>
-
-        <a href="" class="col-12 col-sm-6 col-lg-4">
-            <div class="row w-100">
-                <div class="col-5 px-0"
-                     style="background-image: url('{% static 'main/img/all-products/search-result-1.png' %}');
-                             background-repeat: no-repeat;
-                             background-size: cover;
-                             background-position: center;
-                             aspect-ratio: 1 / 1">
-                </div>
-
-                <div class="col">
-                    <div class="content">
-                        <h3>LEATHER STOOL</h3>
-                        <p>Кожаный стул</p>
-                        <h4>3 120 ₽</h4>
-                    </div>
-                </div>
-
-            </div>
-        </a>
-
-        <a href="" class="col-12 col-sm-6 col-lg-4">
-            <div class="row w-100">
-                <div class="col-5 px-0"
-                     style="background-image: url('{% static 'main/img/all-products/search-result-1.png' %}');
-                             background-repeat: no-repeat;
-                             background-size: cover;
-                             background-position: center;
-                             aspect-ratio: 1 / 1">
-                </div>
-
-                <div class="col">
-                    <div class="content">
-                        <h3>LEATHER STOOL</h3>
-                        <p>Кожаный стул</p>
-                        <h4>3 120 ₽</h4>
-                    </div>
-                </div>
-
-            </div>
-        </a>
 
     </div>
 
