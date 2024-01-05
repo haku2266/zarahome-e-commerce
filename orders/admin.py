@@ -1,11 +1,18 @@
 from django.contrib import admin
-from orders.models import *
+from .models import *
 
 admin.site.register(PromoCodeModel)
 
 
 # Register your models here.
 
+
+class OrderItemInline(admin.TabularInline):
+    model = OrderItemModel
+    autocomplete_fields = ['product']
+
+
 @admin.register(OrderModel)
 class OrderAdmin(admin.ModelAdmin):
-    readonly_fields = ('price', 'real_price')
+    readonly_fields = ['total_cost']
+    inlines = [OrderItemInline]

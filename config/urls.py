@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('shop.urls')),
     path('user/', include('users.urls')),
     path('orders/', include('orders.urls')),
+    path('cart/', include('cart.urls')),
     path("__debug__/", include("debug_toolbar.urls"))
 ]
 

@@ -26,11 +26,11 @@
 
 {% block content %}
     {#    <div class="home-page">#}
-
     <main class="position-relative">
         <div class="main-content d-flex py-4 align-items-center flex-column bg-white position-absolute">
             <h1>
                 Новое поступление
+
             </h1>
             <p>Коллекции этого сезона</p>
             <button class="px-3">Смотреть все новинки</button>
@@ -66,23 +66,32 @@
                         {#                        <label class="btn btn-primary" for="btnradio3"></label>#}
                     </div>
                 </form>
-                <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">{{ new_product.name|truncatechars:'20' }}</h4></a>
-                <h5 class="ps-md-4 px-2 px-sm-3">{{ new_product.class_of_product.name|truncatechars:'20' }}</h5>
-                <div class="item-footer mt-auto mx-auto d-flex justify-content-between align-items-center row w-100"
-                     style="height: 60px">
-                    <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-md-6 col-8">
-                        <span class="text-nowrap">{{ new_product.real_price }}</span>
-                        <span class="text-nowrap">₽</span>
+                <form hx-post="{% url 'cart:cart_add' new_product.id %}" hx-target="#navCart" class="px-0">
+
+                    <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">{{ new_product.name|truncatechars:'20' }}</h4></a>
+                    <h5 class="ps-md-4 px-2 px-sm-3">{{ new_product.class_of_product.name|truncatechars:'20' }}</h5>
+                    <div class="item-footer mt-auto mx-auto d-flex justify-content-between align-items-center row w-100"
+                         style="height: 60px">
+                        <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-md-6 col-8">
+                            <span class="text-nowrap">{{ new_product.real_price }}</span>
+                            <span class="text-nowrap">₽</span>
+                        </div>
+                        {% csrf_token %}
+                        <button type="submit" class="col py-2 px-3 d-flex align-items-center justify-content-center">
+                            <span class="d-none d-md-block text-nowrap">в корзину</span>
+                            <img class="pt-md-2 ms-md-2 text-nowrap"
+                                 src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
+                        </button>
+                        <div class="d-none">
+                            {{ form.quantity }}
+                        </div>
                     </div>
-                    <button class="col py-2 px-3 d-flex align-items-center justify-content-center">
-                        <span class="d-none d-md-block text-nowrap">в корзину</span>
-                        <img class="pt-md-2 ms-md-2 text-nowrap"
-                             src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
-                    </button>
-                </div>
+                </form>
+
             </div>
+
         {% empty %}
-            No products available
+            <h1>No products available</h1>
         {% endfor %}
 
     </section>
@@ -100,6 +109,7 @@
 
     <section class="new-items pb-4 w-100 row mx-0 px-md-5">
 
+
         {% for on_sale_product in on_sale_products %}
 
             <div class="col-6 col-sm-4 col-md-3 px-0 d-flex flex-column item">
@@ -115,14 +125,15 @@
                          style="font-family: var(--main-font); font-size: 30px; backdrop-filter: blur(5px); background-color: rgba(0, 0, 0, 0.7);">
                         -{{ on_sale_product.discount }} %
                     </div>
+
                 </div>
                 <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
                     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        {% for color in new_product.colors.all|slice:':3' %}
-                            <input type="radio" class="btn-check" name="btnradio{{ new_product.id }}{{ color.id }}"
-                                   id="btnradio{{ new_product.id }}{{ color.id }}" autocomplete="off">
+                        {% for color in on_sale_product.colors.all|slice:':3' %}
+                            <input type="radio" class="btn-check" name="btnradio{{ on_sale_product.id }}{{ color.id }}"
+                                   id="btnradio{{ on_sale_product.id }}{{ color.id }}" autocomplete="off">
                             <label style="background-color: {{ color.code }}"
-                                   class="btn me-3" for="btnradio{{ new_product.id }}{{ color.id }}"></label>
+                                   class="btn me-3" for="btnradio{{ on_sale_product.id }}{{ color.id }}"></label>
                         {% endfor %}
 
                         {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
@@ -132,21 +143,32 @@
                         {#                        <label class="btn btn-primary" for="btnradio3"></label>#}
                     </div>
                 </form>
-                <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">{{ on_sale_product.name|truncatechars:'20' }}</h4></a>
-                <h5 class="ps-md-4 px-2 px-sm-3">{{ on_sale_product.class_of_product.name|truncatechars:'20' }}</h5>
-                <div class="item-footer mt-auto mx-auto d-flex justify-content-between align-items-center row w-100"
-                     style="height: 60px">
-                    <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-md-6 col-8">
-                        <span class="text-nowrap">{{ on_sale_product.real_price }}</span>
-                        <span class="text-nowrap">₽</span>
+                <form hx-post="{% url 'cart:cart_add' on_sale_product.id %}" hx-target="#navCart" class="px-0">
+
+                    <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">{{ on_sale_product.name|truncatechars:'20' }}</h4>
+                    </a>
+                    <h5 class="ps-md-4 px-2 px-sm-3">{{ on_sale_product.class_of_product.name|truncatechars:'20' }}</h5>
+                    <div class="item-footer mt-auto mx-auto d-flex justify-content-between align-items-center row w-100"
+                         style="height: 60px">
+                        <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-md-6 col-8">
+                            <span class="text-nowrap">{{ on_sale_product.real_price }}</span>
+                            <span class="text-nowrap">₽</span>
+                        </div>
+                        {% csrf_token %}
+                        <button type="submit" class="col py-2 px-3 d-flex align-items-center justify-content-center">
+                            <span class="d-none d-md-block text-nowrap">в корзину</span>
+                            <img class="pt-md-2 ms-md-2 text-nowrap"
+                                 src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
+                        </button>
+                        <div class="d-none">
+                            {{ form.quantity }}
+                        </div>
                     </div>
-                    <button class="col py-2 px-3 d-flex align-items-center justify-content-center">
-                        <span class="d-none d-md-block text-nowrap">в корзину</span>
-                        <img class="pt-md-2 ms-md-2 text-nowrap"
-                             src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
-                    </button>
-                </div>
+                </form>
+
             </div>
+
+
         {% empty %}
             <h1>No products on sale</h1>
         {% endfor %}
@@ -166,8 +188,7 @@
                         <h3 class="mb-0">{{ catalogue.name }}</h3>
                         <hr class="w-75">
                         <p>
-                            Для комфортного сна
-                            и отдыха
+                            {{ catalogue.short_description|default:'No Description'}}
                         </p>
                     </div>
                 </div>

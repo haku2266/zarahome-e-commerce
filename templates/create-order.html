@@ -1,0 +1,18 @@
+{% extends 'layouts/base.html' %}
+
+{% block page_title %}
+    Оформить заказ
+{% endblock %}
+
+{% block page-wrapper %}
+    create-order-page
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'orders:create_order' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Order</button>
+    </form>
+
+{% endblock %}

@@ -1,12 +1,12 @@
-let counter = 0;
+let mycounter = 0;
 
 function navbarBurgerDeploy() {
-    counter += 1
+    mycounter += 1
     let navBurger = document.getElementById('navBurger');
     let customOffCanvas = document.getElementById('customOffCanvas');
     let x_body = document.getElementsByTagName('body')[0];
 
-    if (counter % 2) {
+    if (mycounter % 2) {
         customOffCanvas.style.width = 'min(450px, 100%)';
         customOffCanvas.style.display = 'block';
         // customOffCanvas.style.opacity = '1';

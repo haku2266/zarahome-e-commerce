@@ -1,24 +1,18 @@
-from PIL.ImageEnhance import Color
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-
 from .models import *
 from .forms import ColorModelAdminForms
 
 
-@admin.register(CartModel)
-class CartModelAdmin(admin.ModelAdmin):
-    readonly_fields = ('user',)
+class TypeModelAdmin(admin.TabularInline):
+    model = TypeModel
+    readonly_fields = ('slug',)
 
 
 @admin.register(CategoryModel)
 class CategoryModelAdmin(admin.ModelAdmin):
     readonly_fields = ('slug',)
-
-
-@admin.register(TypeModel)
-class TypeModelAdmin(admin.ModelAdmin):
-    readonly_fields = ('slug',)
+    inlines = [TypeModelAdmin]
 
 
 @admin.register(ProductClassModel)
@@ -32,11 +26,7 @@ admin.site.register(SizeModel)
 @admin.register(ProductModel)
 class ProductModelAdmin(admin.ModelAdmin):
     readonly_fields = ('real_price', 'slug', 'sale')
-
-
-@admin.register(CartItemModel)
-class CartItemModelAdmin(admin.ModelAdmin):
-    readonly_fields = ('price',)
+    search_fields = ('name',)
 
 
 @admin.register(ColorModel)

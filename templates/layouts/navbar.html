@@ -1,5 +1,6 @@
 {% load static %}
-<nav class="py-md-3 bg-white d-flex ps-3 pe-0 pe-sm-3 px-md-5">
+{% load cart_template_tags %}
+<nav class="py-md-3 bg-white d-flex ps-3 pe-0 pe-sm-3 px-md-5 ">
     <div class="nav-contacts d-none d-md-flex flex-column justify-content-center">
         <span>8 (800) 000 80 00</span>
         <span>Работаем сегодня с 9:00 до 20:00</span>
@@ -15,62 +16,70 @@
                                                                  alt=""></a></li>
         <li class="px-4 d-none d-sm-block py-3"><a href="#"><img src="{% static 'main/img/navbar/like-icon.svg' %}"
                                                                  alt=""></a></li>
-        <li id="navCart" class="ps-4 pe-0  pe-md-0 py-3">
-            <a href="{% url 'shop:cart-detail' %}" class="d-flex align-items-center">
-                <img src="{% static 'main/img/navbar/cart-icon.svg' %}" alt="">
-                <div class="cartItemCounter">
-                    <span>99</span>
-                </div>
-                <div class="cartItemCounter2">
-                    <span>+</span>
-                </div>
-                <span class="ms-0 d-none d-sm-block text-nowrap">12 440</span>
-                <span class="ms-1 d-none d-sm-block">₽</span>
-            </a>
-            <ul id="cart-focus" class="position-absolute  overflow-y-scroll end-0 z-3"
-                style="width: 320px; top: 60px; height: 330px;">
-                <li class="list-unstyled position-relative"> </li>
-                <li class="w-100 cart-item">
-                    <div class="row py-3 border-bottom">
-                        <div class="col-4 border-0">
-                            <img class="border-0" width="100%" style="aspect-ratio: 1 / 1;"  src="{% static 'main/img/home-page/new-item-1.svg' %}" alt="">
-                        </div>
-                        <div class="col-7">
-                            <h4>LEATHER SANDALS</h4>
-                            <h6>Кожаные сандали</h6>
-                            <p>11 540 ₽</p>
-                        </div>
-                        <div class="col-1 px-0 d-flex align-items-center"><img src="{% static 'main/img/navbar/close_btn.svg' %}" alt=""></div>
-                    </div>
-                    <div class="row py-3 border-bottom">
-                        <div class="col-4 border-0">
-                            <img class="border-0" width="100%" style="aspect-ratio: 1 / 1;"  src="{% static 'main/img/home-page/new-item-1.svg' %}" alt="">
-                        </div>
-                        <div class="col-7">
-                            <h4>LEATHER SANDALS</h4>
-                            <h6>Кожаные сандали</h6>
-                            <p>11 540 ₽</p>
-                        </div>
-                        <div class="col-1 px-0 d-flex align-items-center"><img src="{% static 'main/img/navbar/close_btn.svg' %}" alt=""></div>
-                    </div>
-                    <div class="row py-3 border-bottom">
-                        <div class="col-4 border-0">
-                            <img class="border-0" width="100%" style="aspect-ratio: 1 / 1;"  src="{% static 'main/img/home-page/new-item-1.svg' %}" alt="">
-                        </div>
-                        <div class="col-7">
-                            <h4>LEATHER SANDALS</h4>
-                            <h6>Кожаные сандали</h6>
-                            <p>11 540 ₽</p>
-                        </div>
-                        <div class="col-1 px-0 d-flex align-items-center"><img src="{% static 'main/img/navbar/close_btn.svg' %}" alt=""></div>
-                    </div>
-                </li>
-                <li class="cart-button mt-4 w-100">
-                    <a href="" class="w-100">перейти к оформлению</a>
-                </li>
-            </ul>
+        {% block cart-update %}
 
-        </li>
+            <li id="navCart" class="ps-4 pe-4 pe-sm-3 pe-md-0  pe-md-0 py-3">
+
+                <a href="{% url 'shop:cart-detail' %}" class="d-flex align-items-center">
+                    <img src="{% static 'main/img/navbar/cart-icon.svg' %}" alt="">
+                    {% with cart|length as total_items %}
+                        {% if total_items > 0 and request.path != '/cart-detail/'%}
+
+                            <div class="cartItemCounter">
+                        <span>
+                            {% if total_items < 99 %}
+                                {{ total_items }}
+                            {% else %}
+                                99
+                            {% endif %}
+                        </span>
+                            </div>
+                            {% if total_items >  99 and request.path != '/cart-detail/' %}
+                                <div class="cartItemCounter2">
+                                    <span>+</span>
+                                </div>
+                            {% endif %}
+                            <span class="ms-0 d-none d-sm-block text-nowrap">{{ cart.get_total_price }}</span>
+                            <span class="ms-1 d-none d-sm-block">₽</span>
+                        {% endif %}
+                    {% endwith %}
+                </a>
+
+
+                <ul id="cart-focus" class="position-absolute d-flex flex-column
+                 overflow-y-scroll end-0 z-3"
+                    style="width: 320px; top: 60px; height: 330px;">
+                    <li class="list-unstyled position-relative"></li>
+                    <li class="w-100 cart-item">
+                        {#                    error here#}
+                        {% for product, quantity in cart %}
+                            <div class="row py-3 border-bottom">
+                                <div class="col-4 border-0">
+                                    <img class="border-0" width="100%" style="aspect-ratio: 1 / 1;"
+                                         src={% if  product.image %}
+                                             {{ product.image.url }}
+                                         {% else %}
+                                             "https://burst.shopifycdn.com/photos/wrist-watches.jpg?width=1000&format=pjpg&exif=0&iptc=0"
+                                         {% endif %} alt="">
+                                </div>
+                                <div class="col-7">
+                                    <h4>{{ product.name|truncatechars:'15' }} x {{ quantity }}</h4>
+                                    <h6>{{ product.type|truncatechars:'15' }}</h6>
+                                    <p>{{ product.real_price}}</p>
+                                </div>
+                                <div class="col-1 px-0 d-flex align-items-center"><img
+                                        src="{% static 'main/img/navbar/close_btn.svg' %}" alt=""></div>
+                            </div>
+                        {% endfor %}
+
+                    </li>
+                    <li class="mt-auto cart-button mt-4 w-100">
+                        <a href="" class="w-100">перейти к оформлению</a>
+                    </li>
+                </ul>
+
+            </li>
+        {% endblock %}
 
     </ul>
 

@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'users',
     'orders',
     'shop',
+    'cart',
     # 3rd party apps
     "debug_toolbar",
 ]
@@ -50,6 +51,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -101,6 +103,10 @@ MEDIA_ROOT = BASE_DIR / 'media'
 AUTH_USER_MODEL = 'users.CustomUserModel'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CART_SESSION_ID = 'cart'
+
 
 try:
     from config.local_settings import *

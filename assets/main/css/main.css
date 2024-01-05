@@ -20,6 +20,10 @@ font-family: 'Ysabeau SC', sans-serif;
     --main-font: 'Ysabeau SC', sans-serif;
 }
 
+::selection{
+    color: #fff;
+    background-color: var(--green);
+}
 
 html {
     scroll-behavior: smooth;

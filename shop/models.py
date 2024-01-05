@@ -6,6 +6,8 @@ from users.models import CustomUserModel
 
 class CategoryModel(models.Model):
     name = models.CharField(max_length=50, unique=True, verbose_name=_('category'), help_text=_('name of category'))
+    short_description = models.CharField(max_length=100, blank=True, verbose_name=_('short description'),
+                                         help_text=_('short description of category'))
     slug = models.SlugField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('created at'))
 
@@ -63,7 +65,7 @@ class SizeModel(models.Model):
 
 
 class TypeModel(models.Model):
-    name = models.CharField(max_length=60, unique=True, verbose_name=_('type'), help_text=_('type of product'))
+    name = models.CharField(max_length=60, verbose_name=_('type'), help_text=_('type of product'))
     category = models.ForeignKey(CategoryModel, on_delete=models.CASCADE, related_name='types',
                                  verbose_name=_('category of type'), help_text=_('category'))
     slug = models.SlugField(null=True, blank=True)
@@ -77,6 +79,7 @@ class TypeModel(models.Model):
         verbose_name = _('type')
         verbose_name_plural = _('type')
         ordering = ('-created_at',)
+        unique_together = (('name', 'category'),)
 
     def save(self, *args, **kwargs):
         if not self.id and not self.slug:
@@ -188,31 +191,5 @@ class ProductModel(models.Model):
         return super().save(*args, **kwargs)
 
 
-class CartModel(models.Model):
-    user = models.OneToOneField(CustomUserModel, on_delete=models.CASCADE, verbose_name=_('user'), related_name='cart')
-
-    def __str__(self):
-        return f'cart of {self.user}'
-
-    class Meta:
-        db_table = 'cart'
-        verbose_name = _('cart')
-        verbose_name_plural = _('carts')
 
 
-class CartItemModel(models.Model):
-    cart = models.ForeignKey(CartModel, on_delete=models.CASCADE, verbose_name=_('cart'), related_name='items')
-    product = models.OneToOneField(ProductModel, on_delete=models.CASCADE,
-                                   related_name='cart_item',
-                                   verbose_name=_('cart item'))
-    quantity = models.PositiveIntegerField(default=1, verbose_name=_('quantity'))
-    price = models.DecimalField(max_digits=100, decimal_places=2, verbose_name=_('price'), null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f'cart-item: {self.product} x {self.quantity}'
-
-    class Meta:
-        db_table = 'cart_item'
-        verbose_name = _('cart item')
-        verbose_name_plural = _('cart items')
