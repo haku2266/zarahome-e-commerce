@@ -1,10 +1,10 @@
 from django import forms
-from .models import ColorModel
+from .models import ProductVariations
 
 
 class ColorModelAdminForms(forms.ModelForm):
     code = forms.CharField(widget=forms.TextInput(attrs={'type': 'color'}))
 
     class Meta:
-        model = ColorModel
+        model = ProductVariations
         fields = '__all__'

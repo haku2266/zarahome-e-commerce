@@ -20,7 +20,7 @@ font-family: 'Ysabeau SC', sans-serif;
     --main-font: 'Ysabeau SC', sans-serif;
 }
 
-::selection{
+::selection {
     color: #fff;
     background-color: var(--yellow);
 }
@@ -381,6 +381,19 @@ footer span {
 }
 
 
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.item-img {
+    animation: appear 1s forwards;
+}
+
 /*-------------breadcrumb style-----------------*/
 .custom-breadcrumb {
     color: rgba(0, 0, 0, 0.30);
@@ -532,7 +545,7 @@ footer span {
 .home-page .new-items button:hover,
 .catalogue-detail-page .new-items button:hover,
 .product-detail-page button.add-to-cart:hover,
-.cart-detail-page .total-cost a:hover{
+.cart-detail-page .total-cost a:hover {
     background-color: rgba(0, 0, 0, 0.75) !important;
 }
 
@@ -1162,8 +1175,8 @@ footer span {
 }
 
 
-@media  (max-width: 370px) {
-.cart-detail-page img.ratio-1x1{
-    display: none;
-}
+@media (max-width: 370px) {
+    .cart-detail-page img.ratio-1x1 {
+        display: none;
+    }
 }

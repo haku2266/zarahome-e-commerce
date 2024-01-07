@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'cart',
     # 3rd party apps
     "debug_toolbar",
+    "django_htmx",
 ]
 
 MIDDLEWARE = [
@@ -36,6 +37,7 @@ MIDDLEWARE = [
 
     # 3rd party middlewares
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -52,6 +54,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'cart.context_processors.cart',
+                'shop.context_processors.categories',
             ],
         },
     },
@@ -104,15 +107,12 @@ AUTH_USER_MODEL = 'users.CustomUserModel'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 CART_SESSION_ID = 'cart'
-
 
 try:
     from config.local_settings import *
 except ImportError:
     pass
-
 
 INTERNAL_IPS = [
     # ...

@@ -7,9 +7,6 @@
 {% block extra_css %}
     <style>
 
-        .new-items .item-img {
-            background: url("{% static 'main/img/home-page/new-item-1.svg' %}") lightgray 50% / cover no-repeat;
-        }
     </style>
 {% endblock %}
 
@@ -20,130 +17,41 @@
 {% block content %}
     <div class="row mx-auto mx-md-4 mx-lg-5">
         <div class="col-md-5 col-lg-4 col-xl-3  d-none d-md-block">
-            <div class="side-links">
+            <div style="max-height: 100vh" class="side-links overflow-y-scroll">
                 <div class="row sidebar-header mt-5">
                     <div class="col-6 col-xl-6 col-lg-6 col-xxl-5 pe-0 text-nowrap"><p>Каталог товаров</p></div>
                     <div class="col-6 col-xl-6 col-lg-6 col-xxl-7 ps-0">
                         <hr style="margin-top: 13px">
                     </div>
                 </div>
-                <div class="col-12">
-                    <h2>Спальня</h2>
-                    <div class="accordion-content-box ms-3 position-relative">
-                        <img src="{% static 'main/img/all-products/accordion-arrow.svg' %}" alt="">
-                        <h4 class="label">ПОСТЕЛЬНОЕ БЕЛЬЕ</h4>
-                        <ul class="accordion-content list-unstyled">
-                            <li><a href="">Смотреть все</a></li>
-                            <li><a href="">Основное постельное белье</a></li>
-                            <li><a href="">Пододеяльники</a></li>
-                            <li><a href="">Наволочки</a></li>
-                        </ul>
+                {% for side_category in categories %}
+
+                    <div class="col-12">
+                        <h2><a href="{% url 'shop:catalogue-detail' side_category.slug %}">{{ side_category.name }}</a>
+                        </h2>
+                        {% for type in side_category.types.all %}
+
+                            <div class="accordion-content-box ms-3 position-relative">
+                                <img src="{% static 'main/img/all-products/accordion-arrow.svg' %}" alt="">
+                                <h4 class="label">{{ type.name }}</h4>
+                                <ul class="accordion-content list-unstyled"
+                                        {% if side_category.id == category.id %}
+                                    style="height: auto"
+                                        {% endif %}
+                                >
+                                    <li><a href="">Смотреть все</a></li>
+                                    <li><a href="">Основное постельное белье</a></li>
+                                    <li><a href="">Пододеяльники</a></li>
+                                    <li><a href="">Наволочки</a></li>
+                                </ul>
+                            </div>
+
+                        {% endfor %}
+
                     </div>
-                </div>
-                <div class="col-12">
-                    <h2 class="mt-3">Спальня</h2>
-                    <div class="accordion-content-box ms-3 position-relative">
-                        <img src="{% static 'main/img/all-products/accordion-arrow.svg' %}" alt="">
-                        <h4 class="label">ПОСТЕЛЬНОЕ БЕЛЬЕ</h4>
-                        <ul class="accordion-content list-unstyled">
-                            <li><a href="">Смотреть все</a></li>
-                            <li><a href="">Основное постельное белье</a></li>
-                            <li><a href="">Пододеяльники</a></li>
-                            <li><a href="">Наволочки</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <h2 class="mt-3">Спальня</h2>
-                    <div class="accordion-content-box ms-3 position-relative">
-                        <img src="{% static 'main/img/all-products/accordion-arrow.svg' %}" alt="">
-                        <h4 class="label">ПОСТЕЛЬНОЕ БЕЛЬЕ</h4>
-                        <ul class="accordion-content list-unstyled">
-                            <li><a href="">Смотреть все</a></li>
-                            <li><a href="">Основное постельное белье</a></li>
-                            <li><a href="">Пододеяльники</a></li>
-                            <li><a href="">Наволочки</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <h2 class="mt-3">Спальня</h2>
-                    <div class="accordion-content-box ms-3 position-relative">
-                        <img src="{% static 'main/img/all-products/accordion-arrow.svg' %}" alt="">
-                        <h4 class="label">ПОСТЕЛЬНОЕ БЕЛЬЕ</h4>
-                        <ul class="accordion-content list-unstyled">
-                            <li><a href="">Смотреть все</a></li>
-                            <li><a href="">Основное постельное белье</a></li>
-                            <li><a href="">Пододеяльники</a></li>
-                            <li><a href="">Наволочки</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <h2 class="mt-3">Спальня</h2>
-                    <div class="accordion-content-box ms-3 position-relative">
-                        <img src="{% static 'main/img/all-products/accordion-arrow.svg' %}" alt="">
-                        <h4 class="label">ПОСТЕЛЬНОЕ БЕЛЬЕ</h4>
-                        <ul class="accordion-content list-unstyled">
-                            <li><a href="">Смотреть все</a></li>
-                            <li><a href="">Основное постельное белье</a></li>
-                            <li><a href="">Пододеяльники</a></li>
-                            <li><a href="">Наволочки</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <h2 class="mt-3">Спальня</h2>
-                    <div class="accordion-content-box ms-3 position-relative">
-                        <img src="{% static 'main/img/all-products/accordion-arrow.svg' %}" alt="">
-                        <h4 class="label">ПОСТЕЛЬНОЕ БЕЛЬЕ</h4>
-                        <ul class="accordion-content list-unstyled">
-                            <li><a href="">Смотреть все</a></li>
-                            <li><a href="">Основное постельное белье</a></li>
-                            <li><a href="">Пододеяльники</a></li>
-                            <li><a href="">Наволочки</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <h2 class="mt-3">Спальня</h2>
-                    <div class="accordion-content-box ms-3 position-relative">
-                        <img src="{% static 'main/img/all-products/accordion-arrow.svg' %}" alt="">
-                        <h4 class="label">ПОСТЕЛЬНОЕ БЕЛЬЕ</h4>
-                        <ul class="accordion-content list-unstyled">
-                            <li><a href="">Смотреть все</a></li>
-                            <li><a href="">Основное постельное белье</a></li>
-                            <li><a href="">Пододеяльники</a></li>
-                            <li><a href="">Наволочки</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <h2 class="mt-3">Спальня</h2>
-                    <div class="accordion-content-box ms-3 position-relative">
-                        <img src="{% static 'main/img/all-products/accordion-arrow.svg' %}" alt="">
-                        <h4 class="label">ПОСТЕЛЬНОЕ БЕЛЬЕ</h4>
-                        <ul class="accordion-content list-unstyled">
-                            <li><a href="">Смотреть все</a></li>
-                            <li><a href="">Основное постельное белье</a></li>
-                            <li><a href="">Пододеяльники</a></li>
-                            <li><a href="">Наволочки</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <h2 class="mt-3">Спальня</h2>
-                    <div class="accordion-content-box ms-3 position-relative">
-                        <img src="{% static 'main/img/all-products/accordion-arrow.svg' %}" alt="">
-                        <h4 class="label">ПОСТЕЛЬНОЕ БЕЛЬЕ</h4>
-                        <ul class="accordion-content list-unstyled">
-                            <li><a href="">Смотреть все</a></li>
-                            <li><a href="">Основное постельное белье</a></li>
-                            <li><a href="">Пододеяльники</a></li>
-                            <li><a href="">Наволочки</a></li>
-                        </ul>
-                    </div>
-                </div>
+
+                {% endfor %}
+
 
             </div>
 
@@ -154,235 +62,99 @@
                     <img src="{% static 'main/img/catalogue-detail-page/Home_light.svg' %}" style="position: relative;
                  top: -1.5px" alt="">
                 </a> >
-                <a href="{% url 'shop:all-products' %}">
+                <a href="{% url 'shop:all-products' 'new' %}">
                     Каталог товаров</a>
                 >
                 <a href="" style="color: #000 !important;"
                    class="text-decoration-underline">
-                    Ванная комната
+                    {{ category.name }}
                 </a>
             </p>
-            <h1 class="catalogue-title mb-5">Ванная комната</h1>
+            <h1 class="catalogue-title mb-5">{{ category.name }}</h1>
             <div class="d-flex filters mb-4 gap-3 justify-content-end">
                 <span><img src="{% static 'main/img/catalogue-detail-page/from-up-to-down.svg' %}" alt="">Сначала дешевые</span>
                 <span><img src="{% static 'main/img/catalogue-detail-page/Time_light.svg' %}"
                            alt="">Добавлены позже</span>
             </div>
             <section class="new-items row">
+                {% for product in products %}
+                    <div class="col-6 col-sm-4 col-md-6 col-lg-4 px-0 d-flex flex-column item"
+                         id="item{{ product.id }}">
 
-                <div class="col-6 col-sm-4 col-md-6 col-lg-4 px-0 d-flex flex-column item">
-                    <div class="item-img w-100">
+                        {% block item-update-catalogue %}
+                            <div class="item-img w-100" style="background:
+
+                                    {% if var %}
+                                        {% if var.image %}
+                                            url('{{ var.image.url }}') lightgray 50% / cover no-repeat;
+                                        {% else %}
+                                            url('https://burst.shopifycdn.com/photos/wrist-watches.jpg?width=1000&format=pjpg&exif=0&iptc=0') lightgray 50% / cover no-repeat;
+
+                                        {% endif %}
+                                    {% elif product.variations.all.0.image %}
+                                        url('{{ product.variations.all.0.image.url }}') lightgray 50% / cover no-repeat;
+                                    {% else %}
+                                        url('https://burst.shopifycdn.com/photos/wrist-watches.jpg?width=1000&format=pjpg&exif=0&iptc=0') lightgray 50% / cover no-repeat;
+                                    {% endif %}
+
+                                    ">
+                            </div>
+                            <div class="ps-md-4 px-2 px-sm-3 pt-3">
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    {% for variation in product.variations.all|slice:':3' %}
+                                        <input type="radio" class="btn-check"
+                                               name="btnradio{{ product.id }}{{ variation.code }}"
+                                               autocomplete="off"
+                                                {% if var %}
+                                                    {% if check and var.code == variation.code %}
+                                               checked
+                                                    {% endif %}
+                                                {% endif %}>
+                                        <label style="background-color: {{ variation.code }}"
+                                               class="btn me-3"
+                                               hx-target="#item{{ product.id }}"
+                                               hx-trigger="click"
+                                               hx-get="{% url 'shop:item-color-update-catalogue' product.slug variation.code %}"></label>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <form hx-post="{% url 'cart:cart_add' product.id %}" hx-target="#navCart"
+                                  hx-swap="outerHTML"
+                                  class="px-0">
+
+                                <a href="{% url 'shop:product-detail' product.class_of_product.slug product.slug %}"
+                                   class="d-flex product-title-wrapper overflow-x-hidden">
+                                    <h4 class="product-title ps-md-4 px-2 px-sm-3 mt-2 text-nowrap">{{ product.name|truncatechars:'20' }}</h4>
+                                </a>
+                                <a href="{% url 'shop:product-detail' product.class_of_product.slug 'all' %}">
+                                    <h5 class="ps-md-4 px-2 px-sm-3 overflow-x-hidden text-nowrap">{{ product.class_of_product.name|truncatechars:'20' }}</h5>
+                                </a>
+                                <div class="item-footer mt-auto mx-auto d-flex justify-content-between align-items-center row w-100"
+                                     style="height: 60px">
+                                    <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-md-6 col-8">
+                                        <span class="text-nowrap">{{ product.real_price }}</span>
+                                        <span class="text-nowrap">₽</span>
+                                    </div>
+                                    <button type="submit"
+                                            class="col py-2 px-3 d-flex align-items-center justify-content-center">
+                                        <span class="d-none d-md-block text-nowrap">в корзину</span>
+                                        <img class="pt-md-2 ms-md-2 text-nowrap"
+                                             src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
+                                    </button>
+                                    <div class="d-none">
+                                        <input type="text" name="color"
+                                               value="{% if var %} {{ var.code }} {% else %} {{ product.variations.all.0.code }} {% endif %}">
+                                        {{ form.quantity }}
+                                    </div>
+                                </div>
+                            </form>
+
+                        {% endblock %}
+
                     </div>
-                    <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
-                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                            <label class="btn btn-info me-3" for="btnradio1"></label>
 
-                                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                            <label class="btn btn-warning me-3" for="btnradio2"></label>
+                {% endfor %}
 
-                                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                            <label class="btn btn-primary" for="btnradio3"></label>
-                        </div>
-                    </form>
-                    <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
-                    <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
-                    <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
-                         style="height: 60px">
-                        <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-xxl-6 col-8">
-                            <span class="text-nowrap">2 840</span>
-                            <span class="text-nowrap">₽</span>
-                        </div>
-                        <button class="col py-2 px-3 d-flex align-items-center justify-content-center">
-                            <span class="d-none d-xxl-block text-nowrap">в корзину</span>
-                            <img class="pt-md-2 ms-md-2 text-nowrap"
-                                 src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
-                        </button>
-                    </div>
-                </div>
-
-                <div class="col-6 col-sm-4 col-md-6 col-lg-4 px-0 d-flex flex-column item">
-                    <div class="item-img w-100">
-                    </div>
-                    <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
-                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
-                            <label class="btn btn-info me-3" for="btnradio1"></label>
-
-                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
-                            <label class="btn btn-warning me-3" for="btnradio2"></label>
-
-                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
-                            <label class="btn btn-primary" for="btnradio3"></label>
-                        </div>
-                    </form>
-                    <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
-                    <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
-                    <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
-                         style="height: 60px">
-                        <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-xxl-6">
-                            <span class="text-nowrap">2 840</span>
-                            <span class="text-nowrap">₽</span>
-                        </div>
-                        <button class="col py-2 px-3 d-flex align-items-center justify-content-center">
-                            <span class="d-none d-xxl-block text-nowrap">в корзину</span>
-                            <img class="pt-md-2 ms-md-2 text-nowrap"
-                                 src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
-                        </button>
-                    </div>
-                </div>
-
-                <div class="col-6 col-sm-4 col-md-6 col-lg-4 px-0 d-flex flex-column item">
-                    <div class="item-img w-100">
-                    </div>
-                    <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
-                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
-                            <label class="btn btn-info me-3" for="btnradio1"></label>
-
-                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
-                            <label class="btn btn-warning me-3" for="btnradio2"></label>
-
-                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
-                            <label class="btn btn-primary" for="btnradio3"></label>
-                        </div>
-                    </form>
-                    <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
-                    <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
-                    <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
-                         style="height: 60px">
-                        <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-xxl-6">
-                            <span class="text-nowrap">2 840</span>
-                            <span class="text-nowrap">₽</span>
-                        </div>
-                        <button class="col py-2 px-3 d-flex align-items-center justify-content-center">
-                            <span class="d-none d-xxl-block text-nowrap">в корзину</span>
-                            <img class="pt-md-2 ms-md-2 text-nowrap"
-                                 src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
-                        </button>
-                    </div>
-                </div>
-
-                <div class="col-6 col-sm-4 col-md-6 col-lg-4 px-0 d-flex flex-column item">
-                    <div class="item-img w-100">
-                    </div>
-                    <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
-                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
-                            <label class="btn btn-info me-3" for="btnradio1"></label>
-
-                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
-                            <label class="btn btn-warning me-3" for="btnradio2"></label>
-
-                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
-                            <label class="btn btn-primary" for="btnradio3"></label>
-                        </div>
-                    </form>
-                    <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
-                    <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
-                    <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
-                         style="height: 60px">
-                        <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-xxl-6">
-                            <span class="text-nowrap">2 840</span>
-                            <span class="text-nowrap">₽</span>
-                        </div>
-                        <button class="col py-2 px-3 d-flex align-items-center justify-content-center">
-                            <span class="d-none d-xxl-block text-nowrap">в корзину</span>
-                            <img class="pt-md-2 ms-md-2 text-nowrap"
-                                 src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
-                        </button>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-4 col-md-6 col-lg-4 px-0 d-flex flex-column item">
-                    <div class="item-img w-100">
-                    </div>
-                    <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
-                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
-                            <label class="btn btn-info me-3" for="btnradio1"></label>
-
-                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
-                            <label class="btn btn-warning me-3" for="btnradio2"></label>
-
-                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
-                            <label class="btn btn-primary" for="btnradio3"></label>
-                        </div>
-                    </form>
-                    <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
-                    <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
-                    <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
-                         style="height: 60px">
-                        <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-xxl-6">
-                            <span class="text-nowrap">2 840</span>
-                            <span class="text-nowrap">₽</span>
-                        </div>
-                        <button class="col py-2 px-3 d-flex align-items-center justify-content-center">
-                            <span class="d-none d-xxl-block text-nowrap">в корзину</span>
-                            <img class="pt-md-2 ms-md-2 text-nowrap"
-                                 src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
-                        </button>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-4 col-md-6 col-lg-4 px-0 d-flex flex-column item">
-                    <div class="item-img w-100">
-                    </div>
-                    <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
-                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
-                            <label class="btn btn-info me-3" for="btnradio1"></label>
-
-                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
-                            <label class="btn btn-warning me-3" for="btnradio2"></label>
-
-                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
-                            <label class="btn btn-primary" for="btnradio3"></label>
-                        </div>
-                    </form>
-                    <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
-                    <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
-                    <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
-                         style="height: 60px">
-                        <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-xxl-6">
-                            <span class="text-nowrap">2 840</span>
-                            <span class="text-nowrap">₽</span>
-                        </div>
-                        <button class="col py-2 px-3 d-flex align-items-center justify-content-center">
-                            <span class="d-none d-xxl-block text-nowrap">в корзину</span>
-                            <img class="pt-md-2 ms-md-2 text-nowrap"
-                                 src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
-                        </button>
-                    </div>
-                </div>
-                <div class="col-6 col-sm-4 col-md-6 col-lg-4 px-0 d-flex flex-column item">
-                    <div class="item-img w-100">
-                    </div>
-                    <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
-                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>#}
-                            <label class="btn btn-info me-3" for="btnradio1"></label>
-
-                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
-                            <label class="btn btn-warning me-3" for="btnradio2"></label>
-
-                            {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
-                            <label class="btn btn-primary" for="btnradio3"></label>
-                        </div>
-                    </form>
-                    <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">Item Name</h4></a>
-                    <h5 class="ps-md-4 px-2 px-sm-3">Item Family</h5>
-                    <div class="item-footer mx-auto d-flex justify-content-between align-items-center row w-100"
-                         style="height: 60px">
-                        <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-8 col-xxl-6">
-                            <span class="text-nowrap">2 840</span>
-                            <span class="text-nowrap">₽</span>
-                        </div>
-                        <button class="col py-2 px-3 d-flex align-items-center justify-content-center">
-                            <span class="d-none d-xxl-block text-nowrap">в корзину</span>
-                            <img class="pt-md-2 ms-md-2 text-nowrap"
-                                 src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
-                        </button>
-                    </div>
-                </div>
 
             </section>
 

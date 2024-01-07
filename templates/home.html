@@ -3,6 +3,7 @@
 {% block page_title %}
     Home
 {% endblock %}
+{% load shop_custom_filters %}
 
 {% block extra_css %}
     <style>
@@ -10,13 +11,10 @@
             background: url("{% static 'main/img/home-page/main-banner.png' %}") lightgray 50% / cover no-repeat;
         }
 
-        .new-items .item-img {
-            background: url("{% static 'main/img/home-page/new-item-1.svg' %}") lightgray 50% / cover no-repeat;
-        }
-
         main:nth-of-type(2) {
             background: url("{% static 'main/img/home-page/sales-banner.svg' %}") lightgray 50% / cover no-repeat;
         }
+
     </style>
 {% endblock %}
 
@@ -30,7 +28,7 @@
         <div class="main-content d-flex py-4 align-items-center flex-column bg-white position-absolute">
             <h1>
                 Новое поступление
-
+                {{ cart.cart }}
             </h1>
             <p>Коллекции этого сезона</p>
             <button class="px-3">
@@ -40,55 +38,77 @@
     </main>
 
     <section class="new-items w-100 row mx-0 px-md-5">
-        {% for new_product in new_products %}
+        {% for product in new_products %}
+            <div class="col-6 col-sm-4 col-md-3 px-0 d-flex flex-column item" id="item{{ product.id }}">
+                {% block item-update %}
 
-            <div class="col-6 col-sm-4 col-md-3 px-0 d-flex flex-column item">
-                <div class="item-img w-100" style="
-                        {% if new_product.image %}
-                            background: url('{{ new_product.image.url }}') lightgray 50% / cover no-repeat;
-                        {% else %}
-                            background: url('https://burst.shopifycdn.com/photos/wrist-watches.jpg?width=1000&format=pjpg&exif=0&iptc=0') lightgray 50% / cover no-repeat;
-                        {% endif %}
+                    <div class="item-img w-100" style="background:
 
-                        ">
-                </div>
-                <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
-                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        {% for color in new_product.colors.all|slice:':3' %}
-                            <input type="radio" class="btn-check" name="btnradio{{ new_product.id }}{{ color.id }}"
-                                   id="btnradio{{ new_product.id }}{{ color.id }}" autocomplete="off">
-                            <label style="background-color: {{ color.code }}"
-                                   class="btn me-3" for="btnradio{{ new_product.id }}{{ color.id }}"></label>
-                        {% endfor %}
+                            {% if var %}
+                                {% if var.image %}
+                                    url('{{ var.image.url }}') lightgray 50% / cover no-repeat;
+                                {% else %}
+                                    url('https://burst.shopifycdn.com/photos/wrist-watches.jpg?width=1000&format=pjpg&exif=0&iptc=0') lightgray 50% / cover no-repeat;
 
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
-                        {#                        <label class="btn btn-warning me-3" for="btnradio2"></label>#}
-                        {##}
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
-                        {#                        <label class="btn btn-primary" for="btnradio3"></label>#}
+                                {% endif %}
+                            {% elif product.variations.all.0.image %}
+                                url('{{ product.variations.all.0.image.url }}') lightgray 50% / cover no-repeat;
+                            {% else %}
+                                url('https://burst.shopifycdn.com/photos/wrist-watches.jpg?width=1000&format=pjpg&exif=0&iptc=0') lightgray 50% / cover no-repeat;
+                            {% endif %}
+
+                            ">
                     </div>
-                </form>
-                <form hx-post="{% url 'cart:cart_add' new_product.id %}" hx-target="#navCart" class="px-0">
-
-                    <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">{{ new_product.name|truncatechars:'20' }}</h4></a>
-                    <h5 class="ps-md-4 px-2 px-sm-3">{{ new_product.class_of_product.name|truncatechars:'20' }}</h5>
-                    <div class="item-footer mt-auto mx-auto d-flex justify-content-between align-items-center row w-100"
-                         style="height: 60px">
-                        <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-md-6 col-8">
-                            <span class="text-nowrap">{{ new_product.real_price }}</span>
-                            <span class="text-nowrap">₽</span>
-                        </div>
-                        {% csrf_token %}
-                        <button type="submit" class="col py-2 px-3 d-flex align-items-center justify-content-center">
-                            <span class="d-none d-md-block text-nowrap">в корзину</span>
-                            <img class="pt-md-2 ms-md-2 text-nowrap"
-                                 src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
-                        </button>
-                        <div class="d-none">
-                            {{ form.quantity }}
+                    <div class="ps-md-4 px-2 px-sm-3 pt-3">
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                            {% for variation in product.variations.all|slice:':3' %}
+                                <input type="radio" class="btn-check"
+                                       name="btnradio{{ product.id }}{{ variation.code }}"
+                                       autocomplete="off"
+                                        {% if var %}
+                                            {% if check and var.code == variation.code %}
+                                       checked
+                                            {% endif %}
+                                        {% endif %}>
+                                <label style="background-color: {{ variation.code }}"
+                                       class="btn me-3"
+                                       hx-target="#item{{ product.id }}"
+                                       hx-trigger="click"
+                                       hx-get="{% url 'shop:item-color-update' product.slug variation.code %}"></label>
+                            {% endfor %}
                         </div>
                     </div>
-                </form>
+                    <form hx-post="{% url 'cart:cart_add' product.id %}" hx-target="#navCart" hx-swap="outerHTML"
+                          class="px-0">
+
+                        <a href="{% url 'shop:product-detail' product.class_of_product.slug product.slug %}"
+                           class="d-flex product-title-wrapper overflow-x-hidden">
+                            <h4 class="product-title ps-md-4 px-2 px-sm-3 mt-2 text-nowrap">{{ product.name|truncatechars:'20' }}</h4>
+                        </a>
+                        <a href="{% url 'shop:product-detail' product.class_of_product.slug 'all' %}">
+                            <h5 class="ps-md-4 px-2 px-sm-3 overflow-x-hidden text-nowrap">{{ product.class_of_product.name|truncatechars:'20' }}</h5>
+                        </a>
+                        <div class="item-footer mt-auto mx-auto d-flex justify-content-between align-items-center row w-100"
+                             style="height: 60px">
+                            <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-md-6 col-8">
+                                <span class="text-nowrap">{{ product.real_price }}</span>
+                                <span class="text-nowrap">₽</span>
+                            </div>
+                            <button type="submit"
+                                    class="col py-2 px-3 d-flex align-items-center justify-content-center">
+                                <span class="d-none d-md-block text-nowrap">в корзину</span>
+                                <img class="pt-md-2 ms-md-2 text-nowrap"
+                                     src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
+                            </button>
+                            <div class="d-none">
+                                <input type="text" name="color"
+                                       value="{% if var %} {{ var.code }} {% else %} {{ product.variations.all.0.code }} {% endif %}">
+                                {{ form.quantity }}
+                            </div>
+                        </div>
+                    </form>
+
+                {% endblock %}
 
             </div>
 
@@ -115,67 +135,87 @@
     <section class="new-items pb-4 w-100 row mx-0 px-md-5">
 
 
-        {% for on_sale_product in on_sale_products %}
+        {% for product in on_sale_products %}
+            <div class="col-6 col-sm-4 col-md-3 px-0 d-flex flex-column item" id="sale_item{{ product.id }}">
+                {% block item-update-two %}
 
-            <div class="col-6 col-sm-4 col-md-3 px-0 d-flex flex-column item">
-                <div class="item-img w-100 d-flex" style="
-                        {% if on_sale_product.image %}
-                            background: url('{{ on_sale_product.image.url }}') lightgray 50% / cover no-repeat;
-                        {% else %}
-                            background: url('https://burst.shopifycdn.com/photos/wrist-watches.jpg?width=1000&format=pjpg&exif=0&iptc=0') lightgray 50% / cover no-repeat;
-                        {% endif %}
+                    <div class="item-img w-100 d-flex" style="background:
 
-                        ">
-                    <div class="p-2 text-white ms-auto mb-auto"
-                         style="font-family: var(--main-font); font-size: 30px; backdrop-filter: blur(5px); background-color: rgba(0, 0, 0, 0.7);">
-                        -{{ on_sale_product.discount }} %
-                    </div>
+                            {% if var %}
+                                {% if var.image %}
+                                    url('{{ var.image.url }}') lightgray 50% / cover no-repeat;
+                                {% else %}
+                                    url('https://burst.shopifycdn.com/photos/wrist-watches.jpg?width=1000&format=pjpg&exif=0&iptc=0') lightgray 50% / cover no-repeat;
 
-                </div>
-                <form action="" class="ps-md-4 px-2 px-sm-3 pt-3">
-                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        {% for color in on_sale_product.colors.all|slice:':3' %}
-                            <input type="radio" class="btn-check" name="btnradio{{ on_sale_product.id }}{{ color.id }}"
-                                   id="btnradio{{ on_sale_product.id }}{{ color.id }}" autocomplete="off">
-                            <label style="background-color: {{ color.code }}"
-                                   class="btn me-3" for="btnradio{{ on_sale_product.id }}{{ color.id }}"></label>
-                        {% endfor %}
+                                {% endif %}
+                            {% elif product.variations.all.0.image %}
+                                url('{{ product.variations.all.0.image.url }}') lightgray 50% / cover no-repeat;
+                            {% else %}
+                                url('https://burst.shopifycdn.com/photos/wrist-watches.jpg?width=1000&format=pjpg&exif=0&iptc=0') lightgray 50% / cover no-repeat;
+                            {% endif %}
 
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">#}
-                        {#                        <label class="btn btn-warning me-3" for="btnradio2"></label>#}
-                        {##}
-                        {#                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">#}
-                        {#                        <label class="btn btn-primary" for="btnradio3"></label>#}
-                    </div>
-                </form>
-                <form hx-post="{% url 'cart:cart_add' on_sale_product.id %}" hx-target="#navCart" class="px-0">
-
-                    <a href=""><h4 class="ps-md-4 px-2 px-sm-3 mt-2">{{ on_sale_product.name|truncatechars:'20' }}</h4>
-                    </a>
-                    <h5 class="ps-md-4 px-2 px-sm-3">{{ on_sale_product.class_of_product.name|truncatechars:'20' }}</h5>
-                    <div class="item-footer mt-auto mx-auto d-flex justify-content-between align-items-center row w-100"
-                         style="height: 60px">
-                        <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-md-6 col-8">
-                            <span class="text-nowrap">{{ on_sale_product.real_price }}</span>
-                            <span class="text-nowrap">₽</span>
-                        </div>
-                        {% csrf_token %}
-                        <button type="submit" class="col py-2 px-3 d-flex align-items-center justify-content-center">
-                            <span class="d-none d-md-block text-nowrap">в корзину</span>
-                            <img class="pt-md-2 ms-md-2 text-nowrap"
-                                 src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
-                        </button>
-                        <div class="d-none">
-                            {{ form.quantity }}
+                            ">
+                        <div class="p-2 text-white ms-auto mb-auto"
+                             style="font-family: var(--main-font); font-size: 30px; backdrop-filter: blur(5px); background-color: rgba(0, 0, 0, 0.7);">
+                            -{{ product.discount }} %
                         </div>
                     </div>
-                </form>
+                    <div class="ps-md-4 px-2 px-sm-3 pt-3">
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                            {% for variation in product.variations.all|slice:':3' %}
+                                <input type="radio" class="btn-check"
+                                       name="btnradio{{ product.id }}{{ variation.code }}"
+                                       autocomplete="off"
+                                        {% if var %}
+                                            {% if check and var.code == variation.code %}
+                                       checked
+                                            {% endif %}
+                                        {% endif %}>
+                                <label style="background-color: {{ variation.code }}"
+                                       class="btn me-3"
+                                       hx-target="#sale_item{{ product.id }}"
+                                       hx-trigger="click"
+                                       hx-get="{% url 'shop:item-color-update-two' product.slug variation.code %}"></label>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <form hx-post="{% url 'cart:cart_add' product.id %}" hx-target="#navCart" hx-swap="outerHTML"
+                          class="px-0">
+
+                        <a href="{% url 'shop:product-detail' product.class_of_product.slug product.slug %}"
+                           class="d-flex product-title-wrapper overflow-x-hidden">
+                            <h4 class="product-title ps-md-4 px-2 px-sm-3 mt-2 text-nowrap">{{ product.name|truncatechars:'20' }}</h4>
+                        </a>
+                        <a href="{% url 'shop:product-detail' product.class_of_product.slug 'all' %}">
+                            <h5 class="ps-md-4 px-2 px-sm-3 overflow-x-hidden text-nowrap">{{ product.class_of_product.name|truncatechars:'20' }}</h5>
+                        </a>
+                        <div class="item-footer mt-auto mx-auto d-flex justify-content-between align-items-center row w-100"
+                             style="height: 60px">
+                            <div class="ps-md-4 px-2 px-sm-3 d-flex nowrap pb-4 mt-2 col-md-6 col-8">
+                                <span class="text-nowrap">{{ product.real_price }}</span>
+                                <span class="text-nowrap">₽</span>
+                            </div>
+                            <button type="submit"
+                                    class="col py-2 px-3 d-flex align-items-center justify-content-center">
+                                <span class="d-none d-md-block text-nowrap">в корзину</span>
+                                <img class="pt-md-2 ms-md-2 text-nowrap"
+                                     src="{% static 'main/img/home-page/cart-white-icon.svg' %}" alt="">
+                            </button>
+                            <div class="d-none">
+                                <input type="text" name="color"
+                                       value="{% if var %} {{ var.code }} {% else %} {{ product.variations.all.0.code }} {% endif %}">
+
+                                {{ form.quantity }}
+                            </div>
+                        </div>
+                    </form>
+
+                {% endblock %}
 
             </div>
 
-
         {% empty %}
-            <h1>No products on sale</h1>
+            <h1>No products available</h1>
         {% endfor %}
 
 
@@ -184,7 +224,7 @@
     <section class="catalogue mt-4 mt-md-5">
         <h1 class="text-center text-md-start ms-sm-4 ms-md-5 mb-4 mb-md-5">Каталог товаров</h1>
         <div class="row w-100 px-3 px-sm-0 row row-gap-5 mx-0">
-            {% for catalogue in catalogues %}
+            {% for catalogue in categories %}
 
                 <div class="col-12 col-sm-6 col-md-4 position-relative" style="
                         background: url('{% static 'main/img/home-page/sales-banner.svg' %}') lightgray 50% / cover no-repeat;

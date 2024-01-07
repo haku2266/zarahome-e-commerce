@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.safestring import mark_safe
 
 
 # PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 99)]

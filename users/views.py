@@ -22,14 +22,11 @@ def register_view(request):
 
 def flag_control(request):
     if request.method == 'POST':
-        print('working')
         phone = request.POST.get('phone_number')
-        print(phone)
         try:
             code = phonenumbers.region_code_for_number(phonenumbers.parse(phone))
         except:
             code = ''
-        print(code)
         html = render_block_to_string('register.html', 'flag-update', context={'code': code})
         return HttpResponse(html)
 

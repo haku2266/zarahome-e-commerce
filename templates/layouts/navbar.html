@@ -23,7 +23,7 @@
                 <a href="{% url 'shop:cart-detail' %}" class="d-flex align-items-center">
                     <img src="{% static 'main/img/navbar/cart-icon.svg' %}" alt="">
                     {% with cart|length as total_items %}
-                        {% if total_items > 0 and request.path != '/cart-detail/'%}
+                        {% if total_items > 0 and request.path != '/cart-detail/' %}
 
                             <div class="cartItemCounter">
                         <span>
@@ -65,16 +65,17 @@
                                 <div class="col-7">
                                     <h4>{{ product.name|truncatechars:'15' }} x {{ quantity }}</h4>
                                     <h6>{{ product.type|truncatechars:'15' }}</h6>
-                                    <p>{{ product.real_price}}</p>
+                                    <p>{{ product.real_price }}</p>
                                 </div>
-                                <div class="col-1 px-0 d-flex align-items-center"><img
-                                        src="{% static 'main/img/navbar/close_btn.svg' %}" alt=""></div>
+                                <div class="col-1 px-0 d-flex align-items-center">
+                                    <img src="{% static 'main/img/navbar/close_btn.svg' %}" alt="">
+                                </div>
                             </div>
                         {% endfor %}
 
                     </li>
                     <li class="mt-auto cart-button mt-4 w-100">
-                        <a href="" class="w-100">перейти к оформлению</a>
+                        <a href="{% url 'orders:create_order' %}" class="w-100">перейти к оформлению</a>
                     </li>
                 </ul>
 
@@ -87,10 +88,10 @@
 
 <section class="small-nav-bar bg-white d-none d-md-flex py-3">
     <ul class="mx-auto gap-3 d-flex mb-0 list-unstyled">
-        <li><a href="{% url 'shop:all-products' None %}">Все товары</a></li>
-        <li><a href="">Скидки</a></li>
-        <li><a href="{% url 'shop:catalogue-detail' %}">Новинки</a></li>
-        <li><a href="{% url 'shop:product-detail' %}">Информация</a></li>
+        <li><a href="{% url 'shop:all-products' 'new' %}">Все товары</a></li>
+        <li><a href="{% url 'shop:all-products' 'sale' %}">Скидки</a></li>
+        <li><a href="">Новинки</a></li>
+        <li><a href="">Информация</a></li>
     </ul>
 </section>
 
