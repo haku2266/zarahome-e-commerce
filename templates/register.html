@@ -2,7 +2,7 @@
 {% block page_title %}
     Register
 {% endblock %}
-
+{% load crispy_forms_filters %}
 {% block extra_css %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.1.0/css/flag-icons.min.css"
           integrity="sha512-bZBu2H0+FGFz/stDN/L0k8J0G8qVsAL0ht1qg5kTwtAheiXwiRKyCq1frwfbSFSJN3jooR5kauE0YjtPzhZtJQ=="
@@ -10,21 +10,88 @@
 {% endblock %}
 
 {% block page-wrapper %}
-    register
+    registration-page
 {% endblock %}
 {% block content %}
-    {% block flag-update %}
-        <div id="reg-form">
-            <span class="fi fi-{{ code|lower }} fis"></span>
-        </div>
-    {% endblock %}
+    <div class="row my-5 d-flex justify-content-center align-items-center">
+        <div class="form-wrapper p-4 ">
+            <form action="{% url 'users:register' %}" method="post">
 
-    <form action="{% url 'users:register' %}" method="post">
-        {% csrf_token %}
-        {% include 'partials/flag-control.html' %}
-        {{ form }}
-        <button type="submit">Save</button>
-    </form>
-    <div class="errors">    {{ form.password.errors }}</div>
+                {% csrf_token %}
+                <div class="row mx-0">
+                    <div class="col-12 px-0">
+                        {{ form.email|as_crispy_field }}
+
+                        <div id="email-target" class="mb-3" style="margin-top: -10px">
+                            {% block email-val %}
+                                {% for error in validate_errors %}
+                                    <p style="
+                                    color: var(--red);
+                                    font-size: 14px;
+                                    margin-bottom: 0;
+                                            ">
+                                        <strong>{{ error }}</strong>
+                                    </p>
+                                {% endfor %}
+                            {% endblock %}
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row mx-0 d-flex align-items-center">
+                    <div class="col-12 px-0">
+                        {{ form.phone_number|as_crispy_field }}
+
+                        <div id="phone-target" class="mb-3" style="margin-top: -10px">
+                            {% block phone-val %}
+                                {% for error in validate_errors %}
+                                    <p style="
+                                    color: var(--red);
+                                    font-size: 14px;
+                                    margin-bottom: 0;
+                                            ">
+                                        <strong>{{ error }}</strong>
+                                    </p>
+                                {% endfor %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+                <div class="row mx-0">
+                    <div class="col-12 px-0" id="password-validate">
+                        {{ form.password|as_crispy_field }}
+
+                        <div id="password-target" class="mb-3" style="margin-top: -10px">
+                            {% block password-val %}
+                                {% for error in validate_errors %}
+                                    <p style="
+                                    color: var(--red);
+                                    font-size: 14px;
+                                    margin-bottom: 0;
+                                            ">
+                                        <strong>{{ error }}</strong>
+                                    </p>
+                                {% endfor %}
+                            {% endblock %}
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row mx-0">
+                    <div class="col-12 px-0">
+                        {{ form.confirm_password|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row mx-0">
+                    <div class="col-12 d-flex px-0">
+
+                        <button class="w-100" type="submit">Register</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
 
 {% endblock %}

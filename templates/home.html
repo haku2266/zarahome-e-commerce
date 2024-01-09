@@ -28,7 +28,6 @@
         <div class="main-content d-flex py-4 align-items-center flex-column bg-white position-absolute">
             <h1>
                 Новое поступление
-                {{ cart.cart }}
             </h1>
             <p>Коллекции этого сезона</p>
             <button class="px-3">
@@ -48,13 +47,11 @@
                                 {% if var.image %}
                                     url('{{ var.image.url }}') lightgray 50% / cover no-repeat;
                                 {% else %}
-                                    url('https://burst.shopifycdn.com/photos/wrist-watches.jpg?width=1000&format=pjpg&exif=0&iptc=0') lightgray 50% / cover no-repeat;
+                                    url('{{ product.image.url }}') lightgray 50% / cover no-repeat;
 
                                 {% endif %}
-                            {% elif product.variations.all.0.image %}
-                                url('{{ product.variations.all.0.image.url }}') lightgray 50% / cover no-repeat;
                             {% else %}
-                                url('https://burst.shopifycdn.com/photos/wrist-watches.jpg?width=1000&format=pjpg&exif=0&iptc=0') lightgray 50% / cover no-repeat;
+                                url('{{ product.image.url }}') lightgray 50% / cover no-repeat;
                             {% endif %}
 
                             ">
@@ -145,13 +142,11 @@
                                 {% if var.image %}
                                     url('{{ var.image.url }}') lightgray 50% / cover no-repeat;
                                 {% else %}
-                                    url('https://burst.shopifycdn.com/photos/wrist-watches.jpg?width=1000&format=pjpg&exif=0&iptc=0') lightgray 50% / cover no-repeat;
+                                    url('{{ product.image.url }}') lightgray 50% / cover no-repeat;
 
                                 {% endif %}
-                            {% elif product.variations.all.0.image %}
-                                url('{{ product.variations.all.0.image.url }}') lightgray 50% / cover no-repeat;
                             {% else %}
-                                url('https://burst.shopifycdn.com/photos/wrist-watches.jpg?width=1000&format=pjpg&exif=0&iptc=0') lightgray 50% / cover no-repeat;
+                                url('{{ product.image.url }}') lightgray 50% / cover no-repeat;
                             {% endif %}
 
                             ">
@@ -226,7 +221,7 @@
         <div class="row w-100 px-3 px-sm-0 row row-gap-5 mx-0">
             {% for catalogue in categories %}
 
-                <div class="col-12 col-sm-6 col-md-4 position-relative" style="
+                <a href="{% url 'shop:catalogue-detail' catalogue.slug %}" class="col-12 col-sm-6 col-md-4 position-relative" style="
                         background: url('{% static 'main/img/home-page/sales-banner.svg' %}') lightgray 50% / cover no-repeat;
                         aspect-ratio: 1 / 1">
                     <div class="content py-2 py-md-3 py-md-5 px-4 position-absolute d-flex flex-column align-items-center">
@@ -236,7 +231,7 @@
                             {{ catalogue.short_description|default:'No Description' }}
                         </p>
                     </div>
-                </div>
+                </a>
 
             {% endfor %}
 

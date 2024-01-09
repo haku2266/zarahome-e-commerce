@@ -1,5 +1,5 @@
 {% extends 'layouts/base.html' %}
-
+{% load crispy_forms_filters %}
 {% block page_title %}
     Оформить заказ
 {% endblock %}
@@ -9,10 +9,15 @@
 {% endblock %}
 
 {% block content %}
-    <form action="{% url 'orders:create_order' %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Order</button>
-    </form>
+    <div class="row">
+        <div class="col-4 offset-4 bg-success-subtle p-4">
+            <form action="{% url 'orders:create_order' %}" method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit">Order</button>
+            </form>
+        </div>
+
+    </div>
 
 {% endblock %}

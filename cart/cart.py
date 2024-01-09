@@ -13,14 +13,21 @@ class Cart:
             cart = self.session[settings.CART_SESSION_ID] = {}
         self.cart = cart
 
-    def add(self, product, quantity=1, color=None, override_quantity=False):
+    def add(self, product, quantity=1, color=None, size=None, override_quantity=False):
         """Add product to cart or update quantity"""
-
+        if size is not None:
+            size = size.replace('\n', '').replace(' ', '')
+        else:
+            size = 'default'
         product_id = str(product.id)
+
+        if color is not None:
+            color = color.replace('\n', '').replace(' ', '')
+
         if product_id not in self.cart:
             self.cart[product_id] = {'quantity': 0,
                                      'price': str(product.real_price),
-                                     'colors': {str(color): {'item_quantity': 0, 'item_size': None}}
+                                     'colors': {str(color): {'item_quantity': 0, 'item_size': size}}
                                      }
         if override_quantity:
             self.cart[product_id]['quantity'] = quantity
@@ -30,10 +37,12 @@ class Cart:
             if a is not None:
                 if a['item_quantity']:
                     a['item_quantity'] += 1
+                    a['item_size'] = size
                 else:
                     a['item_quantity'] = 1
+                    a['item_size'] = size
             else:
-                self.cart[product_id]['colors'][str(color)] = {'item_quantity': 1, 'item_size': None}
+                self.cart[product_id]['colors'][str(color)] = {'item_quantity': 1, 'item_size': size}
         self.save()
 
     def save(self):
@@ -57,8 +66,13 @@ class Cart:
         products = ProductModel.objects.filter(id__in=product_ids).select_related('class_of_product')
         cart = self.cart.copy()
         for product in products:
-            quantity = self.cart[str(product.id)]['quantity']
-            yield product, quantity
+            for color, q_s in self.cart[str(product.id)].get('colors').items():
+                if color:
+                    quantity = q_s['item_quantity']
+                else:
+                    quantity = self.cart[str(product.id)]['quantity']
+                size = q_s['item_size']
+                yield product, color, quantity, size
         #     cart[str(product.id)]['product'] = product
         # for item in cart.values():
         #     item['price'] = Decimal(item['price'])

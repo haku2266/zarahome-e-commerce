@@ -1,5 +1,5 @@
 from django import forms
-from .models import OrderModel
+from .models import OrderModel, OrderItemModel
 from users.models import ClientDetails, CustomUserModel
 
 
@@ -35,3 +35,11 @@ class OrderAddressCreateForm(forms.ModelForm):
         if commit:
             order_instance.save()
         return order_instance
+
+
+class ColorModelAdminForms(forms.ModelForm):
+    code = forms.CharField(widget=forms.TextInput(attrs={'type': 'color'}))
+
+    class Meta:
+        model = OrderItemModel
+        fields = '__all__'

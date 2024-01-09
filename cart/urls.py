@@ -8,13 +8,12 @@ urlpatterns = [
 ]
 
 htmx_urlpatterns = [
-    path('update_cart/<int:product_id>/', cart_update, name='cart_update'),
+    path('update_cart/<int:product_id>/<str:color>/', cart_update, name='cart_update'),
     path('add/<int:product_id>/', cart_add, name='cart_add'),
-    # path('add/product_detail/<int:product_id>/', cart_add_product_detail, name='cart_add_product_detail'),
-    path('remove/<int:product_id>/', cart_remove, name='cart_remove'),
-    path('plus-quantity/<int:product_id>/', plus_quantity, name='plus_quantity'),
-    path('minus-quantity/<int:product_id>/', minus_quantity, name='minus_quantity'),
-    path('delete/<int:product_id>/', product_remove, name='product_remove')
+    path('plus-quantity/<int:product_id>/<str:color>/', plus_quantity, name='plus_quantity'),
+    path('minus-quantity/<int:product_id>/<str:color>/', minus_quantity, name='minus_quantity'),
+    path('delete/<int:product_id>/<str:color>/', product_remove, name='product_remove'),
+    path('delete_from_nav/<int:product_id>/<str:color>/', product_remove_navbar, name='product_remove_navbar'),
 
 ]
 

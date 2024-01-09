@@ -92,20 +92,8 @@
             display: block;
         }
 
-        @keyframes fade-in {
-            0% {
-            {#transform: translateX(-30px);#} opacity: 0;
-            }
-            100% {
-            {#transform: translateX(0px);#} opacity: 1;
-            }
-        }
 
-        #product-update {
-            animation: fade-in 2s forwards;
-        }
-
-        .previous-page:hover, .next-page:hover{
+        .previous-page:hover, .next-page:hover {
             cursor: pointer !important;
         }
 
@@ -120,7 +108,7 @@
 {% block content %}
     <div class="row mx-auto mx-md-4 mx-lg-5">
         <div class="col-md-5 col-lg-4 col-xl-3  d-none d-md-block">
-            <div style="max-height: 100vh" class="side-links overflow-y-scroll">
+            <div style="max-height: 100vh" class="side-links overflow-y-scroll overflow-x-hidden">
                 <div class="row sidebar-header mt-5">
                     <div class="col-6 col-xl-6 col-lg-6 col-xxl-5 pe-0 text-nowrap"><p>Каталог товаров</p></div>
                     <div class="col-6 col-xl-6 col-lg-6 col-xxl-7 ps-0">
@@ -139,9 +127,6 @@
                                 <img src="{% static 'main/img/all-products/accordion-arrow.svg' %}" alt="">
                                 <h4 class="label">{{ type.name }}</h4>
                                 <ul class="accordion-content list-unstyled"
-                                        {#                                        {% if side_category.id == .id %}#}
-                                        {#                                    style="height: auto"#}
-                                        {#                                        {% endif %}#}
                                 >
                                     <li><a href="">Смотреть все</a></li>
                                     <li><a href="">Основное постельное белье</a></li>
@@ -170,14 +155,9 @@
                 <a href="{% url 'shop:all-products' 'new' %}">
                     Каталог товаров</a>
                 >
-                <a href="" style=""
+                <a href="{% url 'shop:catalogue-detail' class_of_product.type.category.slug %}" style=""
                    class="">
                     {{ class_of_product.type.category.name }}
-                </a>
-                >
-                <a href="" style=""
-                   class="">
-                    {{ class_of_product.name }}
                 </a>
                 >
                 <a href="" style="color: #000 !important;"
@@ -189,81 +169,130 @@
                 <div id="product-update">
 
                     {% for product in products %}
+                        <div id="product-detail-update{{ product.id }}">
+                            {% block item-update-product %}
 
+                                <h1 class="item-title mt-4">{{ product.name }}</h1>
+                                <p class="sub-catalogue mb-md-5 mb-4">{{ product.class_of_product.name }}</p>
+                                <div class="row">
+                                    <div class="col-12 px-0 ps-sm-2 pe-sm-3 col-sm-6 col-md-12 col-lg-6">
+                                        <img class="item-image" src="
 
-                        <h1 class="item-title mt-4">{{ product.name }}</h1>
-                        <p class="sub-catalogue mb-5">{{ product.class_of_product.name }}</p>
-                        <div class="row">
-                            <div class="col-12 px-0 ps-sm-2 pe-sm-3 col-sm-6 col-md-12 col-lg-6">
-                                <img src="{% if product.image %}
-                                	{{ product.image.url }}
-                                	{% else %}
-                                	https://burst.shopifycdn.com/photos/wrist-watches.jpg?width=1000&format=pjpg&exif=0&iptc=0
-                                {% endif %} "
-                                     style="width: 100%; object-fit: cover; aspect-ratio: 1 / 1;" alt="">
-                            </div>
-                            <div class="col-12 col-sm-6 d-flex flex-column col-md-12 px-3 px-lg-1 mt-4 mt-lg-0 col-lg-6">
-                                <h6 class="product-options">Выберите цвет</h6>
-                                <form action="" class="ps-2 pt-3 new-items">
-                                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1"
-                                               autocomplete="off"
-                                               checked>
-                                        <label class="btn btn-info me-3" for="btnradio1"></label>
+                                            {% if var %}
+                                                {% if var.image %}
+                                                   {{ var.image.url }}
+                                                {% else %}
+                                                    {{ product.image.url }}
 
-                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2"
-                                               autocomplete="off">
-                                        <label class="btn btn-warning me-3" for="btnradio2"></label>
+                                                {% endif %}
+                                            {% else %}
+                                                {{ product.image.url }}
+                                            {% endif %}
 
-                                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3"
-                                               autocomplete="off">
-                                        <label class="btn btn-primary" for="btnradio3"></label>
+                                                "
+                                             style="width: 100%; object-fit: cover; aspect-ratio: 1 / 1;" alt="">
                                     </div>
-                                </form>
-                                <form hx-post="{% url 'cart:cart_add' product.id %}" hx-target="#navCart"
-                                      hx-swap="outerHTML"
-                                      class="px-0">
-                                    <h6 class="product-options mt-4 mb-3">Выберите размер </h6>
-                                    <div class="d-flex mx-auto mx-sm-0 flex-column w-100"
-                                         style="width: min(500px, 100%) !important;">
-                                        <div class="dropdown">
-                                            <button onclick="sizeDrop()"
-                                                    class="d-flex align-items-center dropbtn w-100 py-1 py-sm-3 py-md-1 py-lg-3 py-xl-1 px-1 px-sm-3">
-                                                <span class="size-label me-auto user-select-none">Банное ( 90x150 см )</span>
-                                                <span class="d-block d-sm-none d-md-block d-lg-none d-xl-block price-label user-select-none text-nowrap">11 540</span>
-                                                <span class="d-block d-sm-none d-md-block d-lg-none d-xl-block currency-label user-select-none text-nowrap"> ₽</span>
-                                                <span class="vr my-2 mx-3 user-select-none"></span>
-                                                <img class="img-label"
-                                                     src="{% static 'main/img/product-detail-page/Vector 14.svg' %}"
-                                                     alt="">
-                                            </button>
-                                            <div id="myDropdown" class="dropdown-content w-100">
-                                                <a href="#">Link 1</a>
-                                                <a href="#">Link 2</a>
-                                                <a href="#">Link 3</a>
+                                    <div class="col-12 col-sm-6 d-flex flex-column col-md-12 px-3 px-lg-1 mt-4 mt-lg-0 col-lg-6">
+                                        <h6 class="product-options">Выберите цвет</h6>
+                                        <div class="ps-2 pt-3 new-items">
+
+                                            <div class="btn-group" role="group"
+                                                 aria-label="Basic radio toggle button group">
+                                                {% for variation in product.variations.all|slice:':3' %}
+                                                    <input type="radio" class="btn-check"
+                                                           name="btnradio{{ product.id }}{{ variation.code }}"
+                                                           autocomplete="off"
+                                                            {% if var %}
+                                                                {% if check and var.code == variation.code %}
+                                                           checked
+                                                                {% endif %}
+                                                            {% endif %}>
+                                                    <label style="background-color: {{ variation.code }}"
+                                                           class="btn me-3"
+                                                           hx-target="#product-detail-update{{ product.id }}"
+                                                           hx-trigger="click"
+                                                           hx-get="{% url 'shop:item-color-update-product-detail' product.slug variation.code %}"></label>
+                                                {% empty %}
+                                                    <p class="products-options mb-0"
+                                                            style="color: var(--light-black) !important; font-family: var(--main-font);">No color pallet for this product</p>
+                                                {% endfor %}
                                             </div>
-                                        </div>
-                                        <div class="row w-100 gap-2 mx-auto mt-4">
 
-                                            <button class="col-2 add-to-cart">
-                                                <img src="{% static 'main/img/product-detail-page/like-white.svg' %}"
-                                                     alt="">
-                                            </button>
-                                            <button type="submit" class="col add-to-cart">добавить в корзину</button>
-                                            <div class="d-none">
-                                                {{ form.quantity }}
-                                            </div>
+
                                         </div>
-                                    </div>
-                                </form>
-                                <div class="d-flex mx-auto mx-sm-0 row w-100 mt-4">
-                                    <div class="col-auto d-flex align-items-center column-gap-3 my-1">
-                                        <img src="{% static 'main/img/product-detail-page/delivery.svg' %}" alt="">
-                                        <div class="vr"></div>
-                                    </div>
-                                    <div class="col">
-                                        <h6 class="product-options mb-0">Ориентировочная дата доставки: </h6>
-                                        <h3 class="my-0" style="
+                                        <form hx-post="{% url 'cart:cart_add' product.id %}" hx-target="#navCart"
+                                              hx-swap="outerHTML"
+                                              class="px-0">
+                                            <h6 class="product-options mt-4 mb-3">Выберите размер </h6>
+                                            <div class="d-flex mx-auto mx-sm-0 flex-column w-100"
+                                                 style="width: min(500px, 100%) !important;">
+                                                <div class="dropdown">
+                                                    <div id="size-btn-update{{ product.id }}">
+                                                        {% block size-btn-update %}
+
+                                                            <button type="button" onclick="sizeDrop()"
+                                                                    class="d-flex align-items-center dropbtn w-100 py-1 py-sm-3 py-md-1 py-lg-3 py-xl-1 px-2 px-sm-3">
+                                                                <span class="size-label me-auto user-select-none">{% if focus_size %}
+                                                                    {{ focus_size.size }}{% else %}Default{% endif %}
+                                                                </span>
+                                                                <span class="d-block d-sm-none d-md-block d-lg-none d-xl-block price-label user-select-none text-nowrap">{{ product.real_price }}</span>
+                                                                <span class="d-block d-sm-none d-md-block d-lg-none d-xl-block currency-label user-select-none text-nowrap"> ₽</span>
+                                                                <span class="vr my-2 mx-3 user-select-none"></span>
+                                                                <img class="img-label"
+                                                                     src="{% static 'main/img/product-detail-page/Vector 14.svg' %}"
+                                                                     alt="">
+                                                            </button>
+                                                            <input type="hidden" name="size" value="
+                                                                                        {% if focus_size %}
+                                                                                        {{ focus_size.size }}
+                                                                                        {% else %}
+                                                                                            Default
+                                                                                        {% endif %}">
+                                                            <input type="hidden" name="focus_product_id"
+                                                                   value="{{ product.id }}">
+                                                        {% endblock %}
+
+                                                    </div>
+
+                                                    <div id="myDropdown" class="dropdown-content w-100">
+                                                        {% if var %}
+
+                                                            {% for size in var.sizes.all %}
+                                                                <a hx-target="#size-btn-update{{ product.id }}"
+                                                                   hx-trigger="click"
+                                                                   hx-get="{% url 'shop:size-button-update' size.id product.id %}"
+                                                                >{{ size.size }}</a>
+                                                            {% endfor %}
+
+                                                        {% endif %}
+
+                                                    </div>
+                                                </div>
+                                                <div class="row w-100 gap-2 mx-auto mt-4">
+
+                                                    <button class="col-2 add-to-cart">
+                                                        <img src="{% static 'main/img/product-detail-page/like-white.svg' %}"
+                                                             alt="">
+                                                    </button>
+                                                    <button type="submit" class="col add-to-cart">добавить в корзину
+                                                    </button>
+                                                    <div class="d-none">
+                                                        {{ form.quantity }}
+                                                        <input type="text" name="color"
+                                                               value="{% if var %} {{ var.code }} {% else %} {{ product.variations.all.0.code }} {% endif %}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <div class="d-flex mx-auto mx-sm-0 row w-100 mt-4">
+                                            <div class="col-auto d-flex align-items-center column-gap-3 my-1">
+                                                <img src="{% static 'main/img/product-detail-page/delivery.svg' %}"
+                                                     alt="">
+                                                <div class="vr"></div>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="product-options mb-0">Ориентировочная дата доставки: </h6>
+                                                <h3 class="my-0" style="
                         color: #000;
                         font-family: var(--main-font);
                         font-size: 24px;
@@ -271,53 +300,38 @@
                         font-weight: 600;
                         line-height: 24px;
                                 ">16 августа 2023 </h3>
+                                            </div>
+                                        </div>
+                                        <p class="product-options mt-4 d-none d-xl-block">Описание</p>
+
+                                        <p class="product-options d-none d-xl-block px-1"
+                                           style="color: var(--light-black) !important; ">
+                                            {{ product.description }}
+                                        </p>
+
+
                                     </div>
                                 </div>
-                                <p class="product-options mt-4 d-none d-xl-block">Описание</p>
+                                <p class="product-options d-block d-xl-none mt-4 px-1">Описание</p>
+                                <p class="product-options  d-block d-xl-none  px-1"
+                                   style="color: var(--light-black) !important;">
+                                    {{ product.description }}
+                                </p>
 
-                                <p class="product-options d-none d-xl-block px-1"
-                                   style="color: var(--light-black) !important; ">
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipisicing elit. Asperiores
-                                    iusto laborum obcaecati? A accusamus aperiam, cupiditate dolore, dolores earum eius
-                                    est
-                                    excepturi explicabo itaque laborum magni nostrum officiis perspiciatis quaerat quis,
-                                    veritatis.
-                                    Ab accusantium assumenda consequuntur, cupiditate eligendi in ipsa iste natus optio
-                                    quam
-                                    quisquam quo sunt, voluptas. Aperiam asperiores atque beatae consequuntur cum
-                                    deleniti dolor
-                                    ea
-                                    eius eligendi enim ex excepturi explicabo fugit hic iure labore, laboriosam laborum
-                                    libero
-                                    maxime modi natus necessitatibus non obcaecati odit optio perspiciatis placeat
-                                    quaerat quam
-                                    quasi quia quisquam quo ratione reprehenderit saepe tenetur voluptas voluptate! Enim
-                                    est
-                                    modi
-                                    nemo nesciunt nulla quod voluptates.</p>
-
-
-                            </div>
+                            {% endblock %}
                         </div>
-                        <p class="product-options d-block d-xl-none mt-4 px-1">Описание</p>
-                        <p class="product-options  d-block d-xl-none  px-1"
-                           style="color: var(--light-black) !important;">Lorem
-                            ipsum dolor sit amet, consectetur adipisicing elit.
-                            Asperiores
-                            iusto laborum obcaecati? A accusamus aperiam, cupiditate dolore, dolores earum eius est
-                            excepturi explicabo itaque laborum magni nostrum officiis perspiciatis quaerat quis,
-                            veritatis.
-                            Ab accusantium assumenda consequuntur, cupiditate eligendi in ipsa iste natus optio quam
-                            quisquam quo sunt, voluptas. Aperiam asperiores atque beatae consequuntur cum deleniti dolor
-                            ea
-                            eius eligendi enim ex excepturi explicabo fugit hic iure labore, laboriosam laborum libero
-                            maxime modi natus necessitatibus non obcaecati odit optio perspiciatis placeat quaerat quam
-                            quasi quia quisquam quo ratione reprehenderit saepe tenetur voluptas voluptate! Enim est
-                            modi
-                            nemo nesciunt nulla quod voluptates.
-                        </p>
+
                     {% endfor %}
+
+
+
+
+
+
+
+
+
+
 
 
                     <div class="pagination">
@@ -330,11 +344,74 @@
                                    hx-target="#product-update"
                                    hx-swap="outerHTML"
                                    hx-push-url="{% url 'shop:product-detail' class_of_product.slug 'all' %}?page={{ products.previous_page_number }}">Previous</a>
+
+
+                                {% if products.number > 3 %}
+                                    <a class="next-page"
+                                       hx-get="{% url 'shop:product-detail' class_of_product.slug 'all' %}?page=1"
+                                       hx-paginate="true"
+                                       hx-trigger="click"
+                                       hx-target="#product-update"
+                                       hx-swap="outerHTML"
+                                       hx-push-url="{% url 'shop:product-detail' class_of_product.slug 'all' %}?page=1"
+
+                                    >1</a>
+                                    {% if products.number > 4 %}
+                                        <span>...</span>
+                                    {% endif %}
+                                {% endif %}
                             {% endif %}
-                            <span class="current">
-                            Page {{ products.number }} of {{ products.paginator.num_pages }}.
-                         </span>
+
+                            {% for num in products.paginator.page_range %}
+                                {% if products.number == num %}
+                                    <a class="next-page"
+                                       hx-get="{% url 'shop:product-detail' class_of_product.slug 'all' %}?page={{ num }}"
+                                       hx-paginate="true"
+                                       hx-trigger="click"
+                                       hx-target="#product-update"
+                                       hx-swap="outerHTML"
+                                       hx-push-url="{% url 'shop:product-detail' class_of_product.slug 'all' %}?page={{ num }}"
+
+                                    >{{ num }}</a>
+                                {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
+                                    <a class="next-page"
+                                       hx-get="{% url 'shop:product-detail' class_of_product.slug 'all' %}?page={{ num }}"
+                                       hx-paginate="true"
+                                       hx-trigger="click"
+                                       hx-target="#product-update"
+                                       hx-swap="outerHTML"
+                                       hx-push-url="{% url 'shop:product-detail' class_of_product.slug 'all' %}?page={{ num }}"
+
+                                    >{{ num }}</a>
+                                {% endif %}
+                            {% endfor %}
+
                             {% if products.has_next %}
+                                {% if products.number < products.paginator.num_pages|add:'-3' %}
+                                    <span>...</span>
+                                    <a class="next-page"
+
+                                       hx-get="{% url 'shop:product-detail' class_of_product.slug 'all' %}?page={{ products.paginator.num_pages }}"
+                                       hx-paginate="true"
+                                       hx-trigger="click"
+                                       hx-target="#product-update"
+                                       hx-swap="outerHTML"
+                                       hx-push-url="{% url 'shop:product-detail' class_of_product.slug 'all' %}?page={{ products.paginator.num_pages }}"
+
+                                    >{{ products.paginator.num_pages }}</a>
+                                {% elif products.number < products.paginator.num_pages|add:'-2' %}
+                                    <a class="next-page"
+                                       hx-get="{% url 'shop:product-detail' class_of_product.slug 'all' %}?page={{ products.paginator.num_pages }}"
+                                       hx-paginate="true"
+                                       hx-trigger="click"
+                                       hx-target="#product-update"
+                                       hx-swap="outerHTML"
+                                       hx-push-url="{% url 'shop:product-detail' class_of_product.slug 'all' %}?page={{ products.paginator.num_pages }}"
+
+                                    >{{ products.paginator.num_pages }}</a>
+                                {% endif %}
+
+
                                 <a class="next-page"
                                    hx-get="{% url 'shop:product-detail' class_of_product.slug 'all' %}?page={{ products.next_page_number }}"
                                    hx-paginate="true"

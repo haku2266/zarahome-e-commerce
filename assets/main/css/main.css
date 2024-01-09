@@ -22,7 +22,7 @@ font-family: 'Ysabeau SC', sans-serif;
 
 ::selection {
     color: #fff;
-    background-color: var(--yellow);
+    background-color: var(--green);
 }
 
 html {
@@ -380,19 +380,6 @@ footer span {
     rotate: 90deg;
 }
 
-
-@keyframes appear {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-.item-img {
-    animation: appear 1s forwards;
-}
 
 /*-------------breadcrumb style-----------------*/
 .custom-breadcrumb {
@@ -1023,6 +1010,100 @@ footer span {
 }
 
 
+/*-------------registration page--------------*/
+.registration-page, .login-page {
+    font-family: var(--main-font);
+}
+
+
+.registration-page .was-validated .form-control:invalid,
+.registration-page .form-control.is-invalid,
+.registration-page .form-control.is-invalid:focus,
+.login-page .was-validated .form-control:invalid,
+.login-page .form-control.is-valid,
+.login-page .form-control.is-valid:focus {
+    background-image: none !important;
+    border: var(--red) solid 1px !important;
+}
+
+.registration-page .form-control:focus, .login-page .form-control:focus {
+    box-shadow: none !important;
+    border: var(--green) solid 1px !important;
+}
+
+
+.registration-page .form-control.is-invalid,
+.login-page .form-control.is-invalid {
+    border: var(--red) 1px solid;
+}
+
+.registration-page .invalid-feedback,
+.login-page .invalid-feedback {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color: var(--red);
+    margin-bottom: 0;
+}
+
+.registration-page input, .login-page input {
+    border-radius: 0;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    background: #FFF;
+}
+
+.registration-page .form-text, .login-page .form-text {
+    color: rgba(0, 0, 0, 0.30);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.registration-page .form-label, .login-page .form-label {
+    color: rgba(0, 0, 0, 0.60);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.registration-page span.asteriskField,
+.login-page span.asteriskField {
+    color: var(--green);
+    margin-left: 3px;
+    font-size: 16px;
+}
+
+.registration-page .form-wrapper{
+    background: #FFF;
+    box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.07);
+    width: min(420px, 100%);
+}
+
+.registration-page button, .login-page button{
+    color: #FFF;
+    text-align: center;
+    font-family: var(--main-font);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 54px; /* 300% */
+    background-color: var(--black);
+    border: none;
+    transition: 400ms ease;
+}
+
+
+.registration-page button:hover, .login-page button:hover{
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+
+
+
 /*---------------media queries---------------*/
 @media (max-width: 1400px) {
 
@@ -1156,9 +1237,8 @@ footer span {
     .home-page .new-items .btn-group label,
     .catalogue-detail-page .new-items .btn-group label,
     .product-detail-page .new-items .btn-group label {
-        padding-inline: 8px;
-        height: 17px !important;
-        /*height: 20px !important;*/
+        padding-inline: 10px;
+        height: 20px !important;
     }
 
 

@@ -12,7 +12,7 @@
         <img class="nav-site-logo" src="{% static 'main/img/navbar/site-logo.svg' %}" alt="">
     </a>
     <ul class="d-flex list-unstyled align-items-center position-relative mb-0">
-        <li class="px-4 d-none d-sm-block py-3"><a href="#"><img src="{% static 'main/img/navbar/profile-icon.svg' %}"
+        <li class="px-4 d-none d-sm-block py-3"><a href="{% url 'users:register' %}"><img src="{% static 'main/img/navbar/profile-icon.svg' %}"
                                                                  alt=""></a></li>
         <li class="px-4 d-none d-sm-block py-3"><a href="#"><img src="{% static 'main/img/navbar/like-icon.svg' %}"
                                                                  alt=""></a></li>
@@ -45,39 +45,64 @@
                     {% endwith %}
                 </a>
 
+                {% if request.path != '/cart-detail/' %}
 
-                <ul id="cart-focus" class="position-absolute d-flex flex-column
+                    <ul id="cart-focus" class="position-absolute d-flex flex-column
                  overflow-y-scroll end-0 z-3"
-                    style="width: 320px; top: 60px; height: 330px;">
-                    <li class="list-unstyled position-relative"></li>
-                    <li class="w-100 cart-item">
-                        {#                    error here#}
-                        {% for product, quantity in cart %}
-                            <div class="row py-3 border-bottom">
-                                <div class="col-4 border-0">
-                                    <img class="border-0" width="100%" style="aspect-ratio: 1 / 1;"
-                                         src={% if  product.image %}
-                                             {{ product.image.url }}
-                                         {% else %}
-                                             "https://burst.shopifycdn.com/photos/wrist-watches.jpg?width=1000&format=pjpg&exif=0&iptc=0"
-                                         {% endif %} alt="">
-                                </div>
-                                <div class="col-7">
-                                    <h4>{{ product.name|truncatechars:'15' }} x {{ quantity }}</h4>
-                                    <h6>{{ product.type|truncatechars:'15' }}</h6>
-                                    <p>{{ product.real_price }}</p>
-                                </div>
-                                <div class="col-1 px-0 d-flex align-items-center">
-                                    <img src="{% static 'main/img/navbar/close_btn.svg' %}" alt="">
-                                </div>
-                            </div>
-                        {% endfor %}
+                        style="width: 320px; top: 60px; height: 330px;">
+                        <li class="list-unstyled position-relative"></li>
+                        <li class="w-100 cart-item">
+                            {% for product, color, quantity, size in cart %}
+                                <div class="row py-3 border-bottom">
+                                    <div class="col-4 border-0">
 
-                    </li>
-                    <li class="mt-auto cart-button mt-4 w-100">
-                        <a href="{% url 'orders:create_order' %}" class="w-100">перейти к оформлению</a>
-                    </li>
-                </ul>
+                                        {% for variation in product.variations.all %}
+                                            {% if variation.code|slugify == color|slugify %}
+
+                                                <img style="aspect-ratio: 1 / 1;" class="object-fit-cover" width="80px"
+                                                     alt="" src="
+                                    {% if  variation.image %}
+                                        {{ variation.image.url }}
+                                    {% else %}
+                                        {{ product.image.url }}
+                                    {% endif %}">
+                                            {% endif %}
+                                        {% empty %}
+                                            <img style="aspect-ratio: 1 / 1;" class="object-fit-cover" width="80px"
+                                                 alt="" src="{{ product.image.url }}">
+                                        {% endfor %}
+
+
+                                    </div>
+                                    <div class="col-7">
+                                        <h4>{{ product.name|truncatechars:'15' }} x {{ quantity }}</h4>
+                                        <h6>{{ product.type|truncatechars:'15' }}</h6>
+                                        <p>{{ product.real_price }}</p>
+                                    </div>
+                                    <div class="col-1 px-0 d-flex align-items-center">
+                                        <img src="{% static 'main/img/navbar/close_btn.svg' %}" alt=""
+                                             hx-post="
+                                        {% if color %}
+                                        {% url 'cart:product_remove_navbar' product.id  color %}
+                                         {% else %}
+                                             {% url 'cart:product_remove_navbar' product.id None %}
+                                         {% endif %}"
+                                             hx-trigger="click"
+                                             hx-confirm="Are you sure you want to delete
+                                {{ product.name|truncatechars:'20' }} from your cart?"
+                                             hx-target="#navCart"
+                                        hx-swap="outerHTML">
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        </li>
+                        <li class="mt-auto cart-button mt-4 w-100">
+                            <a href="{% url 'orders:create_order' %}" class="w-100">перейти к оформлению</a>
+                        </li>
+                    </ul>
+                {% endif %}
+
 
             </li>
         {% endblock %}

@@ -17,7 +17,7 @@
 {% block content %}
     <div class="row mx-auto mx-md-4 mx-lg-5">
         <div class="col-md-5 col-lg-4 col-xl-3  d-none d-md-block">
-            <div style="max-height: 100vh" class="side-links overflow-y-scroll">
+            <div style="max-height: 100vh" class="side-links overflow-y-scroll overflow-x-hidden">
                 <div class="row sidebar-header mt-5">
                     <div class="col-6 col-xl-6 col-lg-6 col-xxl-5 pe-0 text-nowrap"><p>Каталог товаров</p></div>
                     <div class="col-6 col-xl-6 col-lg-6 col-xxl-7 ps-0">
@@ -88,13 +88,11 @@
                                         {% if var.image %}
                                             url('{{ var.image.url }}') lightgray 50% / cover no-repeat;
                                         {% else %}
-                                            url('https://burst.shopifycdn.com/photos/wrist-watches.jpg?width=1000&format=pjpg&exif=0&iptc=0') lightgray 50% / cover no-repeat;
+                                            url('{{ product.image.url }}') lightgray 50% / cover no-repeat;
 
                                         {% endif %}
-                                    {% elif product.variations.all.0.image %}
-                                        url('{{ product.variations.all.0.image.url }}') lightgray 50% / cover no-repeat;
                                     {% else %}
-                                        url('https://burst.shopifycdn.com/photos/wrist-watches.jpg?width=1000&format=pjpg&exif=0&iptc=0') lightgray 50% / cover no-repeat;
+                                        url('{{ product.image.url }}') lightgray 50% / cover no-repeat;
                                     {% endif %}
 
                                     ">

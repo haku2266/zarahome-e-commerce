@@ -45,7 +45,7 @@
 
             {% for product in products %}
 
-                <a href="" class="col-12 col-md-6 col-lg-4">
+                <a href="{% url 'shop:product-detail' product.class_of_product.slug product.slug %}" class="col-12 col-md-6 col-lg-4">
                     <div class="row w-100">
                         <div class="col-5 px-0"
                              style="
@@ -68,8 +68,11 @@
                                     <h3 class="search-result">{{ product.name|highlight_search:search }}</h3>
                                     <p>{{ product.class_of_product.name|highlight_search:search }}</p>
                                 {% else %}
+
                                     <h3 class="search-result">{{ product.name }}</h3>
-                                    <p>{{ product.class_of_product.name }}</p>
+                                    <p>
+                                        {{ product.class_of_product.name }}
+                                    </p>
                                 {% endif %}
                                 <h4>{{ product.real_price }} ₽</h4>
                             </div>

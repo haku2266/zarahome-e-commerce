@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from .models import ProductModel, CategoryModel, ProductClassModel
+from .models import ProductModel, CategoryModel, ProductClassModel, ProductSizeModel
 from cart.forms import CartAddProductForm
 from cart.cart import Cart
 from django.views.decorators.http import require_POST
@@ -54,7 +54,8 @@ def catalogue_detail_view(request, slug):
 def product_detail_view(request, slug, product_slug=None):
     class_of_product = ProductClassModel.objects.get(slug=slug)
     form = CartAddProductForm()
-    products = ProductModel.objects.filter(class_of_product=class_of_product).order_by('-created_at')
+    products = ProductModel.objects.filter(class_of_product=class_of_product).order_by('-created_at')\
+        .prefetch_related('variations').select_related('class_of_product')
 
     paginator = Paginator(products, 1)
 
@@ -69,7 +70,6 @@ def product_detail_view(request, slug, product_slug=None):
 
     if product_slug != 'all':
         focus_product = ProductModel.objects.get(slug=product_slug)
-        print(focus_product)
         for i in paginator:
             if i.object_list[0] == focus_product:
                 products = paginator.page(i.number)
@@ -78,7 +78,10 @@ def product_detail_view(request, slug, product_slug=None):
         html = render_block_to_string('product-detail.html', 'product-update',
                                       context={'products': products,
                                                'class_of_product': class_of_product,
-                                               'form': form})
+                                               'form': form,
+                                               'var': None,
+                                               'check': False,
+                                               'focus_size': None})
         return HttpResponse(html)
 
     return render(request, 'product-detail.html',
@@ -138,8 +141,7 @@ def sidebar_links(request):
 
 
 def item_color_update(request, slug, color_code=None):
-    print(slug, color_code)
-    product = ProductModel.objects.get(slug=slug)
+    product = ProductModel.objects.prefetch_related('variations').get(slug=slug)
     form = CartAddProductForm()
     if color_code:
         var = product.variations.get(code=color_code)
@@ -151,8 +153,7 @@ def item_color_update(request, slug, color_code=None):
 
 
 def item_color_update_2(request, slug, color_code=None):
-    print(slug, color_code)
-    product = ProductModel.objects.get(slug=slug)
+    product = ProductModel.objects.prefetch_related('variations').get(slug=slug)
     form = CartAddProductForm()
 
     if color_code:
@@ -167,8 +168,7 @@ def item_color_update_2(request, slug, color_code=None):
 
 
 def item_color_update_catalogue(request, slug, color_code=None):
-    print(slug, color_code)
-    product = ProductModel.objects.get(slug=slug)
+    product = ProductModel.objects.prefetch_related('variations').get(slug=slug)
     form = CartAddProductForm()
 
     if color_code:
@@ -180,3 +180,27 @@ def item_color_update_catalogue(request, slug, color_code=None):
                                           'check': True,
                                           'form': form})
         return HttpResponse(html)
+
+
+def item_color_update_product_detail(request, slug, color_code=None):
+    product = ProductModel.objects.prefetch_related('variations').get(slug=slug)
+    form = CartAddProductForm()
+    if color_code:
+        var = product.variations.select_related('product').get(code=color_code)
+        html = render_block_to_string('product-detail.html', 'item-update-product',
+                                      context={
+                                          'var': var,
+                                          'product': product,
+                                          'check': True,
+                                          'form': form})
+        return HttpResponse(html)
+
+
+def size_select(request, size_id, focus_product_id):
+    focus_size = ProductSizeModel.objects.get(id=size_id)
+    product = ProductModel.objects.get(id=int(focus_product_id))
+    html = render_block_to_string('product-detail.html', 'size-btn-update', context={
+        'focus_size': focus_size,
+        'product': product
+    })
+    return HttpResponse(html)

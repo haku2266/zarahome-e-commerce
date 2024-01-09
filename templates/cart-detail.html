@@ -48,24 +48,45 @@
         {% block cart-update %}
             <div class="col-12 col-lg-8">
 
-                {% for product, quantity in my_cart %}
+                {% for product, color, quantity, size in my_cart %}
 
                     <div class="py-3 border-bottom d-flex align-items-end align-items-md-center gap-3 position-relative">
                         <div class="d-flex gap-2 align-items-center me-auto ">
-                            <img style="aspect-ratio: 1 / 1;" class="object-fit-cover" width="80px"
-                                 alt="" src={% if  product.image %}
-                                {{ product.image.url }}
-                            {% else %}
-                                "https://burst.shopifycdn.com/photos/wrist-watches.jpg?width=1000&format=pjpg&exif=0&iptc=0"
-                            {% endif %} alt="">
+                            {% for variation in product.variations.all %}
+                                {% if variation.code|slugify == color|slugify %}
+
+                                    <img style="aspect-ratio: 1 / 1;" class="object-fit-cover" width="80px"
+                                         alt="" src="
+                                    {% if  variation.image %}
+                                        {{ variation.image.url }}
+                                    {% else %}
+                                        {{ product.image.url }}
+                                    {% endif %}">
+                                {% endif %}
+                            {% empty %}
+                                <img style="aspect-ratio: 1 / 1;" class="object-fit-cover" width="80px"
+                                     alt="" src="{{ product.image.url }}">
+                            {% endfor %}
+
+
                             <div class="">
-                                <h4>{{ product.name }}</h4>
+                                <h4 class="">
+                                    <a href="{% url 'shop:product-detail' product.class_of_product.slug product.slug %}">{{ product.name }}</a>
+                                </h4>
                                 <p class="mb-0">{{ product.class_of_product.name }}</p>
 
                                 <div class="d-flex d-md-none">
-                                    <img onclick="minusItem({{ product.id }})" id="minusItem{{ product.id }}"
+                                    <img id="minusItem{{ product.id }}"
                                          src="{% static 'main/img/cart-page/minus-item-count.svg' %}" alt=""
-                                         hx-post="{% url 'cart:minus_quantity' product.id %}"
+                                         hx-post="
+                                         {% if color %}
+                                        {% url 'cart:minus_quantity' product.id color %}
+                                        {% else %}
+                                        {% url 'cart:minus_quantity' product.id None %}
+
+                                         {% endif %}
+
+"
                                          hx-target='#cart-detail'
                                          hx-trigger='click'>
                                     <div class="d-flex align-items-center">
@@ -77,44 +98,84 @@
                                                 border: 1px solid rgba(0, 0, 0, 0.25);
                                                 background: #FFF;" type="number"
                                                class="text-center" value="{{ quantity }}"
-                                               hx-post="{% url 'cart:cart_update' product.id %}"
+                                               hx-post="
+                                               {% if color %}
+                                                {% url 'cart:cart_update' product.id color %}
+                                                {% else %}
+                                                {% url 'cart:cart_update' product.id None %}
+
+                                               {% endif %}
+
+"
                                                hx-target='#cart-detail'
                                                hx-trigger='keyup changed delay:500ms'
                                                min="1"
                                                name='quantity'>
                                     </div>
-                                    <img onclick="plusItem({{ product.id }})" id="plusItem{{ product.id }}"
-                                         hx-post="{% url 'cart:plus_quantity' product.id %}"
+                                    <img id="plusItem{{ product.id }}"
+                                         hx-post="
+                                         {% if color %}
+                                        {% url 'cart:plus_quantity' product.id color %}
+                                        {% else %}
+                                        {% url 'cart:plus_quantity' product.id None %}
+                                         {% endif %}
+
+"
                                          hx-target='#cart-detail'
                                          hx-trigger='click'
                                          src="{% static 'main/img/cart-page/plus-item-count.svg' %}" alt="">
+                                    <div class="ms-4 item-price">
+                                        {#                                        {% if size != 'Default' %}#}
+                                        {#                                            {{ size }}#}
+                                        {#                                        {% endif %}#}
+                                    </div>
+
                                 </div>
 
                             </div>
                         </div>
-                        <div class="d-md-flex d-none">
-                            <img onclick="minusItem({{ product.id }})" id="minusItem{{ product.id }}"
+                        <div class="d-md-flex d-none align-items-center">
+                            <img id="minusItem{{ product.id }}"
                                  src="{% static 'main/img/cart-page/minus-item-count.svg' %}" alt=""
-                                 hx-post="{% url 'cart:minus_quantity' product.id %}"
+                                 hx-post="
+                                 {% if color %}
+                                {% url 'cart:minus_quantity' product.id color %}
+                                {% else %}
+                                {% url 'cart:minus_quantity' product.id None %}
+
+                                 {% endif %}
+
+"
                                  hx-target='#cart-detail'
                                  hx-trigger='click'>
                             <div class="d-flex align-items-center">
-                                {#                                <form action="">#}
-                                {#                                    {{ form.quantity }}#}
-                                {#                                    {{ form.override }}#}
-                                {#                                </form>#}
                                 <input id="inputValue{{ product.id }}" style="
                                                 border: 1px solid rgba(0, 0, 0, 0.25);
                                                 background: #FFF;" type="number"
                                        class="text-center" value="{{ quantity }}"
-                                       hx-post="{% url 'cart:cart_update' product.id %}"
+                                       hx-post="
+                                       {% if color %}
+                                        {% url 'cart:cart_update' product.id color %}
+                                        {% else %}
+                                        {% url 'cart:cart_update' product.id None %}
+
+                                       {% endif %}
+
+"
                                        hx-target='#cart-detail'
                                        hx-trigger='keyup changed delay:500ms'
                                        min="1"
                                        name='quantity'>
                             </div>
-                            <img onclick="plusItem({{ product.id }})" id="plusItem{{ product.id }}"
-                                 hx-post="{% url 'cart:plus_quantity' product.id %}"
+                            <img id="plusItem{{ product.id }}"
+                                 hx-post="
+                                 {% if color %}
+                                {% url 'cart:plus_quantity' product.id color %}
+                                {% else %}
+                                {% url 'cart:plus_quantity' product.id None %}
+
+                                {% endif %}
+                                "
                                  hx-target='#cart-detail'
                                  hx-trigger='click'
                                  src="{% static 'main/img/cart-page/plus-item-count.svg' %}" alt="">
@@ -126,7 +187,14 @@
                         <div class="close-item">
                             <img style="rotate: 45deg;" src="{% static 'main/img/cart-page/plus-item-count.svg' %}"
                                  alt=""
-                                 hx-post="{% url 'cart:product_remove' product.id %}"
+                                 hx-post="
+                                 {% if color %}
+                                {% url 'cart:product_remove' product.id color %}
+                                {% else %}
+                                {% url 'cart:product_remove' product.id None %}
+                                 {% endif %}
+
+"
                                  hx-trigger="click"
                                  hx-confirm="Are you sure you want to delete
                                 {{ product.name|truncatechars:'20' }} from your cart?"

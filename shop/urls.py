@@ -2,7 +2,8 @@ from django.urls import path, include
 from .views import (home_view, all_products_view,
                     catalogue_detail_view, product_detail_view,
                     cart_detail_view, search_product, nav_search,
-                    item_color_update, item_color_update_2, item_color_update_catalogue)
+                    item_color_update, item_color_update_2, item_color_update_catalogue,
+                    item_color_update_product_detail, size_select)
 
 app_name = 'shop'
 
@@ -19,7 +20,11 @@ htmx_urlpatterns = [
     path('search-product', search_product, name='search-product'),
     path('item-color-update/<str:slug>/<str:color_code>/', item_color_update, name='item-color-update'),
     path('item-color-update_two/<str:slug>/<str:color_code>/', item_color_update_2, name='item-color-update-two'),
-    path('item-color-update_catalogue/<str:slug>/<str:color_code>/', item_color_update_catalogue, name='item-color-update-catalogue')
+    path('item-color-update_catalogue/<str:slug>/<str:color_code>/', item_color_update_catalogue,
+         name='item-color-update-catalogue'),
+    path('item-color-update_product_detail/<str:slug>/<str:color_code>/', item_color_update_product_detail,
+         name='item-color-update-product-detail'),
+    path('size-select-button/<int:size_id>/<int:focus_product_id>', size_select, name='size-button-update')
 ]
 
 urlpatterns += htmx_urlpatterns
