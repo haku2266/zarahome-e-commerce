@@ -1,3 +1,4 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.shortcuts import reverse
 from django.utils.translation import gettext_lazy as _
@@ -144,7 +145,8 @@ class ProductModel(models.Model):
                                 null=True,
                                 help_text=_('original price of product. at most 2 decimals. f.e: 1234,56'))
     discount = models.PositiveSmallIntegerField(default=0, verbose_name=_('discount'),
-                                                help_text=_('discount percentage of product. [1-100]'))
+                                                help_text=_('discount percentage of product. [1-100]'),
+                                                validators=[MinValueValidator(0), MaxValueValidator(100)])
     real_price = models.DecimalField(verbose_name=_('real price'), max_digits=100, decimal_places=2, null=True,
                                      blank=True, help_text=_('price of product after discount'))
 

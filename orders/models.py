@@ -1,14 +1,17 @@
+from django.core import validators
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from users.models import ClientDetails
 from shop.models import ProductModel
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class PromoCodeModel(models.Model):
     code = models.CharField(max_length=50, unique=True, verbose_name=_('promo code'),
                             help_text=_('promo code that would give discount for an order'))
     discount = models.PositiveSmallIntegerField(default=0, verbose_name=_('discount'),
-                                                help_text=_('discount issued by the promo code'))
+                                                help_text=_('discount issued by the promo code'),
+                                                validators=[MinValueValidator(0), MaxValueValidator(100)])
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('created at'))
     expire_at = models.DateTimeField(null=True, blank=True, verbose_name=_('expire date'))
 
@@ -25,9 +28,11 @@ class PromoCodeModel(models.Model):
 class OrderModel(models.Model):
     client = models.ForeignKey(ClientDetails, on_delete=models.SET_NULL, null=True,
                                verbose_name=_('client'))
-    promo_code = models.ForeignKey(PromoCodeModel, on_delete=models.SET_NULL, null=True, blank=True,
-                                   verbose_name=_('promo code'),
-                                   help_text=_('promo code that would give discount for an order'))
+    promo_code = models.CharField(max_length=100, verbose_name=_('promo code'), null=True, blank=True)
+
+    discount = models.PositiveSmallIntegerField(null=True, blank=True, verbose_name=_('discount'),
+                                                help_text=_('discount issued by the promo code'),
+                                                validators=[MinValueValidator(0), MaxValueValidator(100)])
 
     CHOICES = (('waiting', 'waiting for payment'),
                ('preparing', 'preparing for delivery'),
@@ -46,15 +51,15 @@ class OrderModel(models.Model):
     def has_promo_code(self):
         return bool(self.promo_code)
 
-    def get_total_cost(self):
-        if self.has_promo_code():
-            return sum(item.get_cost() for item in self.items.all()) * (1 - self.promo_code.discount / 100)
-        else:
-            return sum(item.get_cost() for item in self.items.all())
+    # def get_total_cost(self):
+    #     if self.has_promo_code():
+    #         return sum(item.get_cost() for item in self.items.all()) * (1 - self.discount / 100)
+    #     else:
+    #         return sum(item.get_cost() for item in self.items.all())
 
     class Meta:
         verbose_name = _('order')
-        verbose_name_plural = _('orders')
+        verbose_name_plural = _(f"orders")
         ordering = ('-created_at',)
         db_table = 'order'
 

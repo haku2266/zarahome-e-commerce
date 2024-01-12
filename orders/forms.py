@@ -1,5 +1,5 @@
 from django import forms
-from .models import OrderModel, OrderItemModel
+from .models import OrderModel, OrderItemModel, PromoCodeModel
 from users.models import ClientDetails, CustomUserModel
 
 
@@ -14,14 +14,21 @@ class OrderAddressCreateForm(forms.ModelForm):
 
     class Meta:
         model = OrderModel
-        fields = ['promo_code']
+        fields = ['promo_code', 'discount']
+        widgets = {
+            'discount': forms.HiddenInput(),
+            'promo_code': forms.TextInput(attrs={
+                'hx-post': "/orders/promo_check/",
+                'hx-trigger': "keyup",
+                'hx-target': "#temp_update"
+            })
+        }
 
     def __init__(self, *args, **kwargs):
         super(OrderAddressCreateForm, self).__init__(*args, **kwargs)
 
     def save(self, commit=True):
         order_instance = super(OrderAddressCreateForm, self).save(commit=False)
-
         user = CustomUserModel.objects.get(uuid=self.cleaned_data['uuid'])
         client = ClientDetails.objects.create(user=user,
                                               first_name=self.cleaned_data['first_name'],

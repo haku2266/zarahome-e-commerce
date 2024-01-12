@@ -12,9 +12,9 @@ class ColorModelAdmin(admin.ModelAdmin):
     autocomplete_fields = ['product']
     form = ColorModelAdminForms
 
-    @staticmethod
-    def color(obj):
-        free_space = '&nbsp;' * 5
+    @admin.display(description='Palette')
+    def color(self, obj):
+        free_space = '&nbsp;' * 4
         return mark_safe(f"<div style='background-color:{obj.code}; width:100px;'>{free_space}</div>")
 
 

@@ -1,6 +1,7 @@
 from decimal import Decimal
 from django.conf import settings
 from shop.models import ProductModel
+from orders.models import PromoCodeModel
 
 
 class Cart:
@@ -12,6 +13,42 @@ class Cart:
         if not cart:
             cart = self.session[settings.CART_SESSION_ID] = {}
         self.cart = cart
+        self.promo_code_id = self.session.get('promo_code_id', None)
+
+    @property
+    def has_discount(self):
+        return bool(self.promo_code_id)
+
+    @property
+    def discount_number(self):
+        if self.has_discount:
+            discount = PromoCodeModel.objects.get(id=self.promo_code_id).discount
+            return discount
+        else:
+            return 0
+
+    def __iter__(self):
+        """
+        Iterate through the cart and get items
+        """
+        product_ids = self.cart.keys()
+        # get product object and add to cart
+        products = ProductModel.objects.filter(id__in=product_ids).select_related('class_of_product')
+        cart = self.cart.copy()
+        for product in products:
+            for color, q_s in self.cart[str(product.id)].get('colors').items():
+                if color:
+                    quantity = q_s['item_quantity']
+                else:
+                    quantity = self.cart[str(product.id)]['quantity']
+                size = q_s['item_size']
+                yield product, color, quantity, size
+
+    def __len__(self):
+        """
+        Count all the products in the cart(quantities). e.g: 3 eggs, 2 chickens = 5 items
+        """
+        return sum(item['quantity'] for item in self.cart.values())
 
     def add(self, product, quantity=1, color=None, size=None, override_quantity=False):
         """Add product to cart or update quantity"""
@@ -52,48 +89,38 @@ class Cart:
         self.session.modified = True
 
     def remove(self, product):
+        """remove product"""
         product_id = str(product.id)
         if product_id in self.cart:
             del self.cart[product_id]
         self.save()
 
-    def __iter__(self):
-        """
-        Iterate through the cart and get items
-        """
-        product_ids = self.cart.keys()
-        # get product object and add to cart
-        products = ProductModel.objects.filter(id__in=product_ids).select_related('class_of_product')
-        cart = self.cart.copy()
-        for product in products:
-            for color, q_s in self.cart[str(product.id)].get('colors').items():
-                if color:
-                    quantity = q_s['item_quantity']
-                else:
-                    quantity = self.cart[str(product.id)]['quantity']
-                size = q_s['item_size']
-                yield product, color, quantity, size
-        #     cart[str(product.id)]['product'] = product
-        # for item in cart.values():
-        #     item['price'] = Decimal(item['price'])
-        #     item['total_price'] = item['price'] * item['quantity']
-        #     yield item
-
-    def __len__(self):
-        """
-        Count all the products in the cart(quantities). e.g: 3 eggs, 2 chickens = 5 items
-        """
-        return sum(item['quantity'] for item in self.cart.values())
-
     def get_total_price(self):
-        return sum(Decimal(item['price']) * item['quantity']
-                   for item in self.cart.values())
+        """ total cart price"""
+        if self.has_discount:
+            discount = PromoCodeModel.objects.get(id=self.promo_code_id).discount
+            return round(sum(Decimal(item['price']) * item['quantity']
+                             for item in self.cart.values()) * Decimal(1 - discount / 100), 2)
+        else:
+            return round(sum(Decimal(item['price']) * item['quantity']
+                             for item in self.cart.values()), 2)
+
+    def get_total_price_before_discount(self):
+        return round(sum(Decimal(item['price']) * item['quantity']
+                         for item in self.cart.values()), 2)
+
+    def discount_value(self):
+        if self.has_discount:
+            return round(sum(Decimal(item['price']) * item['quantity']
+                             for item in self.cart.values()) * Decimal(self.discount_number / 100), 2)
+        return None
 
     def clear(self):
         """
         Delete the cart from the sessions
         """
         del self.session[settings.CART_SESSION_ID]
+        del self.session['promo_code_id']
         self.save()
 
     def __str__(self):

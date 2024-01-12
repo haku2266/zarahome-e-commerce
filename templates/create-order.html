@@ -9,15 +9,71 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-4 offset-4 bg-success-subtle p-4">
-            <form action="{% url 'orders:create_order' %}" method="post">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <button type="submit">Order</button>
-            </form>
-        </div>
+    <form action="{% url 'orders:create_order' %}" method="post" class="row mx-5 my-5">
+        {% csrf_token %}
+        <div class="col-12 col-lg-8">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    {{ form.first_name|as_crispy_field }}
+                </div>
+                <div class="col-12 col-md-6">
+                    {{ form.last_name|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    {{ form.region|as_crispy_field }}
+                </div>
+                <div class="col-12 col-md-6">
+                    {{ form.city|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    {{ form.street|as_crispy_field }}
+                </div>
+                <div class="col-12 col-md-6">
+                    {{ form.flat_number|as_crispy_field }}
+                </div>
+            </div>
+            <button type="submit">Order</button>
 
-    </div>
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="total-cost p-4 mt-5 mt-lg-0  d-flex flex-column align-items-center position-relative">
+
+                <div class="position-relative w-100 d-flex flex-column align-items-center">
+                    <span style="top: -10px" class="px-3 position-absolute z-1 ">Промокод</span>
+                    <div class="w-100 opacity-50 mb-4" style="border-bottom: 1px solid var(--light-black)"></div>
+                    {{ form.promo_code }}
+                </div>
+
+                <div id="temp_update" class="w-100">
+
+                    {% block temp_update %}
+
+                        <div class="position-relative mt-4 {% if cart.has_discount is False %}
+                        	d-none
+                        {% endif %}  w-100 d-flex flex-column align-items-center">
+                            <span style="top: -10px" class="px-3 position-absolute z-1 ">Ваша скидка</span>
+                            <div class="w-100 opacity-50 "
+                                 style="color: var(--red);border-bottom: 1px solid var(--light-black)"></div>
+                            <h1 class="mt-4 mb-0" style="color: var(--red);">{{ cart.discount_value }} ₽</h1>
+                        </div>
+                        <div class="position-relative mt-4 w-100 d-flex flex-column align-items-center">
+                            <span style="top: -10px" class="px-3 position-absolute z-1 ">Итого</span>
+                            <div class="w-100 opacity-50" style="border-bottom: 1px solid var(--light-black)"></div>
+                            <h1 class="mt-4 mb-0">{{ cart.get_total_price }} ₽</h1>
+                            <h4 class="mb-4">{{ cart|length }} товаров</h4>
+                        </div>
+                    {% endblock %}
+                </div>
+
+                <a class="text-lowercase" href="{% url 'orders:create_order' %}">Перейти к
+                    оформлению</a>
+            </div>
+
+        </div>
+    </form>
 
 {% endblock %}

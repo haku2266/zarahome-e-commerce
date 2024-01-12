@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.utils.safestring import mark_safe
+# from django.utils.safestring import mark_safe
 from .forms import ColorModelAdminForms
 from .models import *
 
@@ -14,9 +14,12 @@ class OrderItemInline(admin.TabularInline):
     autocomplete_fields = ['product']
     fields = ('product', 'price', 'quantity', 'code', 'size')
     form = ColorModelAdminForms
+    extra = 0
 
 
 @admin.register(OrderModel)
 class OrderAdmin(admin.ModelAdmin):
     readonly_fields = ['total_cost']
     inlines = [OrderItemInline]
+
+
