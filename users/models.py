@@ -1,5 +1,3 @@
-from django.db import models
-from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import BaseUserManager as DjangoBaseUserManager
 from django.db import models
@@ -106,4 +104,3 @@ class ClientDetails(models.Model):
         db_table = 'client_details'
         verbose_name = "client detail"
         verbose_name_plural = "client details"
-

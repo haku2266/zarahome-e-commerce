@@ -12,6 +12,7 @@
     <form action="{% url 'orders:create_order' %}" method="post" class="row mx-5 my-5">
         {% csrf_token %}
         <div class="col-12 col-lg-8">
+            {{ request.user.client }}
             <div class="row">
                 <div class="col-12 col-md-6">
                     {{ form.first_name|as_crispy_field }}

@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from .models import ProductModel, CategoryModel, ProductClassModel, ProductSizeModel
 from cart.forms import CartAddProductForm
@@ -54,7 +54,7 @@ def catalogue_detail_view(request, slug):
 def product_detail_view(request, slug, product_slug=None):
     class_of_product = ProductClassModel.objects.get(slug=slug)
     form = CartAddProductForm()
-    products = ProductModel.objects.filter(class_of_product=class_of_product).order_by('-created_at')\
+    products = ProductModel.objects.filter(class_of_product=class_of_product).order_by('-created_at') \
         .prefetch_related('variations').select_related('class_of_product')
 
     paginator = Paginator(products, 1)
@@ -133,6 +133,8 @@ def nav_search(request):
             '-similarity_name', '-similarity_class').select_related('class_of_product')
         return render(request, 'all_products.html', {'products': products,
                                                      'search': search})
+    else:
+        return redirect('shop:home')
 
 
 def sidebar_links(request):
