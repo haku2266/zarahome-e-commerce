@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: zara
+      POSTGRES_PASSWORD: zara
+      POSTGRES_DB: zara
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5434:5432"
+  web:
+    build: ./
+    container_name: django
+    volumes:
+      - ./:/usr/src/app/
+    env_file:
+      - ./config/.env
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8001:8000"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
