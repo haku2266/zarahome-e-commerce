@@ -1,7 +1,9 @@
 # Zarahome E-Commerce
-In this project, I was using **HTMX** as an AJAX alternative
-As a database, I used **PostgreSQL**, and its search parameters
-Docker Compose has been added
+###### In this project, I was using *HTMX* as an AJAX alternative
+
+###### As a database, I used *PostgreSQL*, and its search parameters 
+
+###### Docker Compose has been added
 
 In order to run the project, use the following commands:
 
