@@ -1,23 +1,48 @@
 # Zarahome E-Commerce
-In this project, I was using *HTMX* as an AJAX alternative
 
-As a database, I used *PostgreSQL*, and its search parameters 
+### `Django` project for learning purposes
 
-Docker Compose has been added
+#### -|- List of technologies utilized:
 
-In order to run the project, use the following commands:
+-   `HTMX` as a util to create dynamic components
+-   `PostgreSQL` as a SQL database
+-   `Docker & Docker-compose` for containerization
+-   and more
 
-**1**. 
-```shell
-docker-compose up
+#### -|- How to run the project:
+
+_Clone the application to your local device_
+
+```bash
+git clone git@github.com:haku2266/zarahome-e-commerce.git
 ```
 
-**2**. 
-```shell
+_Get into the app directory_
+
+```bash
+cd zarahome-e-commerce/
+```
+
+_Run docker-compose file_
+
+``` bash
+docker-compose up --build
+```
+
+_Apply migrations_
+```bash
 docker-compose exec web python manage.py migrate
 ```
 
-**3**.
-```shell
+_Create admin_
+```bash
 docker-compose exec web python manage.py createsuperuser
 ```
+
+_Access the app through the next link_
+1. For users:
+**http://0.0.0.0:8000/**
+
+3. For admin
+**http://0.0.0.0:8000/admin/**
+
